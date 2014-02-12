@@ -1,6 +1,7 @@
 # BEGIN dancer application htaccess
 RewriteEngine On
+RewriteRule ^/?$ /cgi-bin/dispatch.cgi [L,R]
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteRule (.*) /dispatch.cgi$1 [L]
+RewriteRule (.*) /cgi-bin/dispatch.cgi$1 [L]
 # END dancer application htaccess

@@ -4,10 +4,10 @@ REMOTE_REPOSITORY= ~/tecweb/
 -include config.mk
 
 tunnel:
-	@echo "* Sarà visibile al link: http://localhost:20080/tecweb/~$(USERNAME)/"
-	ssh -L30080:tecnologie-web:80 -L30022:tecnologie-web:22 $(USERNAME)@ssh.studenti.math.unipd.it
+	@echo "* Sarà visibile al link: http://localhost:30080/tecweb/~$(USER)/"
+	ssh -L30080:tecnologie-web:80 -L30022:tecnologie-web:22 -A -t $(USER)@ssh.studenti.math.unipd.it ssh $(USER)@tecnologie-web
 
 deploy:
 	@echo "(*) Upload..."
-	@scp -P 30022 -r ./* nomeutente@localhost:tecweb/
+	@scp -P 30022 -r ./* $(USER)@localhost:tecweb/
 	@echo "(*) Done."
