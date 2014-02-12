@@ -1,9 +1,5 @@
 # BEGIN dancer application htaccess
 RewriteEngine On
-RewriteRule ^(tecweb/~[^/])/?$ $1/cgi-bin/dispatch.cgi [L,R]
-RewriteRule ^/?$ cgi-bin/dispatch.cgi [L,R]
-RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteRule (tecweb/~[^/]/)(.*) $1/cgi-bin/dispatch.cgi/$2 [L]
-RewriteRule /(.*) $1/cgi-bin/dispatch.cgi/$2 [L]
+RewriteRule ^(.*)$    cgi-bin/dispatch.fcgi$1 [QSA,L]
 # END dancer application htaccess
