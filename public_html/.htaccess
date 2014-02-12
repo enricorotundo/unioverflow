@@ -1,5 +1,5 @@
-# BEGIN dancer application htaccess
 RewriteEngine On
+RewriteRule ^/?$ /unioverflow/cgi-bin/dispatch.cgi [PT]
+RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteRule ^(.*)$    cgi-bin/dispatch.fcgi$1 [QSA,L]
-# END dancer application htaccess
+RewriteRule ^(.*)$ /unioverflow/cgi-bin/dispatch.cgi/$1 [PT]

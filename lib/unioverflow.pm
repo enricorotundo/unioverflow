@@ -7,4 +7,8 @@ get '/' => sub {
     template 'index';
 };
 
+get '/test' => sub {
+    template 'test';
+};
+
 true;
