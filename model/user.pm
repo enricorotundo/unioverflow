@@ -1,8 +1,8 @@
-package Model::User;
+package model::user;
 use strict;
-use warning;
+use warnings;
 use diagnostics;
-use Lib::Unioverflow;
+use lib::unioverflow;
 
 sub new {
 	my $class = shift;

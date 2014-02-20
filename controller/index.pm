@@ -1,8 +1,8 @@
-package Unioverflow::Controller::Index;
+package controller::index;
 use strict;
-use warning;
+use warnings;
 use diagnostics;
-use Lib::Unioverflow;
+use lib::unioverflow;
 
 sub handler {
 	# Initialization

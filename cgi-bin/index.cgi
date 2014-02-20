@@ -3,9 +3,9 @@
 BEGIN { push @INC, ".."; }
 
 use strict;
-use warning;
+use warnings;
 use diagnostics;
-use Unioverflow;
+use lib::unioverflow;
 
 use CGI::Carp qw(fatalsToBrowser warningsToBrowser);
 use CGI qw(:standard);
