@@ -18,7 +18,7 @@ sub handler {
 				"author" => "Paolino Paperino"
 			}
 		]
-	}
+	};
 	
 	# Render
 	$class->render(
@@ -26,3 +26,5 @@ sub handler {
 		DATA     => %dataRef
 	);
 }
+
+1;

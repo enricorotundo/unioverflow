@@ -18,3 +18,5 @@ sub view {
 	# the object itself will work for the view
 	return shift;
 }
+
+1;

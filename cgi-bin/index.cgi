@@ -12,5 +12,5 @@ use CGI qw(:standard);
 
 # Execute page
 
-require Controller::Index;
-Controller::Index->handler();
+require controller::index;
+controller::index->handler();
