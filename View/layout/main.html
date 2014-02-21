@@ -8,17 +8,10 @@
 	<meta name="author" content="Giacomo Fornari, Serena Girardi, Enrico Rotundo, Federico Poli" />
 </head>
 <body>
-
-	<div class="header">
-		<img />
+	<div id="page">
+		[% PROCESS layout/header.html %]
+		[% content %]
+		[% PROCESS layout/footer.html %]
 	</div>
-
-	<p>
-		<strong>Nota temporanea</strong>: le pagine dinamiche (quindi tutte, credo) vanno posizionate dentro a <code>Views/</code> utilizzando la sintassi del <code>Template::Toolkit</code>. C'è qualche esempio in quella cartella.
-	</p>
-	</p>
-		Se il file non è presente in <code>public_html/</code> il router sceglierà il giusto controller in base alla path. Devo ancora finire questo aspetto e quindi per adesso chiama soltando il <code>Controller::Index</code> che carica la pagina <code>View/index.html</code> (e le relative dipendenze specificate nel template).
-	</p>
-
 </body>
 </html>

@@ -1,12 +1,22 @@
-package model::user;
+package Model::User;
 use strict;
 use warnings;
 use diagnostics;
-use lib::unioverflow;
+use CGI::Carp;
+
+use base 'Lib::Object';
 
 sub new {
-	my $class = shift;
-	my %args = @_;
+	my ($class, @args) = @_;
+	$class->SUPER::new(@args);
+}
+
+sub init {
+	1
+}
+
+sub new {
+	my ($class, %args) = @_;
 	my $self = bless {}, $class;
 
 	$self{'name'} = $args{'NAME'} || 'World';

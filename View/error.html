@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Error</title>
+		<style type="text/css">
+			p { font-family: monospace; }
+			.subroutine { color: blue; }
+			.args       { color: red; }
+			.dump       { color: gray; }
+			.file       { color: blue; }
+			.line       { color: green; }
+		</style>
+	</head>
+	<body>
+		<h1>Error</h1>
+		<pre>[% message %]</pre>
+		<hr/>
+		<h2>Stacktrace</h2>
+		<ul>
+		[% FOREACH frame IN trace %]
+			<li>
+				<p class="subroutine">[% frame.subroutine %]</p>
+				<pre class="args">[% frame.args %]</pre>
+				<pre class="dump">[% frame.dump %]</pre>
+				<p>
+					called at <code class="file">[% frame.file %]</code>
+					line <code class="line">[% frame.line %]</code>
+				</p>
+			</li>
+		[% END %]
+		</ul>
+	</body>
+</html>
