@@ -1,5 +1,5 @@
-RewriteEngine On
-RewriteRule ^/?$ /unioverflow/cgi-bin/dispatch.cgi [PT]
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteRule ^(.*)$ /unioverflow/cgi-bin/dispatch.cgi/$1 [PT]
+RewriteEngine On 
+RewriteRule ^/?$ /unioverflow/cgi-bin/dispatch.cgi [PT] 
+RewriteCond %{SCRIPT_FILENAME} !-d 
+RewriteCond %{SCRIPT_FILENAME} !-f 
+RewriteRule ^(.*)$ /unioverflow/cgi-bin/dispatch.cgi/ [PT]

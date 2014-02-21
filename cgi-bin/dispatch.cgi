@@ -1,13 +1,23 @@
 #!/usr/bin/env perl
 
+# Include project path
 BEGIN { push @INC, ".."; }
 
+# More strict
 use strict;
 use warnings;
 use diagnostics;
 use CGI::Carp;
 
+# Redirect errors to log file
+use Lib::Config
+close STDERR;
+open STDERR, '>>', $Lib::Config::logFile;
+
+# Show errors via browser
 use Lib::ErrorHandler;
+
+# Execute
 
 require Lib::Request;
 my $request = Lib::Request->new(
@@ -16,6 +26,6 @@ my $request = Lib::Request->new(
 );
 
 require Lib::Route;
-my $response = Lib::Route::handler($request);
+my $response s= Lib::Route::handler($request);
 
 $response->send();
