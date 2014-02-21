@@ -9,11 +9,6 @@ use warnings;
 use diagnostics;
 use CGI::Carp;
 
-# Redirect errors to log file
-use Lib::Config
-close STDERR;
-open STDERR, '>>', $Lib::Config::logFile;
-
 # Show errors via browser
 use Lib::ErrorHandler;
 
@@ -26,6 +21,6 @@ my $request = Lib::Request->new(
 );
 
 require Lib::Route;
-my $response s= Lib::Route::handler($request);
+my $response = Lib::Route::handler($request);
 
 $response->send();

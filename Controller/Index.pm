@@ -8,7 +8,7 @@ use Lib::Renderer;
 sub handler {
 	# Get parameters
 	my ($request) = @_;
-
+	
 	# Execution
 	my $data = {
 		"username" => "Pippo",

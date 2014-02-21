@@ -2,7 +2,7 @@ package Lib::Response;
 use strict;
 use warnings;
 use diagnostics;
-use CGI::Carp;
+use CGI::Carp qw(warningsToBrowser);
 use CGI;
 
 use base 'Lib::Object';
@@ -34,6 +34,9 @@ sub send {
 	print
 		"Content-Type: text/html\n\n".
 		$self->{"content"};
+
+	# Print warning as HTML comment
+	warningsToBrowser(1);
 }
 
 1;

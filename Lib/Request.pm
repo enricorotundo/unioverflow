@@ -22,7 +22,7 @@ sub init {
 
 sub parse_query {
 	my ($self) = @_;
-
+	
 	my @pairs = split( /\&/, $self->{"query"});
 	my $parameters = {};
 	

@@ -1,16 +1,15 @@
 REMOTE_REPOSITORY= ~/tecweb/
 USER= user
 HTACCESS= public_html/.htaccess
-LOGFILE= error.log
 
 # Include, senza lamentarsi se il file è assente
 -include config.mk
 
 all: local
 
-local: htaccess-local logfile
+local: htaccess-local
 
-tecweb: htaccess-tecweb logfile
+tecweb: htaccess-tecweb
 
 tunnel:
 	@echo "* Sarà visibile al link: http://localhost:30080/tecweb/~$(USER)/"
@@ -31,11 +30,8 @@ RewriteCond %{SCRIPT_FILENAME} !-f \n\
 RewriteRule ^(.*)$$ /unioverflow/cgi-bin/dispatch.cgi/$$1 [PT]" > "$(HTACCESS)"
 
 htaccess-tecweb:
-	@echo -e "RewriteEngine On \n\
+	@echo "RewriteEngine On \n\
 RewriteRule ^/?$$ /tecweb/~$(USER)/cgi-bin/dispatch.cgi [PT] \n\
 RewriteCond %{SCRIPT_FILENAME} !-d \n\
 RewriteCond %{SCRIPT_FILENAME} !-f \n\
-RewriteRule ^(.*)$$ /tecweb/~$(USER)/cgi-bin/dispatch.cgi/$$1 [PT]" > "$(HTACCESS)""
-
-logfile:
-	@touch "$(LOGFILE)" && chmod 777 "$(LOGFILE)"
+RewriteRule ^(.*)$$ /tecweb/~$(USER)/cgi-bin/dispatch.cgi/$$1 [PT]" > "$(HTACCESS)"

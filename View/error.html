@@ -18,9 +18,11 @@
 		<ul>
 		[% FOREACH frame IN trace %]
 			<li>
-				<p class="subroutine">[% frame.subroutine %]</p>
-				<pre class="args">[% frame.args %]</pre>
-				<pre class="dump">[% frame.dump %]</pre>
+				<p>
+					<span class="package">[% frame.package %]</span>
+					<span class="subroutine">[% frame.subroutine %]</span>
+					<span class="args">[% frame.args %]</span>
+				</p>
 				<p>
 					called at <code class="file">[% frame.file %]</code>
 					line <code class="line">[% frame.line %]</code>
