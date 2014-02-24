@@ -48,7 +48,7 @@ sub get_path {
 
 sub get_query {
 	my ($self) = @_;
-	return $self->{"path"};
+	return $self->{"query"};
 }
 
 sub get_parameters {

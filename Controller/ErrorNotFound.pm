@@ -1,4 +1,4 @@
-package Controller::Index;
+package Controller::ErrorNotFound;
 use strict;
 use warnings;
 use diagnostics;
@@ -11,21 +11,13 @@ sub handler {
 	
 	# Execution
 	my $data = {
-		"username" => "Pippo",
-		"questions" => [
-			{
-				"title" => "Titolo domanda",
-				"content" => "Contenuto del testo della domanda",
-				"author" => "Paolino Paperino"
-			}
-		],
 		"query" => $request->get_query(),
 		"path" => $request->get_path(),
 		"parameters" => $request->get_parameters()
 	};
 	
 	# Response
-	return Lib::Renderer::render('index.html', $data);
+	return Lib::Renderer::render('notfound.html', $data);
 }
 
 1;
