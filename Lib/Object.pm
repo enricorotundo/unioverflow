@@ -1,7 +1,6 @@
 package Lib::Object;
 use strict;
 use warnings;
-use diagnostics;
 use CGI::Carp;
 
 # constructor

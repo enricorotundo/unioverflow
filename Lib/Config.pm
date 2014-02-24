@@ -1,7 +1,6 @@
 package Lib::Config;
 use strict;
 use warnings;
-use diagnostics;
 use Carp;
 
 use File::Spec;

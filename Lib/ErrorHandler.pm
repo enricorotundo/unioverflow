@@ -1,7 +1,6 @@
 package Lib::ErrorHandler;
 use strict;
 use warnings;
-use diagnostics;
 
 use CGI::Carp qw(fatalsToBrowser warningsToBrowser);
 

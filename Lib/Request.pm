@@ -1,7 +1,6 @@
 package Lib::Request;
 use strict;
 use warnings;
-use diagnostics;
 use CGI::Carp;
 
 use base 'Lib::Object';

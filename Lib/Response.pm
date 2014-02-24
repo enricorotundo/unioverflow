@@ -1,7 +1,6 @@
 package Lib::Response;
 use strict;
 use warnings;
-use diagnostics;
 use CGI::Carp qw(warningsToBrowser);
 use CGI;
 

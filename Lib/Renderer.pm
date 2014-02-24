@@ -1,7 +1,6 @@
 package Lib::Renderer;
 use strict;
 use warnings;
-use diagnostics;
 use CGI::Carp;
 use Template;
 use Lib::Config;

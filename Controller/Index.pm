@@ -1,7 +1,6 @@
 package Controller::Index;
 use strict;
 use warnings;
-use diagnostics;
 use CGI::Carp;
 use Lib::Renderer;
 
