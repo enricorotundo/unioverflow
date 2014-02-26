@@ -18,9 +18,9 @@ sub handler {
 				"author" => "Paolino Paperino"
 			}
 		],
-		"query" => $request->get_query(),
-		"path" => $request->get_path(),
-		"parameters" => $request->get_parameters()
+		"query" => $request->query(),
+		"path" => $request->path(),
+		"parameters" => $request->parameters()
 	};
 	
 	# Response
