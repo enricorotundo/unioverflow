@@ -1,7 +1,8 @@
 [% WRAPPER layout/main.html %]
 	<div class="content">
-		<p>Benvenuto [% username %]!</p>
-		<p>La path gestita dal controller di questa pagina è: "<code>[% path %]</code>"</p>
-		<p>La query gestita dal controller di questa pagina è: "<code>[% query %]</code>"</p>
+		<p>Benvenuto [% username | html %]!</p>
+		<p>La path gestita dal controller di questa pagina è: "<code>[% path | html %]</code>"</p>
+		<p>La query gestita dal controller di questa pagina è: "<code>[% query | html %]</code>"</p>
+		<p><code>[% parameters.a | html%]</code></p>
 	</div>
 [% END %]

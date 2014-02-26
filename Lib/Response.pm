@@ -13,7 +13,7 @@ sub new {
 
 sub init {
 	my ($self) = @_;
-	$self->{"code"} = "200";
+	$self->{"status"} = "200 OK";
 	$self->{"content"} = "";
 }
 
@@ -25,13 +25,10 @@ sub set_content {
 sub send {
 	my ($self) = @_;
 
-	#my $cgi = CGI->new();
-	#print
-	#	$cgi->header().
-	#	$self->{"content"};
-
 	print
-		"Content-Type: text/html\n\n".
+		"Status: ".$self->{"status"}."\r\n".
+		"Content-Type: text/html; charset=utf-8\r\n".
+		"\r\n".
 		$self->{"content"};
 
 	# Print warning as HTML comment

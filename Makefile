@@ -10,7 +10,7 @@ all: local
 local:
 	#htaccess-local
 
-tecweb: 
+tecweb: flags-tecweb
 	#htaccess-tecweb
 
 tunnel:
@@ -37,3 +37,10 @@ RewriteRule ^/?$$ /tecweb/~$(USER)/cgi-bin/dispatch.cgi [PT] \n\
 RewriteCond %{SCRIPT_FILENAME} !-d \n\
 RewriteCond %{SCRIPT_FILENAME} !-f \n\
 RewriteRule ^(.*)$$ /tecweb/~$(USER)/cgi-bin/dispatch.cgi/$$1 [PT]" > "$(HTACCESS)"
+
+flags-tecweb:
+	find ~/tecweb/cgi-bin/ ~/tecweb/public_html/ -type d -exec chmod u+x,g+X,o= '{}' \;
+	find ~/tecweb/cgi-bin/ -name '*.pl' -or -name '*.cgi' -exec chmod u+x,g=r,o= '{}' \;
+	find ~/tecweb/cgi-bin/ -type f -exec chmod u-s,g-s,-t '{}' \;
+	chmod -R g-w,o-w ~/tecweb/cgi-bin/
+

@@ -5,6 +5,33 @@ use CGI::Carp;
 
 use base 'Lib::Object';
 
+sub parse_input {
+	my ($buffer) = @_;
+	
+	my @pairs = split( /&/, $buffer);
+	my $input = {};
+	
+	foreach my $pair (@pairs) {
+		my ($name, $value) = split(/=/, $pair);
+		$value ||= "";
+		
+		#$val =~ s/\'//g;
+		#$val =~ s/\+/ /g;
+		#$val =~ s/%(\w\w)/sprintf("%c", hex($1))/ge;
+		#
+		#$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		
+		$name =~ tr/+//;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$value =~ tr/+//;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		
+		$input->{$name} = $value;
+	}
+
+	return $input;
+}
+
 sub new {
 	my ($self, @args) = @_;
 	$self->SUPER::new(@args);
@@ -12,52 +39,51 @@ sub new {
 
 sub init {
 	my ($self) = @_;
-	$self->{"query"} ||= "";
+	$self->{"method"} ||= "";
 	$self->{"path"} ||= "";
-	$self->{"parameters"} ||= {};
+	$self->{"query"} ||= "";
+	$self->{"body"} ||= "";
 
-	$self->parse_query();
+	$self->{"get_parameters"} ||= {};
+	$self->{"post_parameters"} ||= {};
+
+	$self->{"get_parameters"} = parse_input($self->{"query"});
+	$self->{"post_parameters"} = parse_input($self->{"body"});
 }
 
-sub parse_query {
+sub method {
 	my ($self) = @_;
-	
-	my @pairs = split( /\&/, $self->{"query"});
-	my $parameters = {};
-	
-	foreach (@pairs) {
-		my ($name, $value) = split(/=/);
-		$value ||= "";
-		
-		#$val =~ s/\'//g;
-		#$val =~ s/\+/ /g;
-		#$val =~ s/%(\w\w)/sprintf("%c", hex($1))/ge;
-		
-		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
-		$parameters->{$name} = $value;
-	}
-
-	$self->{"parameters"} = $parameters;
+	return $self->{"method"};
 }
 
-sub get_path {
+sub path {
 	my ($self) = @_;
 	return $self->{"path"};
 }
 
-sub get_query {
+sub query {
 	my ($self) = @_;
 	return $self->{"query"};
 }
 
-sub get_parameters {
+sub parameters {
 	my ($self) = @_;
-	return $self->{"parameters"};
+	return $self->{"get_parameters"};
 }
 
-sub get_parameter {
+sub param {
 	my ($self, $name) = @_;
-	return $self->{"parameters"}->{$name};
+	return $self->{"get_parameters"}->{$name};
+}
+
+sub post_parameters {
+	my ($self) = @_;
+	return $self->{"post_parameters"};
+}
+
+sub post_param {
+	my ($self, $name) = @_;
+	return $self->{"post_parameters"}->{$name};
 }
 
 1;
