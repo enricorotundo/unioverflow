@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl
 
 # Include project path
 BEGIN { push @INC, ".."; }

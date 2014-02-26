@@ -7,9 +7,11 @@ HTACCESS= public_html/.htaccess
 
 all: local
 
-local: htaccess-local
+local:
+	#htaccess-local
 
-tecweb: htaccess-tecweb
+tecweb: 
+	#htaccess-tecweb
 
 tunnel:
 	@echo "* Sarà visibile al link: http://localhost:30080/tecweb/~$(USER)/"
@@ -17,7 +19,7 @@ tunnel:
 
 deploy:
 	@echo "(*) Upload..."
-	@scp -P 30022 -r ./* $(USER)@localhost:tecweb/
+	@scp -P 30022 -p -r ./* $(USER)@localhost:tecweb/
 	@echo "(*) Executing Makefile via SSH..."
 	ssh -p 30022 $(USER)@localhost "cd tecweb && make tecweb"
 	@echo "(*) Done."
