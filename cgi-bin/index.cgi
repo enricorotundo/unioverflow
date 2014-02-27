@@ -12,17 +12,8 @@ use CGI::Carp;
 use Lib::ErrorHandler;
 
 # Execute
-
-my $buffer;
-read (STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
-
-require Lib::Request;
-my $request = Lib::Request->new(
-	"method" => $ENV{'QUERY_METHOD'},
-	"path" => $ENV{'PATH_INFO'},
-	"query" => $ENV{'QUERY_STRING'},
-	"body" => $buffer
-);
+require Lib::Utils;
+my $request = Lib::Utils::autoDetectRequest();
 
 require Controller::Index;
 my $response = Controller::Index::handler($request);

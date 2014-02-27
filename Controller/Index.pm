@@ -8,6 +8,16 @@ sub handler {
 	# Get parameters
 	my ($request) = @_;
 	
+	my $session = $request->get_session();
+
+	$session->param("test", "TEST");
+	$session->param("asd", "ASDASD");
+	if ($request->param("key")) {
+		$session->param("key", $request->param("key"));
+	}
+	$session->close();
+	$session->flush();
+
 	# Execution
 	my $data = {
 		"username" => "Pippo",
@@ -20,11 +30,13 @@ sub handler {
 		],
 		"query" => $request->query(),
 		"path" => $request->path(),
-		"parameters" => $request->parameters()
+		"message" => "CGISESSID: ".$request->cookie("CGISESSID")->value()."  Key: ".$session->param("key")
 	};
 	
 	# Response
-	return Lib::Renderer::render('index.html', $data);
+	my $response = Lib::Renderer::render('index.html', $data);
+	$response->set_session($session);
+	return $response;
 }
 
 1;
