@@ -39,14 +39,11 @@ sub autoDetectRequest {
 		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
 	}
 	
-	my %cookies = CGI::Cookie->fetch;
-
 	my $request = Lib::Request->new(
 		"method" => $ENV{'QUERY_METHOD'},
 		"path" => $ENV{'PATH_INFO'},
 		"query" => $ENV{'QUERY_STRING'},
 		"body" => $buffer,
-		"cookies" => \%cookies
 	);
 
 	return $request;

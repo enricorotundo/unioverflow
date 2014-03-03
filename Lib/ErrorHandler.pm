@@ -1,8 +1,10 @@
 package Lib::ErrorHandler;
 use strict;
 use warnings;
+use CGI::Carp;
 
-use CGI::Carp qw(fatalsToBrowser warningsToBrowser);
+# Print errors to Browser
+use CGI::Carp qw(fatalsToBrowser);
 
 # Redefine error_handler
 #use CGI::Carp qw(set_die_handler);

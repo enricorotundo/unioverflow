@@ -12,10 +12,8 @@ use CGI::Carp;
 use Lib::ErrorHandler;
 
 # Execute
-require Lib::Utils;
-my $request = Lib::Utils::autoDetectRequest();
-
 require Controller::Index;
-my $response = Controller::Index::handler($request);
+my $handler = \&Controller::Index::handler;
 
-$response->send();
+require Lib::Core;
+Lib::Core::executeController($handler);

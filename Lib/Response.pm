@@ -1,6 +1,8 @@
 package Lib::Response;
 use strict;
 use warnings;
+use CGI::Carp;
+
 use CGI::Carp qw(warningsToBrowser);
 use CGI::Cookie;
 
@@ -13,44 +15,25 @@ sub new {
 
 sub init {
 	my ($self) = @_;
-	$self->{"status"} = "200 OK";
-	$self->{"content"} = "";
-	$self->{"cookies"} = {};
+	$self->{"header"} ||= "";
+	$self->{"content"} ||= "";
 }
 
-sub set_content {
-	my ($self, $content) = @_;
-	$self->{"content"} = $content;
+sub header {
+	my ($self, $data) = @_;
+	$self->{"header"} .= $data."\r\n";
 }
 
-sub add_cookie {
-	my ($self, $cookie) = @_;
-	my $name = $cookie->name();
-	$self->{"cookie"}->{$name} = $cookie;
-}
-
-sub set_session {
-	my ($self, $session) = @_;
-	my $SID = $session->id() || "";
-	my $cookie = CGI::Cookie->new(-name => "CGISESSID", -value => $SID);
-	$self->add_cookie($cookie);
+sub write {
+	my ($self, $data) = @_;
+	$self->{"content"} .= $data;
 }
 
 sub send {
 	my ($self) = @_;
-
-	if ($self->{"status"}) {
-		print "Status: ".$self->{"status"}."\r\n";
-	}
-
-	print "Content-Type: text/html; charset=utf-8\r\n";
-
-	for my $cookie (values %{$self->{"cookie"}}) {
-		print "Set-Cookie: ".$cookie->as_string."\n";
-	}
-
+	
+	print $self->{"header"};
 	print "\r\n";
-
 	print $self->{"content"};
 
 	# Print warning as HTML comment

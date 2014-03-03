@@ -6,17 +6,17 @@ use Lib::Renderer;
 
 sub handler {
 	# Get parameters
-	my ($request) = @_;
+	my ($req, $res) = @_;
 	
-	my $session = $request->get_session();
-
-	$session->param("test", "TEST");
-	$session->param("asd", "ASDASD");
-	if ($request->param("key")) {
-		$session->param("key", $request->param("key"));
-	}
-	$session->close();
-	$session->flush();
+	#my $session = $request->get_session();
+	#
+	#$session->param("test", "TEST");
+	#$session->param("asd", "ASDASD");
+	#if ($request->param("key")) {
+	#	$session->param("key", $request->param("key"));
+	#}
+	#$session->close();
+	#$session->flush();
 
 	# Execution
 	my $data = {
@@ -28,15 +28,15 @@ sub handler {
 				"author" => "Paolino Paperino"
 			}
 		],
-		"query" => $request->query(),
-		"path" => $request->path(),
-		"message" => "CGISESSID: ".$request->cookie("CGISESSID")->value()."  Key: ".$session->param("key")
+		"query" => $req->attr("query"),
+		"path" => $req->attr("path"),
+		"message" => "CGISESSID: TODO"
 	};
 	
 	# Response
-	my $response = Lib::Renderer::render('index.html', $data);
-	$response->set_session($session);
-	return $response;
+	$res->write(Lib::Renderer::render('index.html', $data));
+	#$response->set_session($session);
+	return $res;
 }
 
 1;

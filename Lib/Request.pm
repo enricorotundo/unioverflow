@@ -2,8 +2,6 @@ package Lib::Request;
 use strict;
 use warnings;
 use CGI::Carp;
-use Lib::Utils;
-use Lib::Session;
 
 use base 'Lib::Object';
 
@@ -18,58 +16,31 @@ sub init {
 	$self->{"path"} ||= "";
 	$self->{"query"} ||= "";
 	$self->{"body"} ||= "";
-	$self->{"cookies"} ||= [];
-
-	$self->{"get_parameters"} ||= {};
-	$self->{"post_parameters"} ||= {};
-
-	$self->{"get_parameters"} = Lib::Utils::parse_input($self->{"query"});
-	$self->{"post_parameters"} = Lib::Utils::parse_input($self->{"body"});
+	$self->{"param"} ||= {};
 }
 
-sub method {
-	my ($self) = @_;
-	return $self->{"method"};
-}
-
-sub path {
-	my ($self) = @_;
-	return $self->{"path"};
-}
-
-sub query {
-	my ($self) = @_;
-	return $self->{"query"};
-}
-
-sub parameters {
-	my ($self) = @_;
-	return $self->{"get_parameters"};
+sub attr {
+	if (@_ == 2) {
+		my ($self, $name) = @_;
+		return $self->{$name};
+	}
+	if (@_ == 3) {
+		my ($self, $name, $value) = @_;
+		return $self->{$name} = $value;
+	}
+	die "Invalid number of parameters (".@_.")";
 }
 
 sub param {
-	my ($self, $name) = @_;
-	return $self->{"get_parameters"}->{$name};
-}
-
-sub cookie {
-	my ($self, $name) = @_;
-	return $self->{"cookies"}->{$name};
-}
-
-sub post_parameters {
-	my ($self) = @_;
-	return $self->{"post_parameters"};
-}
-
-sub post_param {
-	my ($self, $name) = @_;
-	return $self->{"post_parameters"}->{$name};
-}
-
-sub get_session {
-	my ($self) = @_;
-	return Lib::Session::getOrCreateSession($self);
+	if ($_ == 2) {
+		my ($self, $name) = @_;
+		return $self->{"param"}->{$name};
+	}
+	if ($_ == 3) {
+		my ($self, $name, $value) = @_;
+		$self->{"param"}->{$name} = $value;
+	}
+	die "Invalid number of parameters";
 }
 
 1;

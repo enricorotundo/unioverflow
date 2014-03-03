@@ -1,8 +1,15 @@
-package Lib::Session;
+package Middleware::Session;
 use strict;
 use warnings;
 use CGI::Carp;
+
 use CGI::Session;
+
+sub handler {
+	my ($req, $res) = @_;
+
+	# TODO ...
+}
 
 sub getSession {
 	my ($request) = @_;

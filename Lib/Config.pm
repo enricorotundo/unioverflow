@@ -1,7 +1,7 @@
 package Lib::Config;
 use strict;
 use warnings;
-use Carp;
+use CGI::Carp;
 
 use File::Spec;
 use File::Basename;
