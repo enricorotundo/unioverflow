@@ -32,15 +32,15 @@ sub attr {
 }
 
 sub param {
-	if ($_ == 2) {
+	if (@_ == 2) {
 		my ($self, $name) = @_;
 		return $self->{"param"}->{$name};
 	}
-	if ($_ == 3) {
+	if (@_ == 3) {
 		my ($self, $name, $value) = @_;
 		$self->{"param"}->{$name} = $value;
 	}
-	die "Invalid number of parameters";
+	die "Invalid number of parameters (".@_.")";
 }
 
 1;

@@ -8,15 +8,15 @@ sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	
-	#my $session = $request->get_session();
-	#
-	#$session->param("test", "TEST");
-	#$session->param("asd", "ASDASD");
-	#if ($request->param("key")) {
-	#	$session->param("key", $request->param("key"));
-	#}
-	#$session->close();
-	#$session->flush();
+	my $session = $req->attr("session");
+	
+	$session->param("test", "TEST");
+	$session->param("asd", "ASDASD");
+	if ($req->param("key")) {
+		$session->param("key", $req->param("key"));
+	}
+	$session->close();
+	$session->flush();
 
 	# Execution
 	my $data = {
@@ -30,12 +30,11 @@ sub handler {
 		],
 		"query" => $req->attr("query"),
 		"path" => $req->attr("path"),
-		"message" => "CGISESSID: TODO"
+		"message" => "CGISESSID: ".$req->attr("cookie")->get("CGISESSID")
 	};
 	
 	# Response
 	$res->write(Lib::Renderer::render('index.html', $data));
-	#$response->set_session($session);
 	return $res;
 }
 

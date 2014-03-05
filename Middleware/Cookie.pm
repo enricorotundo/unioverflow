@@ -4,13 +4,16 @@ use warnings;
 use CGI::Carp;
 
 use CGI::Cookie;
+use Lib::Cookie;
 
 sub handler {
 	my ($req, $res) = @_;
-
-	my %cookies = CGI::Cookie->fetch;
-
-	$req->attr("cookie", \%cookies);
+	
+	my %cookie_hash = CGI::Cookie->fetch;
+	my $cookie = Lib::Cookie->new("cookie" => \%cookie_hash);
+	
+	$req->attr("cookie", $cookie);
+	$res->cookie($cookie);
 }
 
 1;

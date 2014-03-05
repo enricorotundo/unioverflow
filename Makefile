@@ -43,4 +43,3 @@ flags-tecweb:
 	find ~/tecweb/cgi-bin/ -name '*.pl' -or -name '*.cgi' -exec chmod u+x,g=r,o= '{}' \;
 	find ~/tecweb/cgi-bin/ -type f -exec chmod u-s,g-s,-t '{}' \;
 	chmod -R g-w,o-w ~/tecweb/cgi-bin/
-

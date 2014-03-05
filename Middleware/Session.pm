@@ -8,13 +8,21 @@ use CGI::Session;
 sub handler {
 	my ($req, $res) = @_;
 
-	# TODO ...
+	my $session = getSession($req);
+	if (!$session) {
+		$session = createSession();
+		$req->attr("cookie")->set("CGISESSID", $session->id());
+	}
+	
+	# TODO: distruggi sessione
+
+	$req->attr("session", $session);
 }
 
 sub getSession {
 	my ($request) = @_;
 	
-	my $session = CGI::Session->load($request->cookie("CGISESSID")->value()) or die CGI::Session->errstr;
+	my $session = CGI::Session->load($request->attr("cookie")->get("CGISESSID")) or die CGI::Session->errstr;
 	if ($session->is_expired || $session->is_empty) {
 		return undef;
 	} else {
@@ -39,12 +47,6 @@ sub saveSession {
 
 sub createSession {
 	my $session = CGI::Session->new();
-	return $session;
-}
-sub getOrCreateSession {
-	my ($request) = @_;
-	
-	my $session = CGI::Session->new($request->cookie("CGISESSID")->value());
 	return $session;
 }
 
