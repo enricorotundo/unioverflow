@@ -55,8 +55,10 @@ sub set {
 sub delete {
 	my ($self, $name) = @_;
 
-	$self->set("");
-	# TODO: imposta data di scadenza nel passato
+	if ($self->exists($name)) {
+		$self->{"cookie"}->{$name}->value("");
+		$self->{"cookie"}->{$name}->expires("1990");
+	}
 }
 
 1;

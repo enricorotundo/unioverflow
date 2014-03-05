@@ -10,13 +10,12 @@ sub handler {
 
 	my $session = getSession($req);
 	if (!$session) {
-		$session = createSession();
-		$req->attr("cookie")->set("CGISESSID", $session->id());
+		$session = createSession($req);
 	}
-	
-	# TODO: distruggi sessione
-
 	$req->attr("session", $session);
+	
+	# Passa la funzione per distruggere la sessione
+	$req->attr("destroySession", \&destroySession);
 }
 
 sub getSession {
@@ -30,24 +29,24 @@ sub getSession {
 	}
 }
 
-sub destroySession {
-	my $session = CGI::Session->load() or die CGI::Session->errstr;
-	my $SID = $session->id();
-	$session->close();
-	$session->delete();
-	$session->flush();
-}
-
-sub saveSession {
-	my ($session) = @_;
-	
-	$session->close();
-	$session->flush();
-}
-
 sub createSession {
+	my ($request) = @_;
+	
 	my $session = CGI::Session->new();
+	$request->attr("cookie")->set("CGISESSID", $session->id());
 	return $session;
+}
+
+sub destroySession {
+	my ($request) = @_;
+	
+	my $session = $request->attr("session");
+	if ($session) {
+		$session->close();
+		$session->delete();
+		$session->flush();
+		$request->attr("cookie")->delete("CGISESSID");
+	}
 }
 
 1;

@@ -3,21 +3,21 @@ use strict;
 use warnings;
 use CGI::Carp;
 use Lib::Renderer;
+use Middleware::Session;
 
 sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	
 	my $session = $req->attr("session");
+	my $destroySession = $req->attr("destroySession");
 	
 	$session->param("test", "TEST");
 	$session->param("asd", "ASDASD");
 	if ($req->param("key")) {
 		$session->param("key", $req->param("key"));
 	}
-	$session->close();
-	$session->flush();
-
+	
 	# Execution
 	my $data = {
 		"username" => "Pippo",
@@ -30,8 +30,10 @@ sub handler {
 		],
 		"query" => $req->attr("query"),
 		"path" => $req->attr("path"),
-		"message" => "CGISESSID: ".$req->attr("cookie")->get("CGISESSID")
+		"message" => "Session test: ".$session->param("test")."   Cookie CGISESSID: ".$req->attr("cookie")->get("CGISESSID")
 	};
+	
+	&$destroySession($req);
 	
 	# Response
 	$res->write(Lib::Renderer::render('index.html', $data));
