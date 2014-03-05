@@ -7,11 +7,11 @@ HTACCESS= public_html/.htaccess
 
 all: local
 
-local:
-	#htaccess-local
+local: flags-local
+	@#htaccess-local
 
 tecweb: flags-tecweb
-	#htaccess-tecweb
+	@#htaccess-tecweb
 
 tunnel:
 	@echo "* Sarà visibile al link: http://localhost:30080/tecweb/~$(USER)/"
@@ -22,7 +22,7 @@ deploy:
 	@scp -P 30022 -p -r ./* $(USER)@localhost:tecweb/
 	@echo "(*) Executing Makefile via SSH..."
 	ssh -p 30022 $(USER)@localhost "cd tecweb && make tecweb"
-	@echo "(*) Done."
+	@echo "(*) Fatto."
 
 htaccess-local:
 	@echo -e "RewriteEngine On \n\
@@ -38,8 +38,16 @@ RewriteCond %{SCRIPT_FILENAME} !-d \n\
 RewriteCond %{SCRIPT_FILENAME} !-f \n\
 RewriteRule ^(.*)$$ /tecweb/~$(USER)/cgi-bin/dispatch.cgi/$$1 [PT]" > "$(HTACCESS)"
 
+flags-local:
+	@echo "(*) Sistemo i permessi dei file..."
+	@find cgi-bin/ public_html/ -type d -exec chmod u=rwx,g=rx,o=rx '{}' \;
+	@find cgi-bin/ public_html/ -type f -exec chmod u=rw,g=r,o=r '{}' \;
+	@find cgi-bin/ -type f -name '*.pl' -or -name '*.cgi' -exec chmod +x '{}' \;
+	@echo "(*) Fatto."
+
 flags-tecweb:
-	find ~/tecweb/cgi-bin/ ~/tecweb/public_html/ -type d -exec chmod u+x,g+X,o= '{}' \;
-	find ~/tecweb/cgi-bin/ -name '*.pl' -or -name '*.cgi' -exec chmod u+x,g=r,o= '{}' \;
-	find ~/tecweb/cgi-bin/ -type f -exec chmod u-s,g-s,-t '{}' \;
-	chmod -R g-w,o-w ~/tecweb/cgi-bin/
+	@echo "(*) Sistemo i permessi dei file..."
+	@find cgi-bin/ public_html/ -type d -exec chmod u=rwx,g=rx,o= '{}' \;
+	@find cgi-bin/ public_html/ -type f -exec chmod u=rw,g=r,o= '{}' \;
+	@find cgi-bin/ -type f -name '*.pl' -or -name '*.cgi' -exec chmod u+x,o+x '{}' \;
+	@echo "(*) Fatto."
