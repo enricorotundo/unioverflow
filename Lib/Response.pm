@@ -16,6 +16,7 @@ sub init {
 	my ($self) = @_;
 	$self->{"header"} ||= "";
 	$self->{"content"} ||= "";
+	$self->{"cookie"} ||= {};
 }
 
 sub header {
@@ -25,7 +26,7 @@ sub header {
 
 sub cookie {
 	my ($self, $cookie) = @_;
-	$self->{"cookie"} .= $cookie;
+	$self->{"cookie"} = $cookie;
 }
 
 sub write {
@@ -37,8 +38,8 @@ sub send {
 	my ($self) = @_;
 	
 	print $self->{"header"};
-	for my $key (%${$self->{"cookie"}}) {
-		print "Set-Cookie: ",$self->{"cookie"}->{$key}->as_string,"\n";
+	for my $cookie (values %{$self->{"cookie"}->all()}) {
+		print "Set-Cookie: ",$cookie->as_string,"\n";
 	}
 	print "\r\n";
 	print $self->{"content"};

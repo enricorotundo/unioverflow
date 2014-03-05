@@ -36,6 +36,11 @@ sub get {
 	}
 }
 
+sub all {
+	my ($self) = @_;
+	return $self->{"cookie"};
+}
+
 sub set {
 	my ($self, $name, $value) = @_;
 
