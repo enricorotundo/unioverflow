@@ -1,4 +1,4 @@
-package Controller::Index;
+package Controller::VediDomanda;
 use strict;
 use warnings;
 use CGI::Carp;
@@ -15,7 +15,7 @@ sub handler {
 	};
 
 	# Response
-	$res->write(Lib::Renderer::render('index.html', $data));
+	$res->write(Lib::Renderer::render('vedi-domanda.html', $data));
 }
 
 1;

@@ -1,4 +1,4 @@
-package Controller::Index;
+package Controller::Accedi;
 use strict;
 use warnings;
 use CGI::Carp;
@@ -15,7 +15,7 @@ sub handler {
 	};
 
 	# Response
-	$res->write(Lib::Renderer::render('index.html', $data));
+	$res->write(Lib::Renderer::render('accedi.html', $data));
 }
 
 1;
