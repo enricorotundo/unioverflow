@@ -34,6 +34,7 @@ sub attr {
 sub param {
 	if (@_ == 2) {
 		my ($self, $name) = @_;
+		die $self->{"param"};
 		return $self->{"param"}->{$name};
 	}
 	if (@_ == 3) {

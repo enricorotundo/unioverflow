@@ -14,8 +14,6 @@ sub executeController {
 	my $req = Lib::Utils::autoDetectRequest();
 	my $res = Lib::Response->new();
 
-	$res->header("Content-Type: text/html; charset=utf-8");
-
 	Middleware::Cookie::handler($req, $res);
 	Middleware::Session::handler($req, $res);
 	Middleware::Authentication::handler($req, $res);

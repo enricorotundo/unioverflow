@@ -19,6 +19,7 @@ sub handler {
 	if ($user) {
 		$req->attr("user", $user);
 	}
+
 }
 
 sub isLogged {
@@ -37,7 +38,7 @@ sub login {
 	my $username = $req->param("username");
 	my $password = $req->param("password");
 
-	my $user = Model::User::getUser($username);
+	my $user = Model::User::getUserByUsername($username);
 	if ($user->checkPassword($password)) {
 		$req->attr("user", $user);
 	}

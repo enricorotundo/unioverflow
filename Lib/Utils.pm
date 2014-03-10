@@ -48,7 +48,7 @@ sub autoDetectRequest {
 		"path" => $ENV{'PATH_INFO'},
 		"query" => $ENV{'QUERY_STRING'},
 		"body" => $buffer,
-		"param" => $cgi->Vars()
+		"param" => \%cgi->Vars()
 	);
 	
 	return $request;

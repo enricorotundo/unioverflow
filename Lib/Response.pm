@@ -16,6 +16,7 @@ sub init {
 	my ($self) = @_;
 	$self->{"header"} ||= "";
 	$self->{"content"} ||= "";
+	$self->{"content"} ||= "";
 	$self->{"cookie"} ||= {};
 }
 
@@ -34,9 +35,17 @@ sub write {
 	$self->{"content"} .= $data;
 }
 
+sub redirect {
+	my ($self, $destination) = @_;
+	# TODO
+	$self->header("Location: ".$destination);
+}
+
 sub send {
 	my ($self) = @_;
 	
+	$self->header("Content-Type: text/html; charset=utf-8");
+
 	print $self->{"header"};
 	for my $cookie (values %{$self->{"cookie"}->all()}) {
 		print "Set-Cookie: ",$cookie->as_string,"\n";

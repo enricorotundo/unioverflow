@@ -12,14 +12,14 @@ sub handler {
 	
 	my $logged = "No";
 
-	if (Middleware::Authentication::isLogged($req)) {
+	if ($req->{"isLogged"}) {
 		$logged = "Sì: ".$req->attr("user")->username;
 	}
 
 	# Execution
 	my $data = {
 		"username" => "Pippo",
-		"logged" => $logged;
+		"logged" => $logged
 	};
 
 	# Response
