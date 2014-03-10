@@ -2,10 +2,12 @@ package Lib::Utils;
 use strict;
 use warnings;
 use CGI::Carp;
-use CGI::Cookie;
+
 use Lib::Request;
+use CGI;
 
 sub parse_input {
+	die
 	my ($buffer) = @_;
 	
 	my @pairs = split( /&/, $buffer);
@@ -39,13 +41,16 @@ sub autoDetectRequest {
 		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
 	}
 	
+	my $cgi = CGI->new;
+
 	my $request = Lib::Request->new(
 		"method" => $ENV{'QUERY_METHOD'},
 		"path" => $ENV{'PATH_INFO'},
 		"query" => $ENV{'QUERY_STRING'},
 		"body" => $buffer,
+		"param" => $cgi->Vars()
 	);
-
+	
 	return $request;
 }
 

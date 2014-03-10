@@ -6,6 +6,8 @@ use CGI::Carp;
 use CGI::Cookie;
 use Lib::Cookie;
 
+# Carica il dizionario dei cookie in $req->attr("cookie")
+
 sub handler {
 	my ($req, $res) = @_;
 	

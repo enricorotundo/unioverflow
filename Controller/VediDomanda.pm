@@ -4,6 +4,7 @@ use warnings;
 use CGI::Carp;
 
 use Lib::Renderer;
+use Lib::Markup;
 
 sub handler {
 	# Get parameters
@@ -11,9 +12,11 @@ sub handler {
 	
 	# Execution
 	my $data = {
-		"username" => "Pippo"
+		"username" => "Pippo",
+		"title" => "Titolo domanda",
+		"content" => Lib::Markup::convert("Testo della domanda con **alcune parole** in grassetto.")
 	};
-
+	
 	# Response
 	$res->write(Lib::Renderer::render('vedi-domanda.html', $data));
 }

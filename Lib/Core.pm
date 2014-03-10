@@ -7,6 +7,7 @@ require Lib::Utils;
 use Lib::Response;
 use Middleware::Cookie;
 use Middleware::Session;
+use Middleware::Authentication;
 
 sub executeController {
 	my ($handler) = @_;
@@ -17,6 +18,7 @@ sub executeController {
 
 	Middleware::Cookie::handler($req, $res);
 	Middleware::Session::handler($req, $res);
+	Middleware::Authentication::handler($req, $res);
 	$handler->($req, $res);
 
 	$res->send();

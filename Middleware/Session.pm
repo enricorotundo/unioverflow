@@ -5,6 +5,11 @@ use CGI::Carp;
 
 use CGI::Session;
 
+# Se è arrivato un cookie di sessione, carica la sessione
+# Altrimenti, crea una nuova sessione
+# La sessione viene memorizzata in $req->attr("session")
+# Per chiudere la sessione basta usare Middleware::Session::destroySession(req)
+
 sub handler {
 	my ($req, $res) = @_;
 

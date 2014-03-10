@@ -5,27 +5,40 @@ use CGI::Carp;
 
 use base 'Lib::Object';
 
+sub getUserByUsername {
+	my ($username) = @_;
+
+	# TODO
+
+	return Model::User->new({
+		"username" => $username,
+		"password" => "password"
+	});
+
+}
+
 sub new {
 	my ($class, @args) = @_;
 	$class->SUPER::new(@args);
 }
 
 sub init {
-	1
+	my ($self) = @_;
+	$self->{"username"} ||= "";
+	# FIXME usare hash(salt+password)
+	$self->{"password"} ||= "";
 }
 
-sub new {
-	my ($class, %args) = @_;
-	my $self = bless {}, $class;
+sub checkPassword {
+	my ($self, $password) = @_;
 
-	$self{'name'} = $args{'NAME'} || 'World';
-
-	return $self;
+	return $self->{"password"} eq $password;
 }
 
-sub view {
-	# the object itself will work for the view
-	return shift;
+sub username {
+	my ($self) = @_;
+
+	return $self->{"username"};
 }
 
 1;
