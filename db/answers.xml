@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <?xml-stylesheet type="text/xsl" href="users.xsl"?> -->
-<answers progetto="Tech Web 2013" xmlns="http://www.unioverflow.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com answers.xsd">
-	<answer>
-		<content>Content risposta di prova. Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla </content>
-		<authorId>0</authorId>
+<answers xmlns="http://www.unioverflow.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com answers.xsd">
+	<answer id="0">
+		<content>Prima risposta</content>
+		<authorId>admin</authorId>
+		<questionId>0</questionId>
+	</answer>
+	<answer id="1">
+		<content>Seconda risposta</content>
+		<authorId>utente1@gmail.com</authorId>
+		<questionId>0</questionId>
+	</answer>
+	<answer id="2">
+		<content>Terza risposta</content>
+		<authorId>utente2@gmail.com</authorId>
+		<questionId>0</questionId>
 	</answer>
 </answers>
