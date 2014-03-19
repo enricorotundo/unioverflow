@@ -10,9 +10,10 @@ sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	
+	# TODO ...
+	
 	# Execution
 	my $data = {
-		"username" => "Pippo",
 		"title" => "Titolo domanda",
 		"content" => Lib::Markup::convert("Testo della domanda con **alcune parole** in grassetto.")
 	};

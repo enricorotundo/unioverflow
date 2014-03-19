@@ -9,9 +9,11 @@ sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	
+	# TODO ...
+	
 	# Execution
 	my $data = {
-		"username" => "Pippo"
+		"email" => "Pippo"
 	};
 
 	# Response

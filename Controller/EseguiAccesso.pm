@@ -6,6 +6,7 @@ use CGI::Carp;
 use Lib::Renderer;
 use Middleware::Authentication;
 
+# Questo controller è completo
 sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
