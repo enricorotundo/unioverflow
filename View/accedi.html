@@ -1,11 +1,12 @@
 [% WRAPPER layout/main.html %]
-	<div class="content">
-		<p>Benvenuto [% username | html %]!</p>
-	</div>
-	<p>[% message | html %]</p>
-	<form>
-		<input name="username" />
-		<input name="password" />
-		<input type="submit" value="Invia" />
+	[% IF logged %]
+		<p>L'accesso è già stato effettuato.</p>
+		<p>Ora puoi andare alla <a href="index.cgi">pagina principale</a>.</p>
+	[% ELSE %]
+	<form action="esegui-accesso.cgi" method="POST">
+		<label for="username">Username</label><input id="username" name="username" />
+		<label for="password">Password</label><input id="password" name="password" />
+		<input type="submit" value="Esegui l'accesso" />
 	</form>
+	[% END %]
 [% END %]

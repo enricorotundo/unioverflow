@@ -29,6 +29,9 @@ sub handler {
 }
 
 sub isLogged {
+	if (@_ < 1) {
+		die "Invalid number of parameters (".@_.")";
+	}
 	my ($req) = @_;
 
 	if ($req->attr("user")) {

@@ -42,7 +42,7 @@ sub autoDetectRequest {
 	}
 	
 	my $cgi = CGI->new;
-	
+
 	my $request = Lib::Request->new(
 		"method" => $ENV{'QUERY_METHOD'},
 		"path" => $ENV{'PATH_INFO'},

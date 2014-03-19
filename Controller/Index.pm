@@ -11,15 +11,15 @@ sub handler {
 	my ($req, $res) = @_;
 	
 	my $logged = "No";
-
-	if ($req->{"isLogged"}) {
+	
+	if (Middleware::Authentication::isLogged($req)) {
 		$logged = "Sì: ".$req->attr("user")->username;
 	}
 
 	# Execution
 	my $data = {
 		"username" => "Pippo",
-		"logged" => $logged
+		"logged" => Middleware::Authentication::isLogged($req)
 	};
 
 	# Response
