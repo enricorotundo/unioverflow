@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema elementFormDefault="qualified" targetNamespace="http://www.unioverflow.com" xmlns="http://www.unioverflow.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    
+    <xs:element name="questions">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element maxOccurs="unbounded" name="question" type="Tquestion"/>
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:complexType name="Tquestion">
+    	<xs:sequence>
+    		<xs:element name="content" type="xs:string" />
+    		<xs:element name="authorUsername" type="xs:string" />
+    	</xs:sequence>
+    	<xs:attribute name="id" type="xs:integer" use="required"/>
+    </xs:complexType>
 </xs:schema>
