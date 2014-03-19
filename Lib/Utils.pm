@@ -42,13 +42,13 @@ sub autoDetectRequest {
 	}
 	
 	my $cgi = CGI->new;
-
+	
 	my $request = Lib::Request->new(
 		"method" => $ENV{'QUERY_METHOD'},
 		"path" => $ENV{'PATH_INFO'},
 		"query" => $ENV{'QUERY_STRING'},
 		"body" => $buffer,
-		"param" => \%cgi->Vars()
+		"param" => \$cgi->Vars()
 	);
 	
 	return $request;

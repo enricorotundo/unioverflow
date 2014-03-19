@@ -10,15 +10,15 @@ sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	
-	if ($req->{"isLogged"}) {
+	if (Middleware::Authentication::isLogged($req)) {
 		$res->redirect("index.cgi");
 		return;
 	}
-
+	
 	Middleware::Authentication::login($req);
-
+	
 	my $message;
-	if ($req->{"isLogged"}) {
+	if (Middleware::Authentication::isLogged($req)) {
 		$message = "Login OK";
 	} else {
 		$message = "Login ERROR";

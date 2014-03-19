@@ -5,6 +5,8 @@ use CGI::Carp;
 
 use base 'Lib::Object';
 
+# Metodi statici
+
 sub getUserByUsername {
 	my ($username) = @_;
 
@@ -16,6 +18,8 @@ sub getUserByUsername {
 	});
 
 }
+
+# Oggetto
 
 sub new {
 	my ($class, @args) = @_;

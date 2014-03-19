@@ -6,7 +6,13 @@ use CGI::Carp;
 use Model::User;
 use Middleware::Session;
 
-# Autenticazione (non autorizzazione)
+# Effettua l'autenticazione (che è diversa dall'autorizzazione!)
+#
+# Richiede che sia stata aperta una sessione in $req->attr("session").
+# Se l'utente si era già loggato, carica in $req->attr("user") il model dell'utente.
+# Per fare il login basta chiamare Middleware::Authentication::login($req)
+# Per fare il logout basta chiamare Middleware::Authentication::logout($req)
+# Per sapere se l'utente è loggato basta chiamare Middleware::Authentication::isLogged($req)
 
 sub handler {
 	my ($req, $res) = @_;
