@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <?xml-stylesheet type="text/xsl" href="users.xsl"?> -->
-<questions xmlns="http://www.unioverflow.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com questions.xsd">
+<questions xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com questions.xsd">
 	<question id="0">
-		<content>Ciao questa à la domanda 0 chi risponde?</content>
-		<authorUsername>utente1@gmail.com</authorUsername>
+		<title>Title</title>
+		<content>ContenutoDomanda</content>
+		<author>mar.rossi@studenti.unipd.it</author>
 	</question>
+
 </questions>

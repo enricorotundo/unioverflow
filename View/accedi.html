@@ -4,9 +4,12 @@
 		<p>Ora puoi andare alla <a href="index.cgi">pagina principale</a>.</p>
 	[% ELSE %]
 	<form action="esegui-accesso.cgi" method="POST">
-		<label for="username">Username</label><input id="username" name="username" />
-		<label for="password">Password</label><input id="password" name="password" />
-		<input type="submit" value="Esegui l'accesso" />
+		<fieldset>
+			<legend>Dati di accesso</legend>
+			<label for="username">Username</label><input type="text" id="username" name="username" /><br />
+			<label for="password">Password</label><input type="text" id="password" name="password" /><br />
+			<input type="submit" value="Esegui l'accesso" />
+		</fieldset>
 	</form>
 	[% END %]
 [% END %]
