@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema elementFormDefault="qualified" targetNamespace="http://www.unioverflow.com" xmlns="http://www.unioverflow.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
     <xs:element name="answers">
     	<xs:complexType>
     		<xs:sequence>
@@ -11,9 +11,9 @@
     	<xs:sequence>
     		<xs:element name="content" type="xs:string" />
     		<xs:element name="authorId" type="xs:string" />
-    		<xs:element name="questionId" type="xs:integer" />
+    		<xs:element name="questionId" type="xs:unsignedInt" />
     	</xs:sequence>
-    	<xs:attribute name="id" type="xs:integer" use="required"/>
+    	<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
     </xs:complexType>
 </xs:schema>
 

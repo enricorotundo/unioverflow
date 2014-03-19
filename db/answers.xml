@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <?xml-stylesheet type="text/xsl" href="users.xsl"?> -->
-<answers xmlns="http://www.unioverflow.com" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com answers.xsd">
+<answers xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com answers.xsd">
 	<answer id="0">
 		<content>Prima risposta</content>
 		<authorId>admin</authorId>
