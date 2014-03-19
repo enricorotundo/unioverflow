@@ -20,12 +20,14 @@ sub handler {
 	my $session = $req->attr("session");
 
 	my $username = $session->param("username");
-	my $user = Model::User::getUserByUsername($username);
-
-	if ($user) {
-		$req->attr("user", $user);
+	
+	if ($username) {
+		my $user = Model::User::getUserByUsername($username);
+		
+		if ($user) {
+			$req->attr("user", $user);
+		}
 	}
-
 }
 
 sub isLogged {
@@ -44,11 +46,11 @@ sub isLogged {
 sub login {
 	my ($req) = @_;
 
-	my $username = $req->param("username");
-	my $password = $req->param("password");
+	my $username = $req->param("username") or "";
+	my $password = $req->param("password") or "";
 
 	my $user = Model::User::getUserByUsername($username);
-	if ($user->checkPassword($password)) {
+	if ($user and $user->checkPassword($password)) {
 		$req->attr("user", $user);
 	}
 }

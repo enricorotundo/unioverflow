@@ -4,6 +4,7 @@ use warnings;
 use CGI::Carp;
 
 use Lib::Renderer;
+use Middleware::Authentication;
 
 sub handler {
 	# Get parameters

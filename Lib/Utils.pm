@@ -42,14 +42,17 @@ sub autoDetectRequest {
 	}
 	
 	my $cgi = CGI->new;
+	my $params = $cgi->Vars();
+	use Data::Dumper;
+	warn Data::Dumper::Dumper(\$params);
 
-	my $request = Lib::Request->new(
-		"method" => $ENV{'QUERY_METHOD'},
-		"path" => $ENV{'PATH_INFO'},
-		"query" => $ENV{'QUERY_STRING'},
+	my $request = Lib::Request->new((
+		"method" => ($ENV{'QUERY_METHOD'} or ""),
+		"path" => ($ENV{'PATH_INFO'} or ""),
+		"query" => ($ENV{'QUERY_STRING'} or ""),
 		"body" => $buffer,
-		"param" => \$cgi->Vars()
-	);
+		"param" => $params
+	));
 	
 	return $request;
 }

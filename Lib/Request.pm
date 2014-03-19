@@ -6,8 +6,8 @@ use CGI::Carp;
 use base 'Lib::Object';
 
 sub new {
-	my ($self, @args) = @_;
-	$self->SUPER::new(@args);
+	my ($self, %args) = @_;
+	$self->SUPER::new(%args);
 }
 
 sub init {
@@ -34,7 +34,6 @@ sub attr {
 sub param {
 	if (@_ == 2) {
 		my ($self, $name) = @_;
-		die $self->{"param"};
 		return $self->{"param"}->{$name};
 	}
 	if (@_ == 3) {
