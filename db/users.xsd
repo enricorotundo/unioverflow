@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+    <xs:include schemaLocation="types.xsd" />
     <xs:element name="users" type="Tusers" >
         <xs:unique name="uniqueUsername" >
             <xs:selector xpath="user" />
@@ -14,13 +15,7 @@
     <xs:complexType name="Tuser">
     	<xs:sequence>
     		<xs:element name="email" type="Temail" />
-    		<xs:element name="password" type="xs:string" />
+    		<xs:element name="password" type="Tpassword" />
     	</xs:sequence>
-    </xs:complexType>
-    <xs:simpleType name="Temail"> 
-        <xs:restriction base="xs:string"> 
-            <xs:pattern value="[a-z.]{1,64}@studenti.unipd.it"/> 
-        </xs:restriction> 
-    </xs:simpleType> 
-
+    </xs:complexType> 
 </xs:schema>

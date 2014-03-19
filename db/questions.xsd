@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
-    <xs:element name="questions">
-    	<xs:complexType>
-    		<xs:sequence>
-    			<xs:element maxOccurs="unbounded" name="question" type="Tquestion"/>
-    		</xs:sequence>
-    	</xs:complexType>
+    <xs:include schemaLocation="types.xsd" />
+    <xs:element name="questions" type="Tquestions">
+        <xs:unique name="uniqueQuestion" >
+            <xs:selector xpath="question" />
+            <xs:field xpath="@id" />
+        </xs:unique>
     </xs:element>
+    <xs:complexType name="Tquestions">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="question" type="Tquestion"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="Tquestion">
     	<xs:sequence>
-    		<xs:element name="content" type="xs:string" />
-    		<xs:element name="authorId" type="xs:string" />
+            <xs:element name="title" type="Ttitle" />
+    		<xs:element name="content" type="Tcontent" />
+    		<xs:element name="author" type="Temail" />
     	</xs:sequence>
     	<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
     </xs:complexType>

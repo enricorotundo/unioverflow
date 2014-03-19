@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <?xml-stylesheet type="text/xsl" href="users.xsl"?> -->
 <users xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com users.xsd">
 	<user>
 		<email>enrico.rotundo@studenti.unipd.it</email>
-		<password>admin</password>
+		<password>12345678</password>
 	</user>
 	<user>
 		<email>mario.rossi@studenti.unipd.it</email>
-		<password>utente1</password>
+		<password>ciaociao</password>
 	</user>
 	<user>
 		<email>mar.rossi@studenti.unipd.it</email>
-		<password>utente2</password>
+		<password>provaprovaprova</password>
 	</user>
 	<user>
 		<email>prova@studenti.unipd.it</email>
-		<password>utente3</password>
+		<password>utente3738AkkkaA</password>
 	</user>
 </users>
