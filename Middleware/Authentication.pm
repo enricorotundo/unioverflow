@@ -18,7 +18,6 @@ sub handler {
 	my ($req, $res) = @_;
 
 	my $session = $req->attr("session");
-
 	my $username = $session->param("username");
 	
 	if ($username) {
@@ -46,11 +45,13 @@ sub isLogged {
 sub login {
 	my ($req) = @_;
 
+	my $session = $req->attr("session");
 	my $username = $req->param("username") or "";
 	my $password = $req->param("password") or "";
 
 	my $user = Model::User::getUserByUsername($username);
 	if ($user and $user->checkPassword($password)) {
+		$session->param("username", $username);
 		$req->attr("user", $user);
 	}
 }

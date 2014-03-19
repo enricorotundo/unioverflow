@@ -11,7 +11,7 @@ sub getUserByUsername {
 	my ($username) = @_;
 
 	# TODO
-	
+
 	if ($username eq "user") {
 		return Model::User->new(
 			"username" => $username,

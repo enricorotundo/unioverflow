@@ -35,12 +35,6 @@ sub parse_input {
 }
 
 sub autoDetectRequest {
-	my $buffer = "";
-	
-	if($ENV{'CONTENT_LENGTH'}) {
-		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
-	}
-	
 	my $cgi = CGI->new;
 	my $params = $cgi->Vars();
 	use Data::Dumper;
@@ -50,7 +44,6 @@ sub autoDetectRequest {
 		"method" => ($ENV{'QUERY_METHOD'} or ""),
 		"path" => ($ENV{'PATH_INFO'} or ""),
 		"query" => ($ENV{'QUERY_STRING'} or ""),
-		"body" => $buffer,
 		"param" => $params
 	));
 	
