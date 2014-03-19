@@ -10,14 +10,9 @@ sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	
-	if (Middleware::Authentication::isLogged($req)) {
-		$res->redirect("index.cgi");
-		return;
-	}
-	
 	Middleware::Authentication::login($req);
 	
-	my $message, $success;
+	my $success;
 	if (Middleware::Authentication::isLogged($req)) {
 		$success = 1; # True in Perl
 	} else {

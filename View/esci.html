@@ -1,0 +1,9 @@
+[% WRAPPER layout/main.html %]
+	[% IF success %]
+		<p>L'uscita è stato effettuata correttamente.</p>
+		<p>Ora puoi andare alla <a href="index.cgi">pagina principale</a>.</p>
+	[% ELSE %]
+		<p>C'è stato un errore nell'effettuare l'uscita.</p>
+		<p>Puoi andare alla <a href="index.cgi">pagina principale</a> e riprovare più tadi.</p>
+	[% END %]
+[% END %]

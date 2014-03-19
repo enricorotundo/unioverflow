@@ -11,12 +11,15 @@ sub getUserByUsername {
 	my ($username) = @_;
 
 	# TODO
-
-	return Model::User->new({
-		"username" => $username,
-		"password" => "password"
-	});
-
+	
+	if ($username eq "user") {
+		return Model::User->new(
+			"username" => $username,
+			"password" => "password"
+		);
+	} else {
+		return "";
+	}
 }
 
 # Oggetto

@@ -1,11 +1,9 @@
 [% WRAPPER layout/main.html %]
 	[% IF logged %]
-		<a href="esci.cgi">Pagina di uscita</a> (trovare un nome migliore al link)
+		<p>Sei loggato.</p>
+		<p><a href="esci.cgi">Pagina di uscita</a> (trovare un nome migliore al link)</p>
 	[% ELSE %]
-		<a href="accedi.cgi">Pagina di accesso</a>
+		<p>Non sei loggato.</p>
+		<p><a href="accedi.cgi">Pagina di accesso</a></p>
 	[% END %]
-	<div class="content">
-		<p>Username: [% username | html %]</p>
-		<p>Loggato? [% logged | html %]</p>
-	</div>
 [% END %]
