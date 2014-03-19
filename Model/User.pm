@@ -5,16 +5,22 @@ use CGI::Carp;
 
 use base 'Lib::Object';
 
-# Metodi statici
+####################
+#  Metodi statici  #
+####################
 
-sub getUserByUsername {
-	my ($username) = @_;
+# Carica il file xml e restituisce l'oggetto dell'utente con email 'email'
+# oppure "" (la stringa vuota è il false di Perl) se non esiste
+# Attenzione: e se l'email che arriva contiene virgolette e caratteri strani?
+# NON basta concatenare l'email alla XPath, serve fare un escape
+sub getUserByEmail {
+	my ($email) = @_;
 
 	# TODO
 
-	if ($username eq "user") {
+	if ($email eq "user") {
 		return Model::User->new(
-			"username" => $username,
+			"email" => $email,
 			"password" => "password"
 		);
 	} else {
@@ -22,7 +28,9 @@ sub getUserByUsername {
 	}
 }
 
-# Oggetto
+#############
+#  Oggetto  #
+#############
 
 sub new {
 	my ($class, @args) = @_;
@@ -31,8 +39,7 @@ sub new {
 
 sub init {
 	my ($self) = @_;
-	$self->{"username"} ||= "";
-	# FIXME usare hash(salt+password)
+	$self->{"email"} ||= "";
 	$self->{"password"} ||= "";
 }
 
@@ -42,10 +49,18 @@ sub checkPassword {
 	return $self->{"password"} eq $password;
 }
 
-sub username {
+sub email {
 	my ($self) = @_;
 
-	return $self->{"username"};
+	return $self->{"email"};
+}
+
+# Salva l'oggetto nel database xml
+# Se è già presente qualcuno con l'email $self->{"email"} lo sovrascrive
+sub save {
+	my ($self) = @_;
+
+	# TODO (quando ce ne sarà bisogno)
 }
 
 1;
