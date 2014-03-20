@@ -2,7 +2,7 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
     <xs:include schemaLocation="types.xsd" />
     <xs:element name="users" type="Tusers" >
-        <xs:unique name="uniqueUsername" >
+        <xs:unique name="uniqueEmail" >
             <xs:selector xpath="user" />
             <xs:field xpath="email" />
         </xs:unique>

@@ -18,10 +18,10 @@ sub handler {
 	my ($req, $res) = @_;
 
 	my $session = $req->attr("session");
-	my $username = $session->param("username");
+	my $email = $session->param("email");
 	
-	if ($username) {
-		my $user = Model::User::getUserByUsername($username);
+	if ($email) {
+		my $user = Model::User::getUserByEmail($email);
 		
 		if ($user) {
 			$req->attr("user", $user);
@@ -46,12 +46,12 @@ sub login {
 	my ($req) = @_;
 
 	my $session = $req->attr("session");
-	my $username = $req->param("username") or "";
+	my $email = $req->param("email") or "";
 	my $password = $req->param("password") or "";
 
-	my $user = Model::User::getUserByUsername($username);
+	my $user = Model::User::getUserByEmail($email);
 	if ($user and $user->checkPassword($password)) {
-		$session->param("username", $username);
+		$session->param("email", $email);
 		$req->attr("user", $user);
 	}
 }
