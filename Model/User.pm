@@ -1,9 +1,17 @@
 package Model::User;
+
+# Include project path
+BEGIN { push @INC, ".."; }
+
 use strict;
 use warnings;
 use CGI::Carp;
+use XML::LibXML;
 
 use base 'Lib::Object';
+
+my $filename = '../db/users.xml';
+
 
 ####################
 #  Metodi statici  #
@@ -15,13 +23,25 @@ use base 'Lib::Object';
 # NON basta concatenare l'email alla XPath, serve fare un escape
 sub getUserByEmail {
 	my ($email) = @_;
+	# inserisco il carattere backlash prima della @ in email????
+	my @splittedMail = split('@', $email);
 
-	# TODO
+	$email= $splittedMail[0] . '@' . $splittedMail[1]; # se inserisco la \ come escape non funzione la query xpath!!!
 
-	if ($email eq "user") {
+	my $parser = XML::LibXML->new();
+	my $doc = $parser->parse_file($filename);
+	my $root = $doc->documentElement();
+	my $xpc = XML::LibXML::XPathContext->new($root);
+	my $xpath = "/users/user[email = \"$email\"]";
+	my @user = $xpc->findnodes( $xpath );
+
+	my $xmlEmail = $user[0]->findnodes( "email" );
+	my $xmlPwd = $user[0]->findnodes( "password" );
+
+	if ($email eq $xmlEmail) {
 		return Model::User->new(
-			"email" => $email,
-			"password" => "password"
+			"email" => $xmlEmail,
+			"password" => $xmlPwd
 		);
 	} else {
 		return "";
@@ -43,6 +63,7 @@ sub init {
 	$self->{"password"} ||= "";
 }
 
+#TODO
 sub checkPassword {
 	my ($self, $password) = @_;
 
