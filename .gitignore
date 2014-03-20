@@ -3,4 +3,4 @@
 *.bak
 log.txt
 config.mk
-.DS_Store
+*.DS_Store
