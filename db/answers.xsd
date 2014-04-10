@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+
     <xs:include schemaLocation="types.xsd" />
+
     <xs:element name="answers" type="Tanswers">
         <xs:unique name="uniqueAnswer" >
             <xs:selector xpath="answer" />
             <xs:field xpath="@id" />
         </xs:unique>
     </xs:element>
+
     <xs:complexType name="Tanswers">
         <xs:sequence>
             <xs:element maxOccurs="unbounded" name="answer" type="Tanswer"/>
         </xs:sequence>
     </xs:complexType>
+
     <xs:complexType name="Tanswer">
     	<xs:sequence>
     		<xs:element name="content" type="Tcontent" />
@@ -20,5 +24,6 @@
     	</xs:sequence>
     	<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
     </xs:complexType>
+    
 </xs:schema>
 

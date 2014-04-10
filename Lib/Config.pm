@@ -12,4 +12,7 @@ our $rootPath = File::Spec->rel2abs(dirname(__FILE__)."/..")."/";
 # Path assoluta della cartella dei template
 our $templatePath = $rootPath."View/";
 
+# Path assoluta della cartella dei template
+our $usersDbPath = $rootPath."db/users.xml";
+
 1;
