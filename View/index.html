@@ -1,4 +1,7 @@
 [% WRAPPER layout/main.html %]
+	[% pageName = 'Domande' %]
+	[% PROCESS layout/navigation.html %]
+
 	[% IF logged %]
 		<p>Sei loggato.</p>
 		<p><a href="esci.cgi">Pagina di uscita</a> (trovare un nome migliore al link)</p>
@@ -6,4 +9,5 @@
 		<p>Non sei loggato.</p>
 		<p><a href="accedi.cgi">Pagina di accesso</a></p>
 	[% END %]
+	
 [% END %]

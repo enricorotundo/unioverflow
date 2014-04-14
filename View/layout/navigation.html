@@ -1,9 +1,9 @@
-[% pageName | html %]
+
 <ul id="menu">
 
 [% arrayItem = [
-    { path => 'Home',   name => 'Home' },
-    { path => 'ScriviDomanda',  name => 'Scrivi Domanda' },
+    { path => 'index', name => 'Domande' },
+    { path => 'scrivi-domanda',  name => 'Chiedi' },
     { path => 'manuale', name => 'Manuale' },
     { path => 'accedi', name => 'Accedi' },
     { path => 'registrati', name => 'Registrati' },
@@ -11,6 +11,8 @@
    ];
 %]
   
+<!--   TODO scegliere l'algoritmo migliore :) 
+  Compessità ciclomatica = 5 -->
 <!-- [% i = 0 %]
 [% FOREACH navItem = arrayDalBackEnd  %]
 	[% IF navItem.name == pageName %]
@@ -22,12 +24,12 @@
 
 	[% ELSE %]
 		[% IF (navItem.name == "Accedi" || navItem.name == "Registrati") %]
-			[% IF !success %]
+			[% IF !logged %]
 				<li class="lateralNavItem"><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi"> 1 [% navItem.name %]  </a></li>
 			[% END %]
 
 		[% ELSIF (navItem.name == "Esci") %]
-			[% IF success %]
+			[% IF logged %]
 				<li class="lateralNavItem"><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi">  2 [% navItem.name %]  </a></li>
 			[% END %]
 
@@ -38,6 +40,7 @@
 [% END %] -->
 
 
+ <!--Compessità ciclomatica = 8 -->
 [% i = 0 %]
 [% FOREACH navItem = arrayItem  %]
 

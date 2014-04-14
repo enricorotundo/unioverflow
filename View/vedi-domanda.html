@@ -1,9 +1,7 @@
 [% WRAPPER layout/main.html %]
-	[% IF logged %]
-		<!-- TODO menù con link per logout -->
-	[% ELSE %]
-		<!-- TODO menù con link per accesso e registrazione -->
-	[% END %]
+	[% pageName = 'VediDomanda' %]
+	[% PROCESS layout/navigation.html %]
+
 	<div class="content">
 		<p>Benvenuto [% email | html %]!</p>
 		<h2>[% title | html %]</h2>
