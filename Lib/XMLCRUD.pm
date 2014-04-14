@@ -50,19 +50,22 @@ sub loadFindNodesXPath {
 	return ($doc, @result);
 }
 
+# Restituisce il nodo corrispondente all'xpath oppure undef se non ce ne sono.
+# Se ce ne sono più di uno genera un errore
 sub loadFindOneXPath {
 	my ($self, $xpath) = @_;
 	
 	my ($doc, @result) = $self->loadFindNodesXPath($xpath);
 	
-	if (scalar @result eq 0) {
-		die "No results for $xpath";
-	}
 	if (scalar @result > 1) {
 		die "Too many results for $xpath";
 	}
 
-	return ($doc, @result[0]);
+	if (scalar @result eq 0) {
+		return undef;
+	} else {
+		return ($doc, @result[0]);
+	}
 }
 
 ############
