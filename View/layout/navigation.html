@@ -1,7 +1,6 @@
 [% pageName | html %]
 <ul id="menu">
 
-<!-- TODO Dove le metto? -->
 [% arrayItem = [
     { path => 'Home',   name => 'Home' },
     { path => 'ScriviDomanda',  name => 'Scrivi Domanda' },
@@ -10,8 +9,6 @@
     { path => 'registrati', name => 'Registrati' },
     { path => 'esci', name => 'Esci' }
    ];
-
-   success = 1;
 %]
   
 <!-- [% i = 0 %]
@@ -45,7 +42,7 @@
 [% FOREACH navItem = arrayItem  %]
 
 
-	[% IF !success %]
+	[% IF !logged %]
 
 		[% IF navItem.name == "Accedi" || navItem.name == "Registrati" %]
 			[% IF navItem.name == pageName %]
