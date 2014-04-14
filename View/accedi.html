@@ -1,4 +1,7 @@
 [% WRAPPER layout/main.html %]
+	[% pageName = 'Accedi' %]
+	[% PROCESS layout/navigation.html %]
+
 	[% IF logged %]
 		<p>L'accesso è già stato effettuato.</p>
 		<p>Ora puoi andare alla <a href="index.cgi">pagina principale</a>.</p>

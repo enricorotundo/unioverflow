@@ -12,7 +12,7 @@ sub handler {
 	my ($req, $res) = @_;
 	
 	my $data = {
-		"logged" => Middleware::Authentication::isLogged($req)
+		"logged" => Middleware::Authentication::isLogged($req),
 	};
 	
 	# Response
