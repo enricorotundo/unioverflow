@@ -53,7 +53,7 @@ sub autoDetectRequest {
 
 # Sovrascrive il file usando i lock
 sub safeWriteFile {
-	my ($filename, $content) = @_
+	my ($filename, $content) = @_;
 	
 	open my $fh, '>', $filename  or die $!;
 	# drop all PerlIO layers possibly created by a use open pragma
@@ -61,11 +61,11 @@ sub safeWriteFile {
 	
 	# lock the file refered by the handle
 	flock($fh, LOCK_EX) or die "Cannot lock the file - $!\n";
-		# and, in case someone appended while we were waiting...
-		seek($fh, 0, SEEK_END) or die "Cannot seek - $!\n";
+	# and, in case someone appended while we were waiting...
+	seek($fh, 0, SEEK_END) or die "Cannot seek - $!\n";
 
-		print {$fh} $content;
-	
+	print {$fh} $content;
+
 	flock($fh, LOCK_UN) or die "Cannot unlock the file - $!\n";
 	
 	close($fh);

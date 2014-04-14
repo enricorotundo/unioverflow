@@ -8,7 +8,7 @@ use Lib::Config;
 
 use base 'Lib::Object';
 
-my $db = Lib::XMLCRUD->new(Lib::Config::dbPath);
+my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
 
 ####################
 #  Metodi statici  #
@@ -22,8 +22,8 @@ sub getUserByEmail {
 	my ($email) = @_;
 	
 	# Email non contiene virgolette, quindi la query XPath è sicura
-	my $user = $db->find( "/users/user[email = \"$email\"]" );
-
+	my $user = $db->findOne( "/users/user[email = \"$email\"]" );
+	
 	if ($user) {
 		my $userEmail = $user->findvalue( "email" );
 		my $userPassword = $user->findvalue( "password" );

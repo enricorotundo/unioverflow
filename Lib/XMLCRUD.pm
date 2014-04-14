@@ -15,7 +15,9 @@ sub new {
 
 sub init {
 	my ($self) = @_;
-	if (!defined($self->{"path"})) die "A path must be specified";
+	if (!defined($self->{"path"})) {
+		die "A path must be specified ", $self->{"path"};
+	}
 }
 
 ################
@@ -37,19 +39,8 @@ sub saveDoc {
 	Lib::Utils::safeWriteFile($self->{"path"}, $doc->toString);
 }
 
-sub loadFindXPath {
-	my ($self) = @_;
-	
-	my $doc = $self->loadDoc();
-	my $root = $doc->documentElement();
-	my $xpc = XML::LibXML::XPathContext->new($root);
-	my $result = $xpc->find( $xpath );
-
-	return ($doc, $result);
-}
-
 sub loadFindNodesXPath {
-	my ($self) = @_;
+	my ($self, $xpath) = @_;
 	
 	my $doc = $self->loadDoc();
 	my $root = $doc->documentElement();
@@ -59,6 +50,21 @@ sub loadFindNodesXPath {
 	return ($doc, @result);
 }
 
+sub loadFindOneXPath {
+	my ($self, $xpath) = @_;
+	
+	my ($doc, @result) = $self->loadFindNodesXPath($xpath);
+	
+	if (scalar @result eq 0) {
+		die "No results for $xpath";
+	}
+	if (scalar @result > 1) {
+		die "Too many results for $xpath";
+	}
+
+	return ($doc, @result[0]);
+}
+
 ############
 #  CREATE  #
 ############
@@ -66,7 +72,7 @@ sub loadFindNodesXPath {
 sub addChild {
 	my ($self, $xpath, $element) = @_;
 	
-	my ($doc, $result) = loadFindXPath( $xpath );
+	my ($doc, $result) = $self->loadFindXPath( $xpath );
 
 	$result->addChild($element);
 
@@ -80,15 +86,15 @@ sub addChild {
 sub findNodes {
 	my ($self, $xpath) = @_;
 	
-	my ($doc, @result) = loadFindNodesXPath( $xpath );
+	my ($doc, @result) = $self->loadFindNodesXPath( $xpath );
 
 	return @result;
 }
 
-sub find {
+sub findOne {
 	my ($self, $xpath) = @_;
 	
-	my ($doc, $result) = loadFindXPath( $xpath );
+	my ($doc, $result) = $self->loadFindOneXPath( $xpath );
 	
 	return $result;
 }
@@ -101,7 +107,7 @@ sub find {
 sub replaceNode {
 	my ($self, $xpath, $element) = @_;
 	
-	my ($doc, $result) = loadFindXPath( $xpath );
+	my ($doc, $result) = $self->loadFindXPath( $xpath );
 	
 	my $parent = $result->parentNode;
 	$parent->removeChild($result);
@@ -117,7 +123,7 @@ sub replaceNode {
 sub deleteNode {
 	my ($self, $xpath) = @_;
 	
-	my ($doc, $result) = loadFindXPath( $xpath );
+	my ($doc, $result) = $self->loadFindXPath( $xpath );
 	
 	my $parent = $result->parentNode;
 	$parent->removeChild($result);
