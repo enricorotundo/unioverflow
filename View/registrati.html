@@ -1,5 +1,9 @@
 [% WRAPPER layout/main.html %]
+	[% pageName = 'Registrati' %]
+	[% PROCESS layout/navigation.html %]
+
 	<div class="content">
 		<p>Benvenuto [% email | html %]!</p>
 	</div>
+	
 [% END %]

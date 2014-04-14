@@ -1,4 +1,7 @@
 [% WRAPPER layout/main.html %]
+	[% pageName = 'EseguiAccesso' %]
+	[% PROCESS layout/navigation.html %]
+
 	[% IF success %]
 		<p>L'accesso è stato effettuato correttamente.</p>
 		<p>Ora puoi andare alla <a href="index.cgi">pagina principale</a>.</p>
