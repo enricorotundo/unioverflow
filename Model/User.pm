@@ -3,10 +3,12 @@ use strict;
 use warnings;
 use CGI::Carp;
 
-use XML::LibXML;
+use Lib::XMLCRUD;
 use Lib::Config;
 
 use base 'Lib::Object';
+
+my $db = Lib::XMLCRUD->new(Lib::Config::dbPath);
 
 ####################
 #  Metodi statici  #
@@ -19,26 +21,20 @@ use base 'Lib::Object';
 sub getUserByEmail {
 	my ($email) = @_;
 	
-	my $parser = XML::LibXML->new();
-	my $doc = $parser->parse_file($Lib::Config::usersDbPath);
-	my $root = $doc->documentElement();
-	my $xpc = XML::LibXML::XPathContext->new($root);
-	
-	# Email non contiene apostrofi, quindi la query XPath è sicura
-	my $xpath = "/users/user[email = \"$email\"]";
-	my @user = $xpc->findnodes( $xpath );
+	# Email non contiene virgolette, quindi la query XPath è sicura
+	my $user = $db->find( "/users/user[email = \"$email\"]" );
 
-	if ($user[0]) {
-		my $xmlEmail = $user[0]->findnodes( "email" );
-		my $xmlPwd = $user[0]->findnodes( "password" );
+	if ($user) {
+		my $userEmail = $user->findvalue( "email" );
+		my $userPassword = $user->findvalue( "password" );
 
-		if (!($email eq $xmlEmail)) {
-			warn "$email e $xmlEmail hanno valori diversi";
+		if (!($email eq $userEmail)) {
+			warn "$email e $userEmail hanno valori diversi";
 		}
 
 		return Model::User->new(
-			"email" => $xmlEmail,
-			"password" => $xmlPwd
+			"email" => $userEmail,
+			"password" => $userPassword
 		);
 		
 	} else {
