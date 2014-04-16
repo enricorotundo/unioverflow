@@ -64,7 +64,7 @@ sub loadFindOneXPath {
 	if (scalar @result eq 0) {
 		return undef;
 	} else {
-		return ($doc, @result[0]);
+		return ($doc, $result[0]);
 	}
 }
 

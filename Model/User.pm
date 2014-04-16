@@ -23,7 +23,7 @@ sub getUserByEmail {
 	
 	# Email non contiene virgolette, quindi la query XPath è sicura
 	my $user = $db->findOne( "/users/user[email = \"$email\"]" );
-	
+
 	if ($user) {
 		my $userEmail = $user->findvalue( "email" );
 		my $userPassword = $user->findvalue( "password" );
@@ -41,6 +41,12 @@ sub getUserByEmail {
 		# Utente non trovato
 		return "";
 	}
+}
+
+sub insertUser {
+
+	return 1;
+
 }
 
 #############

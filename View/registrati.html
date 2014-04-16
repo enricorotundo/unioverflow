@@ -2,8 +2,28 @@
 	[% pageName = 'Registrati' %]
 	[% PROCESS layout/navigation.html %]
 
-	<div class="content">
-		<p>Benvenuto [% email | html %]!</p>
-	</div>
-	
+
+	[% IF success %]
+		<p>Registrazione effettuata correttamente.</p>
+		<p>Ora puoi andare alla <a href="accedi.cgi">pagina di login</a>.</p>
+	[% ELSE %]
+		[% IF error %]
+			<p>[% msg %]</p>
+			<p>Torna alla <a href="registrazione.cgi">pagina di registrazione</a> per riprovare.</p>
+		[% END %]
+			<div class="content">
+						<p>Benvenuto nella pagina di registrazione.</p>
+
+						<form action="registrati.cgi" method="POST">
+							<fieldset>
+								<legend>Inserisci i dati richiesti</legend>
+								<label for="email">Email</label><input type="text" id="email" name="email" /> (inserire "user")<br />
+								<label for="password">Password</label><input type="text" id="password" name="password" /> (inserire "password")<br />
+								<label for="passwordconfirm">Conferma Password</label><input type="text" id="passwordconfirm" name="passwordconfirm" /> (confermare la "password")<br />
+								<input type="submit" value="Registrati" />
+							</fieldset>
+						</form>
+			</div>
+	[% END %]
+
 [% END %]
