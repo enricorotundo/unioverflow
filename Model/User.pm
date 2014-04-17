@@ -52,7 +52,7 @@ sub insertUser {
 
 	# $db->addChild("/users/", $element);
 
-	return 1;
+
 
 }
 
