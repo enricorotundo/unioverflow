@@ -44,6 +44,13 @@ sub getUserByEmail {
 }
 
 sub insertUser {
+	my ($email, $password) = @_;
+	my $element = {
+		"email" => $email,
+		"password" => $password
+	}
+
+	# $db->addChild("/users/", $element);
 
 	return 1;
 
