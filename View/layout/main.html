@@ -10,7 +10,10 @@
 <body>
 	<div id="page">
 		[% PROCESS layout/header.html %]
-		[% content %]
+		[% PROCESS layout/navigation.html %]
+		<div id="content">
+			[% content %]
+		</div>
 		[% PROCESS layout/footer.html %]
 	</div>
 </body>

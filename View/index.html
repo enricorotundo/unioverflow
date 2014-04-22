@@ -1,13 +1,32 @@
 [% WRAPPER layout/main.html %]
 	[% pageName = 'Domande' %]
-	[% PROCESS layout/navigation.html %]
 
-	[% IF logged %]
-		<p>Sei loggato.</p>
-		<p><a href="esci.cgi">Pagina di uscita</a> (trovare un nome migliore al link)</p>
-	[% ELSE %]
-		<p>Non sei loggato.</p>
-		<p><a href="accedi.cgi">Pagina di accesso</a></p>
+	<h2>Lista delle domande</h2>
+	<ul>
+	[% FOREACH question IN questions %]
+		<li><a href="[% question.path %]"><h3>[% question.title %]</h3></a>
+			<p>chiesto da [% question.author %]</p></li>
 	[% END %]
-	
+	</ul>
+
+	[% IF pageInfo.totalPages != 1 && pageInfo.currentPageNumber %]
+		<p id="paginglabel" class="audible">Paginazione</p>
+		<ul aria-labelledby="paginglabel">
+
+		[% IF pageInfo.currentPageNumber >= 3 %]
+			<li><a href="index.cgi?page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
+		[% END %]
+		[% IF pageInfo.currentPageNumber >= 2 %]
+			<li><a href="index.cgi?page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
+		[% END %]
+			<li><p><span class="audible">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
+		
+		[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
+			<li><a href="index.cgi?page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
+		[% END %]
+		[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
+			<li><a href="index.cgi?page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+		[% END %]
+		</ul>
+	[% END %]
 [% END %]

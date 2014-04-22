@@ -1,9 +1,9 @@
 
 <ul id="menu">
 
-[% arrayItem = [
+[% navItems = [
     { path => 'index', name => 'Domande' },
-    { path => 'scrivi-domanda',  name => 'Chiedi' },
+    { path => 'scrivi-domanda', name => 'Chiedi' },
     { path => 'manuale', name => 'Manuale' },
     { path => 'accedi', name => 'Accedi' },
     { path => 'registrati', name => 'Registrati' },
@@ -11,10 +11,10 @@
    ];
 %]
   
-<!--   TODO scegliere l'algoritmo migliore :) 
+<!-- TODO scegliere l'algoritmo migliore :) 
   Compessità ciclomatica = 5 -->
 <!-- [% i = 0 %]
-[% FOREACH navItem = arrayDalBackEnd  %]
+[% FOREACH navItem = navItems  %]
 	[% IF navItem.name == pageName %]
 		[% IF (navItem.name == "Accedi" || navItem.name == "Registrati" || navItem.name == "Esci") %] 
 			<li id="currentPage" class="lateralNavItem" > [% navItem.name %]  </li>
@@ -42,7 +42,7 @@
 
  <!--Compessità ciclomatica = 8 -->
 [% i = 0 %]
-[% FOREACH navItem = arrayItem  %]
+[% FOREACH navItem = navItems  %]
 
 
 	[% IF !logged %]
