@@ -56,6 +56,7 @@ sub safeWriteFile {
 	my ($filename, $content) = @_;
 	
 	open my $fh, '>', $filename  or die $!;
+
 	# drop all PerlIO layers possibly created by a use open pragma
 	binmode $fh;
 	

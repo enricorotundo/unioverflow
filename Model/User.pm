@@ -45,15 +45,15 @@ sub getUserByEmail {
 
 sub insertUser {
 	my ($email, $password) = @_;
-	my $element = {
+
+	my $element = Model::User->new (
 		"email" => $email,
 		"password" => $password
-	}
+	);
 
-	# $db->addChild("/users/", $element);
+	# DOM con libxml
 
-
-
+	$db->addChild("/users", $element);
 }
 
 #############
