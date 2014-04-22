@@ -9,7 +9,21 @@
 	[% END %]
 	</ul>
 
-	[% IF pageInfo.totalPages != 1 && pageInfo.currentPageNumber %]
+	[%# Si considera che la numerazione su n pagine sia [1..n]. Se:
+		 
+		 1) la query-string non è definita
+		 2) è presente un parametro 'page='
+		 3) è presente un parametro 'page=0'
+		 4) è presente un parametro 'page=1'
+
+		 la pagina corrente nella paginazione sarà sempre uguale a 1.
+	%]
+	[% IF !pageInfo.currentPageNumber;
+		pageInfo.currentPageNumber = 1;
+	END
+	%]
+	[% # %]
+	[% IF pageInfo.totalPages != 1 %]
 		<p id="paginglabel" class="audible">Paginazione</p>
 		<ul aria-labelledby="paginglabel">
 
