@@ -55,6 +55,11 @@ sub getLastQuestions {
 	return $list;
 }
 
+sub insertQuestion {
+	my ($title, $content, $author) = @_;
+}
+
+
 #############
 #  Oggetto  #
 #############

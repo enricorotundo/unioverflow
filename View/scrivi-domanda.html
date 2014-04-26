@@ -1,7 +1,48 @@
 [% WRAPPER layout/main.html %]
 	[% pageName = 'Chiedi' %]
-	
+	[% PROCESS layout/navigation.html %]
 	<div class="content">
-		<p>Benvenuto [% email | html %]!</p>
+		[% IF logged %]
+
+			[% IF !success %]
+			[% IF error %] 
+				<div id="error">
+					<p> Errore nell'inserimento della domanda! </p>
+					<p> [% msg %] </p>
+				</div>
+			[% END %]
+
+			<p> Scrivi la tua domanda!</p>
+			<p> <a tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#formattazione" title="Vai alla guida su come formattare il tuo testo"> Come formattare il testo </a> </p>
+			<form action="scrivi-domanda.cgi" method="POST">
+				<fieldset>
+					<legend>Inserisci i dati richiesti</legend>
+					<p><label for="Titolo">Titolo della tua domanda</label>
+					<input type="text" title="Inserisci titolo" id="titolo" name="titolo" tabindex="[% i=i+1; i %]" accesskey="t"  /></p> 
+
+					<p><label for="Testo">Testo della domanda</label>
+					<textarea title="Inserisci il testo della domanda" id="testo" name="testo" tabindex="[% i=i+1; i %]" accesskey="c"> </textarea> </p> 
+					<input type="hidden" name="autore" value="[% email %]" />
+					<p><input type="submit" title="Inserisci Domanda" value="Chiedi" tabindex="[% i=i+1; i %]" accesskey="d"  /></p>
+				</fieldset>
+			</form>
+
+			[% ELSE %]
+				<!-- TODO reindirizzare alla pagina vedi-domanda corrispondente -->
+				<p> La tua domanda è stata inserita correttamente! 
+				TODO : Vorrei reindirizzarti alla pagina corripondente "vedi-domanda" <p>
+			[% END %]
+
+
+		[% ELSE %]
+			<div id="notLogged">
+				<p> Per scrivere una domanda devi aver eseguito l'accesso! </p>
+				<p> 
+					<a tabindex="[% i=i+1; i %]" accesskey="l" href="accedi.cgi" title="Vai alla pagina per accedere">Effettua accesso </a> o 
+					<a tabindex="[% i=i+1; i %]" accesskey="l" href="registrati.cgi" title="Vai alla pagina per registrarti">registrati </a>
+				</p>
+			</div>
+		[% END %]
 	</div>
+
 [% END %]

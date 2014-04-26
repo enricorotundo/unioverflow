@@ -1,8 +1,15 @@
 [% WRAPPER layout/main.html %]
 	[% pageName = 'PageError' %]
-
+	[% PROCESS layout/navigation.html %]
 	<div id="content">
-		<p> Oh! Un errore! [% error %] </p>
+		<div id="errorContent">
+			<p> Si &egrave verificato un errore! </p> 
+			<p> [% error %] </p>
+		</div>
+		<div id="segnalaErrore">
+			<p> Vuoi segnalare un errore? 
+				<a href="email@echo.com?subject=Errore%Unioverflow" title="Invia una email per segnalare un errore" tabindex="[% i=i+1; i %]" accesskey="s"> Scrivici </a> 
+		</div>
 	</div>
 
 [% END %]
