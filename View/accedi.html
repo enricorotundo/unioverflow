@@ -1,5 +1,6 @@
 [% WRAPPER layout/main.html %]
 	[% pageName = 'Accedi' %]
+	[% PROCESS layout/navigation.html %]
 
 	[% IF logged %]
 		<p>L'accesso è già stato effettuato.</p>
@@ -8,8 +9,8 @@
 	<form action="esegui-accesso.cgi" method="POST">
 		<fieldset>
 			<legend>Dati di accesso</legend>
-			<label for="email">Email</label><input type="text" id="email" name="email"/>@studenti.unipd.it<br />
-			<label for="password">Password</label><input type="password" id="password" name="password"/><br />
+			<label for="email">Email</label><input type="text" id="email" name="email" tabindex="[% i=i+1; i %]" accesskey="e"/><br />
+			<label for="password">Password</label><input type="password" id="password" name="password" tabindex="[% i=i+1; i %]" accesskey="p"/><br />
 			<input type="submit" value="Accedi"/>
 		</fieldset>
 	</form>
