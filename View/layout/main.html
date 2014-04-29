@@ -10,10 +10,8 @@
 <body>
 	<div id="page">
 		[% PROCESS layout/header.html %]
-		<!-- PROCESS layout/navigation.html Se lo si mette nel main.html e non in ogni pagina, non si ha la variabile i, utile per i tabindex, se si trova un modo migliore per passarla a content ok -->  
-		<div id="content">
-			[% content %]
-		</div>
+		<!-- PROCESS layout/navigation.html Se lo si mette nel main.html e non in ogni pagina, non si ha la variabile i, utile per i tabindex, se si trova un modo migliore per passarla a content ok -->
+		[% content %]
 		[% PROCESS layout/footer.html %]
 	</div>
 </body>
