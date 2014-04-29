@@ -24,6 +24,12 @@ sub getAnswerById {
 	);
 }
 
+# Carica il file xml e restituisce l'oggetto delle risposte alla domanda 
+# con id 'id'
+sub getAnswersByQuestionId {
+	# TODO
+}
+
 #############
 #  Oggetto  #
 #############

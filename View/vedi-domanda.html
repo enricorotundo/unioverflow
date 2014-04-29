@@ -1,20 +1,47 @@
 [% WRAPPER layout/main.html %]
 	[% pageName = 'VediDomanda' %]
+	[% PROCESS layout/navigation.html %]
 
-	<div class="content">
-		<p>Benvenuto [% email | html %]!</p>
-		<h2>[% title | html %]</h2>
-		<p>[% content | html %]</p>
+	<div id="content">
+		<h2>[% question.title | html %]</h2>
+		<p>[% question.content | html %]</p>
+		<p>chesto da [% question.author | html %]</p>
 		<h3>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h3>
-		[% FOREACH answer IN answers %]
-		   <p>[% answer | html %]</p>
-		[% END %]
+		<ul>
+			[% FOREACH answer IN answers %]
+				<li><p>[% answer.author | html %]:</p>
+				<p>[% answer.content | html %]</p></li>
+			[% END %]
+		</ul>
 		[% IF logged %]
 			<h3>Rispondi</h3>
+			<p><a tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#formattazione" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
 			<form id="post-form" action="registra-risposta.cgi" method="POST">
-				<textarea name="post-text"></textarea>
-				<input type="submit" value="Pubblica risposta" />
+				<fieldset>
+					<legend>Inserisci la tua risposta</legend>
+					<textarea id="post-text" name="post-text" title="Inserisci il testo della risposta" tabindex="[% i=i+1; i %]" accesskey="r"></textarea></br>
+					<input type="submit" value="Pubblica risposta" tabindex="[% i=i+1; i %]" accesskey="p"/>
+				</fieldset>
 			</form>
 		[% END %]
+		[% IF pageInfo.totalPages != 1 %]
+			<p id="paginglabel" class="audible">Paginazione</p>
+			<ul>
+			[% IF pageInfo.currentPageNumber >= 3 %]
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
+			[% END %]
+			[% IF pageInfo.currentPageNumber >= 2 %]
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
+			[% END %]
+				<li><p><span class="audible">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
+			
+			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
+			[% END %]
+			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+			[% END %]
+			</ul>
+	[% END %]
 	</div>
 [% END %]

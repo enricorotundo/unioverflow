@@ -55,6 +55,11 @@ sub getLastQuestions {
 	return $list;
 }
 
+# Ritorna il numero totale delle domande
+sub countQuestions {
+	# TODO
+}
+
 sub insertQuestion {
 	my ($title, $content, $author) = @_;
 }
