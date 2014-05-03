@@ -34,16 +34,15 @@ sub handler {
 			} else {
 
 				# inserisco nel db il nuovo utente
-				my $success;
-				if (Model::User::insertUser($email, $password)) {
-					$success = 1; # True in Perl
-				} else {
-					$success = ""; # False in Perl
-				}
+				$user = Model::User->new(
+					"email" => $email,
+					"password" => $password,
+				);
+				$user->save();
 
 				# Execution
 				$data = {
-					"success" => $success
+					"success" => 1
 				};			
 			}
 

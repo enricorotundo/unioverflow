@@ -76,17 +76,6 @@ sub addChild {
 	my ($self, $xpath, $element) = @_;
 	
 	my ($doc, $result) = $self->loadFindOneXPath( $xpath );
-  
- 	my $element = $doc->createElement("user");
- 	my %tags = ( email => 'email', password => 'pass');
-
- 	for my $name (keys %tags)
-	{     
-		my $tag = $doc->createElement($name);    
-		my $value = $tags{$name};  
-		$tag->appendTextNode($value);
-		$element->appendChild($tag); 
-	}
 
 	$result->addChild($element);
 

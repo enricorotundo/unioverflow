@@ -5,6 +5,7 @@ use CGI::Carp;
 
 use Lib::XMLCRUD;
 use Lib::Config;
+use XML::LibXML;
 
 use base 'Lib::Object';
 
@@ -43,18 +44,6 @@ sub getUserByEmail {
 	}
 }
 
-sub insertUser {
-	my ($email, $password) = @_;
-
-	my $element = Model::User->new (
-		"email" => $email,
-		"password" => $password
-	);
-
-	# DOM con libxml
-
-	$db->addChild("/users", $element);
-}
 
 #############
 #  Oggetto  #
@@ -83,12 +72,54 @@ sub email {
 	return $self->{"email"};
 }
 
+# Restituisce l'elemento XML::LibXML che descrive l'utente
+sub getAsNode {
+	my ($self) = @_;
+
+	my $user = XML::LibXML::Element->new('user');
+	my $email = XML::LibXML::Element->new('email');
+	$email->appendTextNode($self->{"email"});
+	my $password = XML::LibXML::Element->new('password');
+	$password->appendTextNode($self->{"password"});
+	$user->addChild($email);
+	$user->addChild($password);
+
+	return $user
+}
+
 # Salva l'oggetto nel database xml
 # Se è già presente qualcuno con l'email $self->{"email"} lo sovrascrive
 sub save {
 	my ($self) = @_;
+	
+	# Email non contiene virgolette, quindi la query XPath è sicura
+	my $email = $self->{"email"};
+	my $user = $db->findOne( "/users/user[email = \"$email\"]" );
 
-	# TODO (quando ce ne sarà bisogno)
+	if ($user) {
+		$self->update()
+	} else {
+		# Utente non trovato
+		$self->insert()
+	}
+}
+
+# È da considerarsi come metodo privato, non utilizzarlo.
+# Piuttosto, utilizzere il metodo save che decide se usare insero o update
+sub update {
+	my ($self) = @_;
+
+	# Email non contiene virgolette, quindi la query XPath è sicura
+	my $email = $self->{"email"};
+	$db->replaceNode("/users/user[email = \"$email\"]", $self->getAsNode());
+}
+
+# È da considerarsi come metodo privato, non utilizzarlo.
+# Piuttosto, utilizzere il metodo save che decide se usare insero o update
+sub insert {
+	my ($self) = @_;
+
+	$db->addChild("/users", $self->getAsNode());
 }
 
 1;
