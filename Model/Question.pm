@@ -42,10 +42,10 @@ sub getLastQuestions {
 
 	# TODO
 
-	my $list = []
+	my $list = [];
 
-	my obj = Model::Answer->new(
-		"id" => $id
+	my $obj = Model::Question->new(
+		"id" => 123
 		# TODO ecc ecc
 	);
 

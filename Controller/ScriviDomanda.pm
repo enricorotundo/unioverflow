@@ -15,7 +15,7 @@ sub handler {
 	my $author = $req->param("autore") or "";
 
 	# controllo se arrivo in scrivi-domanda inviando dei dati con POST
-	if ($ENV{'REQUEST_METHOD'} eq 'POST') {
+	if ($req->attr("method") eq 'POST') {
 		my $fields_check = fieldsCheck($title, $content);
 
 		if($fields_check->{"check"} ) {

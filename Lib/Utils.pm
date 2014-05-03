@@ -42,7 +42,7 @@ sub autoDetectRequest {
 	warn Data::Dumper::Dumper(\$params);
 
 	my $request = Lib::Request->new((
-		"method" => ($ENV{'QUERY_METHOD'} or ""),
+		"method" => ($ENV{'REQUEST_METHOD'} or ""),
 		"path" => ($ENV{'PATH_INFO'} or ""),
 		"query" => ($ENV{'QUERY_STRING'} or ""),
 		"param" => $params
@@ -55,21 +55,27 @@ sub autoDetectRequest {
 sub safeWriteFile {
 	my ($filename, $content) = @_;
 	
-	open my $fh, '>', $filename  or die $!;
+	if ($filename =~ /^([^\0]+)$/) {
+		$filename = $1;
 
-	# drop all PerlIO layers possibly created by a use open pragma
-	binmode $fh;
-	
-	# lock the file refered by the handle
-	flock($fh, LOCK_EX) or die "Cannot lock the file - $!\n";
-	# and, in case someone appended while we were waiting...
-	seek($fh, 0, SEEK_END) or die "Cannot seek - $!\n";
+		open my $fh, '>', $filename or die $!;
 
-	print {$fh} $content;
+		# drop all PerlIO layers possibly created by a use open pragma
+		binmode $fh;
+		
+		# lock the file refered by the handle
+		flock($fh, LOCK_EX) or die "Cannot lock the file - $!\n";
+		# and, in case someone appended while we were waiting...
+		seek($fh, 0, SEEK_END) or die "Cannot seek - $!\n";
 
-	flock($fh, LOCK_UN) or die "Cannot unlock the file - $!\n";
-	
-	close($fh);
+		print {$fh} $content;
+
+		flock($fh, LOCK_UN) or die "Cannot unlock the file - $!\n";
+		
+		close($fh);
+	} else {
+		die "Cannot open the file $filename because it contains null characters\n";
+	}
 }
 
 1;

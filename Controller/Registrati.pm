@@ -15,7 +15,7 @@ sub handler {
 	my $password_confirm = $req->param("passwordconfirm") or "";
 
 	# controllo se arrivo in registarti inviando dei dati con POST
-	if ($ENV{'REQUEST_METHOD'} eq 'POST') {
+	if ($req->attr("method") eq 'POST') {
 		my $fields_check = fieldsCheck($email, $password, $password_confirm);
 
 		if($fields_check->{"check"} ) {
@@ -79,13 +79,17 @@ sub fieldsCheck {
 	my $password_check;
 	my $password_confirm_check;
 
-	if ($email =~ m/[a-z.]{1,64}\@studenti.unipd.it/) {
+	# Mettere ^ all'inizio e $ alla fine della regexp per garantire
+	# che tutto rispetti la regexp, e non solo una sottostringa
+	if ($email =~ m/^[a-z.0-9]{1,64}\@studenti.unipd.it$/) {
 			$email_check = 1;
 	} else {
 		$email_check = "";
 	}
 
-	if ($password =~ m/[a-zA-Z0-9]{8,24}/) {
+	# Mettere ^ all'inizio e $ alla fine della regexp per garantire
+	# che tutto rispetti la regexp, e non solo una sottostringa
+	if ($password =~ m/^[a-zA-Z0-9]{8,24}$/) {
 		$password_check = 1;
 	} else {
 		$password_check = "";

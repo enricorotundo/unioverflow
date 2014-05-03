@@ -28,6 +28,7 @@ flags-local:
 	@find cgi-bin/ public_html/ -type d -exec chmod u=rwx,g=rx,o=rx '{}' \;
 	@find cgi-bin/ public_html/ -type f -exec chmod u=rw,g=r,o=r '{}' \;
 	@find cgi-bin/ -type f -name '*.pl' -or -name '*.cgi' -exec chmod +x '{}' \;
+	@find db/ -type f -name '*.xml' -exec chmod a+w '{}' \;
 	@echo "(*) Fatto."
 
 flags-tecweb:
@@ -35,4 +36,5 @@ flags-tecweb:
 	@find cgi-bin/ public_html/ -type d -exec chmod u=rwx,g=rx,o= '{}' \;
 	@find cgi-bin/ public_html/ -type f -exec chmod u=rw,g=r,o= '{}' \;
 	@find cgi-bin/ -type f -name '*.pl' -or -name '*.cgi' -exec chmod u+x,o+x '{}' \;
+	@find db/ -type f -name '*.xml' -exec chmod +w '{}' \;
 	@echo "(*) Fatto."
