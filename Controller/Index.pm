@@ -13,7 +13,7 @@ sub handler {
 	
 	# TODO ...
 
-	my $page = $req->param{"page"} || 1;
+	my $page = $req->param("page") || 1;
 	my $questionsPerPage = 3;
 	# my $totalQuestions = Model::Question::countQuestions();
 	my $totalQuestions = 5;
