@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answers xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com answers.xsd">
-	<answer id="0">
-		<content>Prima risposta</content>
-		<author>enrico.rotundo@studenti.unipd.it</author>
-		<question>0</question>
-	</answer>
-</answers>

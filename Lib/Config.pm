@@ -16,6 +16,6 @@ our $templatePath = $rootPath."View/";
 our $usersDbPath = $rootPath."db/users.xml";
 
 # Path assoluta della cartella dei template
-our $dbPath = $rootPath."db/database.xml";
+our $dbPath = $rootPath."db/db.xml";
 
 1;
