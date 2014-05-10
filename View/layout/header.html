@@ -2,4 +2,9 @@
 	<a href="index.cgi"><img src="../images/logo-unioverflow.png" alt="Logo di Unioverflow" height="60px"/></a>
 	<a href="#content">Passa al contentuto</a> TODO<!--TODO:Nasconderlo ai vedenti col css-->
 	TODO<!--TODO: rimpiccolire immagine e togliere height=60px-->
+	[% IF logged %]
+			Utente Loggato
+	[% ELSE %]
+			Non sei loggato
+	[% END %]
 </div>

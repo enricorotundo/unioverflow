@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com db.xsd">
+	<users>
+		<user>
+			<email>enrico.rotundo@studenti.unipd.it</email>
+			<password>12345678</password>
+		</user>
+		<user>
+			<email>mario.rossi@studenti.unipd.it</email>
+			<password>ciaociao</password>
+		</user>
+		<user>
+			<email>mar.rossi@studenti.unipd.it</email>
+			<password>provaprovaprova</password>
+		</user>
+		<user>
+			<email>prova@studenti.unipd.it</email>
+			<password>utente3738AkkkaA</password>
+		</user>
+	</users>
+	<questions>
+		<question id="0">
+			<title>Title</title>
+			<content>ContenutoDomanda</content>
+			<author>mar.rossi@studenti.unipd.it</author>
+			<insertDate>2014-02-01</insertDate>
+		</question>
+	</questions>
+	<answers>
+		<answer id="0">
+			<content>Prima risposta</content>
+			<author>enrico.rotundo@studenti.unipd.it</author>
+			<question>0</question>
+			<insertDate>2014-11-23</insertDate>
+		</answer>
+	</answers>
+</db>

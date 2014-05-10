@@ -22,12 +22,12 @@ sub handler {
 		$page = ceil( $totalQuestions / $questionsPerPage );
 	}
 	my $totalPages = ceil( $totalQuestions / $questionsPerPage );
-	# my @lastQuestions = Model::Question::getLastQuestions($page);
-	my @lastQuestions = (
-		{ path => "vedi-domanda.cgi?id=123", title => "Non so fare niente.", author => "Gianni" },
-		{ path => "vedi-domanda.cgi?id=124", title => "Sono il più scarso?", author => "Beppe" },
-		{ path => "vedi-domanda.cgi?id=125", title => "\"Beauty for reality\" cit.", author => "Serena" },
-	);
+	my @lastQuestions = Model::Question::getLastQuestions($page);
+	# my @lastQuestions = (
+	# 	{ path => "vedi-domanda.cgi?id=123", title => "Non so fare niente.", author => "Gianni" },
+	# 	{ path => "vedi-domanda.cgi?id=124", title => "Sono il più scarso?", author => "Beppe" },
+	# 	{ path => "vedi-domanda.cgi?id=125", title => "\"Beauty for reality\" cit.", author => "Serena" },
+	# );
 	
 	# Execution
 	my $data = {
