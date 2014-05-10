@@ -3,7 +3,14 @@ use strict;
 use warnings;
 use CGI::Carp;
 
+use Lib::XMLCRUD;
+use Lib::Config;
+use XML::LibXML;
+
 use base 'Lib::Object';
+
+my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
+
 
 ####################
 #  Metodi statici  #
@@ -39,20 +46,35 @@ sub getLastQuestions {
 	$page ||= 1;
 
 	my $questionPerPage = 30;
+	my @list = [];
 
-	# TODO
+	# recupera le domande
+	my @questions = $db->findNodes( "/db/questions/question" );
 
-	my $list = [];
+	if (@questions) {
+		foreach my $question (@questions)
+		{
+			my $id = $question->findvalue( "\@id" );
+			my $title = $question->findvalue( "title" );
+			my $author = $question->findvalue( "author" );
+			my $insertDate = $question->findvalue( "insertDate" );
 
-	my $obj = Model::Question->new(
-		"id" => 123
-		# TODO ecc ecc
-	);
+		    my $obj = Model::Question->new(
+				path => "vedi-domanda.cgi?id=" . $id, 
+				title => $title, 
+				author => $author,
+				insertDate => $insertDate
+			);
 
-	# Aggiungi uno
-	push @$list, $obj;
-	
-	return $list;
+			# Aggiungi uno
+			push @list, $obj;
+		}
+			
+	} else {
+		# nessuna domanda presente nel db, gestire il caso 
+	}
+
+	return @list;
 }
 
 # Ritorna il numero totale delle domande
