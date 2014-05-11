@@ -7,7 +7,7 @@ use POSIX;
 
 use Lib::Renderer;
 use Lib::Markup;
-# use Model::Question;
+use Model::Question;
 # use Model::Answer;
 
 sub handler {
@@ -47,13 +47,7 @@ sub handler {
 	# Execution
 	my $data = {
 		"logged" => Middleware::Authentication::isLogged($req),
-		# "question" => Model::Question::getQuestionById($req->param("id")),
-		"question" => {
-			"id" => 111,
-			"author" => "Giuseppe",
-			"title" => "Titolo domanda?",
-			"content" => Lib::Markup::convert("Testo della domanda con **alcune parole** in grassetto.")
-		},
+		"question" => Model::Question::getQuestionById($req->param("id")),
 		"answers" => \@answers,
 		"pageInfo" => {
 			currentPageNumber => $page,

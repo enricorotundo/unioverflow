@@ -11,6 +11,8 @@ use base 'Lib::Object';
 
 my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
 
+my $questionsQuery = "/db/questions/question";
+
 
 ####################
 #  Metodi statici  #
@@ -23,12 +25,20 @@ my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
 sub getQuestionById {
 	my ($id) = @_;
 
-	# TODO
+	# recupera la domanda
+	my $question = $db->findOne( "/db/questions/question[\@id='$id']" );
 
-	return Model::Question->new(
-		"id" => $id
-		# TODO ecc ecc
-	);
+	if($question){
+		return Model::Question->new(
+			"id" => $question->findvalue( "\@id" ),
+			"author" => $question->findvalue( "author" ),
+			"title" => $question->findvalue( "title" ),
+			"content" => Lib::Markup::convert($question->findvalue( "content" ))
+		);
+	}else
+	{
+		# gestire errore
+	}
 }
 
 # Ordina tutte le domande per data (o per id...) e ne restituisce $questionPerPage
@@ -49,7 +59,7 @@ sub getLastQuestions {
 	my @list;
 
 	# recupera le domande
-	my @questions = $db->findNodes( "/db/questions/question" );
+	my @questions = $db->findNodes( $questionsQuery );
 
 	my @questions = sort {
     	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
@@ -58,20 +68,19 @@ sub getLastQuestions {
 
 	foreach my $question (@questions)
 	{
-			my $id = $question->findvalue( "\@id" );
-			my $title = $question->findvalue( "title" );
-			my $author = $question->findvalue( "author" );
-			my $insertDate = $question->findvalue( "insertDate" );
+		my $id = $question->findvalue( "\@id" );
+		my $title = $question->findvalue( "title" );
+		my $author = $question->findvalue( "author" );
+		my $insertDate = $question->findvalue( "insertDate" );
 
-		    my $obj = Model::Question->new(
-				path => "vedi-domanda.cgi?id=" . $id, 
-				title => $title, 
-				author => $author,
-				insertDate => $insertDate
-			);
-
-			# Aggiungi uno
-			push @list, $obj;
+	    my $obj = Model::Question->new(
+			path => "vedi-domanda.cgi?id=" . $id, 
+			title => $title, 
+			author => $author,
+			insertDate => $insertDate
+		);
+		# Aggiungi uno
+		push @list, $obj;
 	}
 
 	if (length(@list) <= $questionPerPage ) {
@@ -85,7 +94,9 @@ sub getLastQuestions {
 
 # Ritorna il numero totale delle domande
 sub countQuestions {
-	# TODO
+	# recupera le domande
+	my @questions = $db->findNodes( $questionsQuery );
+	return length(@questions);
 }
 
 sub insertQuestion {
