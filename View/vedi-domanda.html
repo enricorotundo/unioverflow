@@ -25,7 +25,7 @@
 			</form>
 		[% END %]
 		[% IF pageInfo.totalPages != 1 %]
-			<p id="paginglabel" class="audible">Paginazione</p>
+			<h3 id="paginglabel" class="audible">Paginazione</h3>
 			<ul>
 			[% IF pageInfo.currentPageNumber >= 3 %]
 				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
