@@ -3,10 +3,10 @@
 	[% PROCESS layout/navigation.html %]
 
 	<div id="content">
-		<h2>[% question.title | html %]</h2>
+		<h3>[% question.title | html %]</h3>
 		<p>[% question.content | html %]</p>
 		<p>chesto da [% question.author | html %]</p>
-		<h3>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h3>
+		<h4>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h4>
 		<ul>
 			[% FOREACH answer IN answers %]
 				<li><p>[% answer.author | html %]:</p>
@@ -14,7 +14,7 @@
 			[% END %]
 		</ul>
 		[% IF logged %]
-			<h3>Rispondi</h3>
+			<h4>Rispondi</h4>
 			<p><a tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#formattazione" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
 			<form id="post-form" action="registra-risposta.cgi" method="POST">
 				<fieldset>
