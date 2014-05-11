@@ -8,7 +8,7 @@ use POSIX;
 use Lib::Renderer;
 use Lib::Markup;
 use Model::Question;
-# use Model::Answer;
+use Model::Answer;
 
 sub handler {
 	# Get parameters
@@ -17,19 +17,7 @@ sub handler {
 	# TODO ...
 
 	# recupero tutte le risposte
-	# my @allAnswers = Model::Answer::getAnswersByQuestionId($req->param("id"));
-	my @allAnswers = (
-		{ author => "Nome 1", content => "Risposta a caso 1" },
-		{ author => "Nome 2", content => "Risposta a caso 2" },
-		{ author => "Nome 3", content => "Risposta a caso 3" },
-		{ author => "Nome 4", content => "Risposta a caso 4" },
-		{ author => "Nome 5", content => "Risposta a caso 5" },
-		{ author => "Nome 6", content => "Risposta a caso 6" },
-		{ author => "Nome 7", content => "Risposta a caso 7" },
-		{ author => "Nome 8", content => "Risposta a caso 8" },
-		{ author => "Nome 9", content => "Risposta a caso 9" },
-		{ author => "Nome 10", content => "Risposta a caso 10" }
-	);
+	my @allAnswers = Model::Answer::getAnswersByQuestionId($req->param("id"));
 
 	if (!@allAnswers) {
 		return $res->redirect("page-error.cgi");

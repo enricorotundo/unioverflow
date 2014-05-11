@@ -3,7 +3,15 @@ use strict;
 use warnings;
 use CGI::Carp;
 
+use Lib::XMLCRUD;
+use Lib::Config;
+use XML::LibXML;
+
 use base 'Lib::Object';
+
+my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
+
+my $questionsQuery = "/db/answers/answer";
 
 ####################
 #  Metodi statici  #
@@ -27,7 +35,32 @@ sub getAnswerById {
 # Carica il file xml e restituisce l'oggetto delle risposte alla domanda 
 # con id 'id'
 sub getAnswersByQuestionId {
-	# TODO
+	my ($id) = @_;
+	my @list;
+
+	# recupera le risposte
+	my @answers = $db->findNodes( $questionsQuery . "[question = $id]" );
+
+	foreach my $answer (@answers)
+	{
+		my $id = $answer->findvalue( "\@id" );
+		my $content = $answer->findvalue( "content" );
+		my $author = $answer->findvalue( "author" );
+		my $question = $answer->findvalue( "question" );
+		my $insertDate = $answer->findvalue( "insertDate" );
+
+	    my $obj = Model::Answer->new(
+			id => $id, 
+			content => $content, 
+			author => $author,
+			question => $question,
+			insertDate => $insertDate
+		);
+		# Aggiungi uno
+		push @list, $obj;
+	}
+
+	return @list;
 }
 
 #############

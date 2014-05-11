@@ -12,12 +12,9 @@ sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	
-	# TODO ...
-
 	my $page = $req->param("page") || 1;
 	my $questionsPerPage = 3;
-	# my $totalQuestions = Model::Question::countQuestions();
-	my $totalQuestions = 5;
+	my $totalQuestions = Model::Question::countQuestions();
 	if (($page - 1) * $questionsPerPage > $totalQuestions) {
 		$page = ceil( $totalQuestions / $questionsPerPage );
 	}
