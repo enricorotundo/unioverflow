@@ -23,7 +23,7 @@ sub getUserByEmail {
 	my ($email) = @_;
 	
 	# Email non contiene virgolette, quindi la query XPath è sicura
-	my $user = $db->findOne( "/users/user[email = \"$email\"]" );
+	my $user = $db->findOne( "/db/users/user[email = \"$email\"]" );
 
 	if ($user) {
 		my $userEmail = $user->findvalue( "email" );
@@ -94,7 +94,7 @@ sub save {
 	
 	# Email non contiene virgolette, quindi la query XPath è sicura
 	my $email = $self->{"email"};
-	my $user = $db->findOne( "/users/user[email = \"$email\"]" );
+	my $user = $db->findOne( "/db/users/user[email = \"$email\"]" );
 
 	if ($user) {
 		$self->update()
@@ -111,7 +111,7 @@ sub update {
 
 	# Email non contiene virgolette, quindi la query XPath è sicura
 	my $email = $self->{"email"};
-	$db->replaceNode("/users/user[email = \"$email\"]", $self->getAsNode());
+	$db->replaceNode("/db/users/user[email = \"$email\"]", $self->getAsNode());
 }
 
 # È da considerarsi come metodo privato, non utilizzarlo.
@@ -119,7 +119,7 @@ sub update {
 sub insert {
 	my ($self) = @_;
 
-	$db->addChild("/users", $self->getAsNode());
+	$db->addChild("/db/users", $self->getAsNode());
 }
 
 1;

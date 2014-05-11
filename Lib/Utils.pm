@@ -58,7 +58,8 @@ sub safeWriteFile {
 	if ($filename =~ /^([^\0]+)$/) {
 		$filename = $1;
 
-		open my $fh, '>', $filename or die $!;
+		# se genera "permission denied" va usato il comando "make" che sistema i permessi	 
+		open my $fh, '>', $filename or die $!; 
 
 		# drop all PerlIO layers possibly created by a use open pragma
 		binmode $fh;

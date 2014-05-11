@@ -17,7 +17,7 @@
 			<email>prova@studenti.unipd.it</email>
 			<password>utente3738AkkkaA</password>
 		</user>
-	</users>
+	<user><email>enrico@studenti.unipd.it</email><password>12345678</password></user></users>
 	<questions>
 		<question id="0">
 			<title>Title1</title>

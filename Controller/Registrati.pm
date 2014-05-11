@@ -28,7 +28,7 @@ sub handler {
 				# Execution
 				$data = {
 					"error" => 1,
-					"msg" => "L'email utilizzata è gia presente nel database"
+					"msg" => "L'email utilizzata è già utilizzata"
 				};
 
 			} else {
@@ -101,10 +101,10 @@ sub fieldsCheck {
 	}
 
 	my $check;
-	if($email_check and $password_confirm_check and $password_check) {
-		$check = 1;
-	} else {
-		$check = "";
+		if($email_check and $password_confirm_check and $password_check) {
+			$check = 1;
+		} else {
+			$check = "";
 	}
 
 	return my $res = {
