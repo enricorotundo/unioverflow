@@ -19,9 +19,10 @@ sub handler {
 	# recupero tutte le risposte
 	my @allAnswers = Model::Answer::getAnswersByQuestionId($req->param("id"));
 
-	if (!@allAnswers) {
-		return $res->redirect("page-error.cgi");
-	}
+	# TODO: ho commentato perche se la domanda non ha risposte reindirizza a page-error!
+	# if (!@allAnswers) { 
+	# 	return $res->redirect("page-error.cgi");
+	# }
 
 	# prendo le risposte per la pagina $req->param("page")
 	my $answersPerPage = 3;
