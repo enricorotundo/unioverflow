@@ -46,14 +46,18 @@ sub getLastQuestions {
 	$page ||= 1;
 
 	my $questionPerPage = 30;
-	my @list = [];
+	my @list;
 
 	# recupera le domande
 	my @questions = $db->findNodes( "/db/questions/question" );
 
-	if (@questions) {
-		foreach my $question (@questions)
-		{
+	my @questions = sort {
+    	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
+    	$aa cmp $bb;
+  		} $db->findNodes('/db/questions/question');
+
+	foreach my $question (@questions)
+	{
 			my $id = $question->findvalue( "\@id" );
 			my $title = $question->findvalue( "title" );
 			my $author = $question->findvalue( "author" );
@@ -68,13 +72,15 @@ sub getLastQuestions {
 
 			# Aggiungi uno
 			push @list, $obj;
-		}
-			
-	} else {
-		# nessuna domanda presente nel db, gestire il caso 
 	}
 
-	return @list;
+	if (length(@list) <= $questionPerPage ) {
+		return @list;
+	}
+	else{
+		return @list[($page-1)*$questionPerPage .. ($page)*$questionPerPage - 1];
+	}
+	
 }
 
 # Ritorna il numero totale delle domande
