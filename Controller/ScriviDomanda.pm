@@ -4,12 +4,13 @@ use warnings;
 use CGI::Carp;
 
 use Lib::Renderer;
+use Middleware::Authentication;
 use Model::Question;
 
 sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
-	my $data;
+	my $data = { };
 	my $title = $req->param("titolo") or "";
 	my $content = $req->param("testo") or "";
 	my $author = $req->param("autore") or "";
@@ -31,6 +32,7 @@ sub handler {
 
 			
 			$data = {
+				"logged" => Middleware::Authentication::isLogged($req),
 				"success" => $success
 			};			
 
@@ -46,9 +48,15 @@ sub handler {
 
 			# Execution
 			$data = {
+				"logged" => Middleware::Authentication::isLogged($req),
 				"error" => 1,
 				"msg" => $msg
 			};
+		}
+	}
+	else {
+		$data = { 
+			"logged" => Middleware::Authentication::isLogged($req)
 		}
 	}
 
