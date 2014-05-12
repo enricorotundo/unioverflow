@@ -2,7 +2,8 @@
 	[% pageName = 'Chiedi' %]
 	[% PROCESS layout/navigation.html %]
 	<div id="content">
-		
+		[% logged %]
+		[% success %]
 		[% IF logged %]
 
 			[% IF !success %]
@@ -33,6 +34,7 @@
 				<p> La tua domanda è stata inserita correttamente! 
 				TODO : Vorrei reindirizzarti alla pagina corripondente "vedi-domanda" <p>
 			[% END %]
+
 
 		[% ELSE %]
 			<div id="notLogged">
