@@ -18,7 +18,7 @@ sub handler {
 	my ($req, $res) = @_;
 
 	my $session = $req->attr("session");
-	my $email = $session->param("email");
+	my $email = emailCheck($session->param("email"));
 	
 	if ($email) {
 		my $user = Model::User::getUserByEmail($email);
@@ -46,8 +46,8 @@ sub login {
 	my ($req) = @_;
 
 	my $session = $req->attr("session");
-	my $email = $req->param("email") or "";
-	my $password = $req->param("password") or "";
+	my $email = emailCheck($req->param("email") or "");
+	my $password = passwordCheck($req->param("password") or "");
 
 	my $user = Model::User::getUserByEmail($email);
 	if ($user and $user->checkPassword($password)) {
@@ -61,6 +61,24 @@ sub logout {
 	
 	$req->attr("user", undef);
 	Middleware::Session::destroySession($req);
+}
+
+sub emailCheck {
+	my ($email) = @_;
+	if ($email =~ m/^[a-z.0-9]{1,64}\@studenti.unipd.it$/) {
+		return $email;
+	} else {
+		return "";
+	}
+}
+
+sub passwordCheck {
+	my ($password) = @_;
+	if ($password =~ m/^[a-zA-Z0-9]{8,24}$/) {
+		return $password;
+	} else {
+		return "";
+	}
 }
 
 1;
