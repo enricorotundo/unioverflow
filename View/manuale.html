@@ -2,7 +2,39 @@
 	[% pageName = 'Manuale' %]
 	[% PROCESS layout/navigation.html %]
 	<div id="content">
-		<p> Oh! Un manuale! [% var %] </p>
+		<ul id="indice">
+			<li><a tabindex="[% i=i+1; i %]" href="#Registrazione">Registrazione</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#CercaDomanda">Cercare una domanda</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#VediDomanda">Vedere una domanda</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#RispondiDomanda">Rispondere ad una domanda</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#ScriviDomanda">Scrivere una domanda</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#Contattaci">Come contattarci</a></li>
+		</ul>
+
+		<div id="Registrazione">
+		bla bla bla 
+		</div>
+
+		<div id="CercaDomanda">
+		
+		</div>
+
+		<div id="VediDomanda">
+		 
+		</div>
+
+		<div id="RispondiDomanda">
+		
+		</div>
+
+		<div id="ScriviDomanda">
+		
+		</div>
+
+		<div id="Contattaci">
+		bla bla bla 
+		</div>
+
 	</div>
 
 [% END %]

@@ -41,43 +41,42 @@
 
 
  <!--Compessità ciclomatica = 8 -->
-[% i = 0 %]
-[% FOREACH navItem = navItems  %]
-	[% IF !logged %]
+[% i = 0;
+ FOREACH navItem = navItems;
+	IF !logged;
 
-		[% IF navItem.name == "Accedi" || navItem.name == "Registrati" %]
-			[% IF navItem.name == pageName %]
+		IF navItem.name == "Accedi" || navItem.name == "Registrati";
+			IF navItem.name == pageName %]
 				<li id="currentPage" class="lateralNavItem">[% navItem.name %]</li>
 			[% ELSE %]
 				<li class="lateralNavItem"><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi">[% navItem.name %]</a></li>
-			[% END %]
+			[% END;
 
-		[% ELSIF navItem.name != "Esci" %]
-			[% IF navItem.name == pageName %]
+		ELSIF navItem.name != "Esci";
+			 IF navItem.name == pageName %]
 				<li id="currentPage">[% navItem.name %]</li>
 			[% ELSE %]
 				<li><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi">[% navItem.name %]</a></li>
-			[% END %]
-		[% END %]
+			[% END;
+		END;
 
 
-	[% ELSE %]
+	ELSE;
 
-		[% IF navItem.name == "Esci" %]
-			[% IF navItem.name == pageName %]
+		IF navItem.name == "Esci";
+			IF navItem.name == pageName %]
 				<li id="currentPage" class="lateralNavItem">[% navItem.name %]</li>
 			[% ELSE %]
 				<li class="lateralNavItem"><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi">[% navItem.name %]</a></li>
-			[% END %]
+			[% END;
 
-		[% ELSIF navItem.name != "Accedi" && navItem.name != "Registrati" %]
-			[% IF navItem.name == pageName %]
+		ELSIF navItem.name != "Accedi" && navItem.name != "Registrati";
+			IF navItem.name == pageName %]
 				<li id="currentPage">[% navItem.name %]</li>
 			[% ELSE %]
 				<li><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi">[% navItem.name %]</a></li>
-			[% END %]
-		[% END %]
-	[% END %]
-[% END %]
-
+			[% END;
+		END;
+	END;
+END %]
 </ul>

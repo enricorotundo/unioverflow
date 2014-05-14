@@ -16,8 +16,7 @@ sub handler {
 
     # Costruire il dizionario con i dati da passare al template
     my $data = {
-        "var" => "Bello!"
-        # ...
+        "logged" => Middleware::Authentication::isLogged($req)
     };
 
     # Visualizza il template
