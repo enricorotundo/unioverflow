@@ -1,10 +1,10 @@
 [% navItems = [
-    { path => 'index', name => 'Domande' },
-    { path => 'scrivi-domanda', name => 'Chiedi' },
-    { path => 'manuale', name => 'Manuale' },
-    { path => 'accedi', name => 'Accedi' },
-    { path => 'registrati', name => 'Registrati' },
-    { path => 'esci', name => 'Esci' }
+    { path => 'index', name => 'Domande', title => 'Domande' },
+    { path => 'scrivi-domanda', name => 'Chiedi', title => 'Scrivi domanda' },
+    { path => 'manuale', name => 'Manuale', title => 'Manuale' },
+    { path => 'accedi', name => 'Accedi', title => 'Accedi' },
+    { path => 'registrati', name => 'Registrati', title => 'Registrati' },
+    { path => 'esci', name => 'Esci', title => 'Esci' }
    ];
 %]
 <h3 class="audible">Navigazione</h3>
@@ -47,14 +47,14 @@
 			IF navItem.name == pageName %]
 				<li id="currentPage" class="lateralNavItem">[% navItem.name %]</li>
 			[% ELSE %]
-				<li class="lateralNavItem"><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi">[% navItem.name %]</a></li>
+				<li class="lateralNavItem"><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi" title="[% navItem.title %]">[% navItem.name %]</a></li>
 			[% END;
 
 		ELSIF navItem.name != "Esci";
 			 IF navItem.name == pageName %]
 				<li id="currentPage">[% navItem.name %]</li>
 			[% ELSE %]
-				<li><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi">[% navItem.name %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi" title="[% navItem.title %]">[% navItem.name %]</a></li>
 			[% END;
 		END;
 
@@ -65,14 +65,14 @@
 			IF navItem.name == pageName %]
 				<li id="currentPage" class="lateralNavItem">[% navItem.name %]</li>
 			[% ELSE %]
-				<li class="lateralNavItem"><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi">[% navItem.name %]</a></li>
+				<li class="lateralNavItem"><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi" title="[% navItem.title %]">[% navItem.name %]</a></li>
 			[% END;
 
 		ELSIF navItem.name != "Accedi" && navItem.name != "Registrati";
 			IF navItem.name == pageName %]
 				<li id="currentPage">[% navItem.name %]</li>
 			[% ELSE %]
-				<li><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi">[% navItem.name %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" accesskey="[% i %]" href="[% navItem.path %].cgi" title="[% navItem.title %]">[% navItem.name %]</a></li>
 			[% END;
 		END;
 	END;
