@@ -5,7 +5,7 @@
 	<div id="content">
 		<h3>[% question.title | html %]</h3>
 		<p>[% question.content | html %]</p>
-		<p>chesto da [% question.author | html %]</p>
+		<p>chiesto da [% question.author | html %]</p>
 		<h4>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h4>
 		<ul>
 			[% FOREACH answer IN answers %]
