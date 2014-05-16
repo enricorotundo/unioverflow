@@ -1,40 +1,43 @@
-[% WRAPPER layout/main.html %]
-	[% pageName = 'Manuale' %]
-	[% PROCESS layout/navigation.html %]
+[% WRAPPER layout/main.html;
+	pageName = 'Manuale';
+	PROCESS layout/navigation.html %]
 	<div id="content">
+		<h3>Manuale</h3>
 		<ul id="indice">
-			<li><a tabindex="[% i=i+1; i %]" href="#Registrazione">Registrazione</a></li>
-			<li><a tabindex="[% i=i+1; i %]" href="#CercaDomanda">Cercare una domanda</a></li>
-			<li><a tabindex="[% i=i+1; i %]" href="#VediDomanda">Vedere una domanda</a></li>
-			<li><a tabindex="[% i=i+1; i %]" href="#RispondiDomanda">Rispondere ad una domanda</a></li>
-			<li><a tabindex="[% i=i+1; i %]" href="#ScriviDomanda">Scrivere una domanda</a></li>
-			<li><a tabindex="[% i=i+1; i %]" href="#Contattaci">Come contattarci</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#Registrazione" title="Registrazione">Registrazione</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#CercaDomanda" title="Cercare domanda">Cercare una domanda</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#VediDomanda" title="Vedere domanda">Vedere una domanda</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#RispondiDomanda" title="Rispondere a domanda">Rispondere ad una domanda</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#ScriviDomanda" title="Scrivere domanda">Scrivere una domanda</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#Contattaci" title="Contattarci">Come contattarci</a></li>
 		</ul>
 
 		<div id="Registrazione">
-		bla bla bla 
+			<h4>Registrazione</h4>
+			<p>Per registrarsi al servizio, &egrave; necessario recarsi nella <a href="registrati.cgi" title="Registrati">pagina di registrazione</a> e compilare il modulo inserendo l'indirizzo <span xml:lang="en">mail</span>, la <span xml:lang="en">password</span> e la <span xml:lang="en">password</span> di conferma.</p>
+			<p>L'indirizzo <span xml:lang="en">mail</span> deve necessariamente essere di dominio <em>studenti.unipd.it</em>. La <span xml:lang="en">password</span> deve essere composta da un minimo di 8 ad un massimo di 24 caratteri alfanumerici.</p>
+			<p>Una volta inserite tutte le informazioni richieste, premere il pulsante &quot;Registrati&quot;.</p>
+			<p><strong>Attenzione:</strong> la <span xml:lang="en">password</span> differenzia tra caratteri minuscoli e maiuscoli.</p>
 		</div>
 
 		<div id="CercaDomanda">
-		
+			<h4>Cercare una domanda</h4>
 		</div>
 
 		<div id="VediDomanda">
-		 
+			<h4>Vedere una domanda</h4>
 		</div>
 
 		<div id="RispondiDomanda">
-		
+			<h4>Rispondere ad una domanda</h4>
 		</div>
 
 		<div id="ScriviDomanda">
-		
+			<h4>Scrivere una domanda</h4>
 		</div>
 
 		<div id="Contattaci">
-		bla bla bla 
+			<h4>Come contattarci</h4>
 		</div>
-
 	</div>
-
 [% END %]
