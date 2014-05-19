@@ -12,7 +12,7 @@ use base 'Lib::Object';
 my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
 
 my $questionsQuery = "/db/questions/question";
-
+my $questionPerPage = 30;
 
 ####################
 #  Metodi statici  #
@@ -55,7 +55,6 @@ sub getLastQuestions {
 	# Se non ci sono parametri metti 1 di default
 	$page ||= 1;
 
-	my $questionPerPage = 30;
 	my @list;
 
 	# recupera le domande
@@ -92,12 +91,68 @@ sub getLastQuestions {
 	
 }
 
+# ---------------------------------------------------------------
+sub getLastQuestionsFind {
+
+	my ($page) = @_[0];
+	# Se non ci sono parametri metti 1 di default
+	$page ||= 1;
+	my $TestoDaCercare = @_[1];
+
+	my @listF;
+	my $questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
+
+	# recupera le domande
+	my @questions = $db->findNodes( $questionsQueryF );
+
+	my @questions = sort {
+    	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
+    	$aa cmp $bb;
+  		} $db->findNodes($questionsQueryF);
+
+	foreach my $question (@questions)
+	{
+		my $id = $question->findvalue( "\@id" );
+		my $title = $question->findvalue( "title" );
+		my $author = $question->findvalue( "author" );
+		my $insertDate = $question->findvalue( "insertDate" );
+
+	    my $obj = Model::Question->new(
+			path => "vedi-domanda.cgi?id=" . $id, 
+			title => $title, 
+			author => $author,
+			insertDate => $insertDate
+		);
+		# Aggiungi uno
+		push @listF, $obj;
+	}
+
+	if (length(@listF) <= $questionPerPage ) {
+		return @listF;
+	}
+	else{
+		return @listF[($page-1)*$questionPerPage .. ($page)*$questionPerPage - 1];
+	}
+	
+}
+#----------------------------------------------------------------------------------
+
 # Ritorna il numero totale delle domande
 sub countQuestions {
 	# recupera le domande
 	my @questions = $db->findNodes( $questionsQuery );
 	return length(@questions);
 }
+
+# Ritorna il numero totale delle domande con Find---------------------------
+sub countQuestionsFind {
+	# recupera le domande
+	my $TestoDaCercare = @_;
+	my @questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
+	my @questions = $db->findNodes( @questionsQueryF );
+	return length(@questions);
+}
+#----------------------------------------------------------------------------
 
 sub insertQuestion {
 	my ($title, $content, $author) = @_;
