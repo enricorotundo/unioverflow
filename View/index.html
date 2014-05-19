@@ -5,7 +5,7 @@
 	<h3>Lista delle domande</h3>
 	<ul>
 	[% FOREACH question IN questions %]
-		<li><a tabindex="[% i=i+1; i %]" href="[% question.path %]"><h4>[% question.title | html %]</h4></a>
+		<li><h4><a tabindex="[% i=i+1; i %]" href="[% question.path %]">[% question.title | html %]</a></h4>
 			<p>chiesto da [% question.author | html %]</p></li>
 	[% END %]
 	</ul>
