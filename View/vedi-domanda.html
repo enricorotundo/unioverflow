@@ -28,18 +28,18 @@
 			<h3 id="paginglabel" class="audible">Paginazione</h3>
 			<ul>
 			[% IF pageInfo.currentPageNumber >= 3 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
 			[% END %]
 			[% IF pageInfo.currentPageNumber >= 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
 			[% END %]
 				<li><p><span class="audible">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
 			
 			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
 			[% END %]
 			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
 			[% END %]
 			</ul>
 	[% END %]
