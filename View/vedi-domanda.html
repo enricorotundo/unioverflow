@@ -4,9 +4,29 @@
 
 	<div id="content">
 		<span id="path">Ti trovi in: <a href="index.cgi" title="Domande">Domande</a> &raquo; Vedi domanda</span>
-		<h3>[% question.title | html %]</h3>
-		<p>[% question.content | html %]</p>
-		<p>chiesto da [% question.author | html %]</p>
+		<div class="questionStatus">
+			[% question.status ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/>Risolta' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/>Aperta' %]
+		</div>
+		<div class="questionDetails">
+			<h3>[% question.title | html %]</h3>
+			<p>[% question.content | html %]</p>
+			<p>chiesto da [% question.author | html %]</p>
+			[% IF question.author == session.email %]
+				<form action="vedi-domanda.cgi" method="POST">
+					<fieldset>
+						[% IF question.status == 'opened' %]
+							<legend>Chiudi domanda</legend>
+							<input type="hidden" name="solved"/>
+							<input type="submit" value="Risolta" title="Chiudi domanda" tabindex="[% i=i+1; i %]"/>
+						[% ELSE %]
+							<legend>Riapri domanda</legend>
+							<input type="hidden" name="opened"/>
+							<input type="submit" value="Riapri" title="Riapri domanda" tabindex="[% i=i+1; i %]"/>
+						[% END %]
+					</fieldset>
+				</form>
+			[% END %]
+		</div>
 		<h4>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h4>
 		<ul>
 			[% FOREACH answer IN answers %]
@@ -14,14 +34,14 @@
 				<p>[% answer.content | html %]</p></li>
 			[% END %]
 		</ul>
-		[% IF logged %]
+		[% IF logged && question.status == 'opened' %]
 			<h4>Rispondi</h4>
 			<p><a tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#formattazione" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
 			<form id="post-form" action="registra-risposta.cgi" method="POST">
 				<fieldset>
 					<legend>Inserisci la tua risposta</legend>
 					<textarea id="post-text" name="post-text" title="Inserisci il testo della risposta" tabindex="[% i=i+1; i %]" accesskey="r"></textarea></br>
-					<input type="submit" value="Pubblica risposta" tabindex="[% i=i+1; i %]" accesskey="p"/>
+					<input type="submit" value="Pubblica risposta" title="Pubblica risposta" tabindex="[% i=i+1; i %]" accesskey="p"/>
 				</fieldset>
 			</form>
 		[% END %]

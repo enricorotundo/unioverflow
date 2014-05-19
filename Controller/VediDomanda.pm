@@ -7,6 +7,7 @@ use POSIX;
 
 use Lib::Renderer;
 use Lib::Markup;
+use Middleware::Session;
 use Model::Question;
 use Model::Answer;
 
@@ -36,6 +37,9 @@ sub handler {
 	# Execution
 	my $data = {
 		"logged" => Middleware::Authentication::isLogged($req),
+		"session" => {
+			"email" => Middleware::Session::getSession($req)->param("email")
+		},
 		"question" => Model::Question::getQuestionById($req->param("id")),
 		"answers" => \@answers,
 		"pageInfo" => {
