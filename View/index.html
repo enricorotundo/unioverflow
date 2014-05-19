@@ -2,6 +2,14 @@
 	[% pageName = 'Domande' %]
 	[% PROCESS layout/navigation.html %]
 
+	<form action="index.cgi" method="post">
+		<fieldset>
+		<p><label for="Testo da cercare"></label>
+			<input type="text" title="Inserisci il testo da cercare" id="testoDaCercare" name="testoDaCercare" tabindex="[% i=i+1; i %]" /></p>
+		<p><input type="submit" title="Effettua ricerca" value="Cerca" tabindex="[% i=i+1; i %]" accesskey="c"  /></p>
+		</fieldset>
+	</form>
+	
 	<h3>Lista delle domande</h3>
 	<ul>
 	[% FOREACH question IN questions %]

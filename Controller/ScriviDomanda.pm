@@ -30,7 +30,6 @@ sub handler {
 				$success = ""; 
 			}
 
-			
 			$data = {
 				"logged" => Middleware::Authentication::isLogged($req),
 				"success" => $success

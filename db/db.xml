@@ -55,6 +55,12 @@
 			<author>prova@studenti.unipd.it</author>
 			<insertDate>2014-01-10</insertDate>
 		</question>
+		<question id="7">
+			<title>Title7</title>
+			<content>Contenuto domanda 7</content>
+			<author>prova@studenti.unipd.it</author>
+			<insertDate>2014-01-19</insertDate>
+		</question>
 	</questions>
 	<answers>
 		<answer id="0">
