@@ -3,11 +3,13 @@
 	[% PROCESS layout/navigation.html %]
 
 	<div id="content">
+		<span id="path">Ti trovi in: Domande</span>
 		<form action="index.cgi" method="post">
 			<fieldset>
-			<p><label for="Testo da cercare"></label>
-				<input type="text" title="Inserisci il testo da cercare" id="testoDaCercare" name="testoDaCercare" tabindex="[% i=i+1; i %]" /></p>
-			<p><input type="submit" title="Effettua ricerca" value="Cerca" tabindex="[% i=i+1; i %]" accesskey="c"  /></p>
+				<legend>Cerca</legend>
+				<label for="Testo da cercare"></label>
+				<input type="text" title="Inserisci il testo da cercare" id="testoDaCercare" name="testoDaCercare" tabindex="[% i=i+1; i %]" />
+				<input type="submit" title="Effettua ricerca" value="Cerca" tabindex="[% i=i+1; i %]" accesskey="c"/>
 			</fieldset>
 		</form>
 		

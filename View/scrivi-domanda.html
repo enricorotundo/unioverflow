@@ -1,7 +1,9 @@
 [% WRAPPER layout/main.html %]
 	[% pageName = 'Chiedi' %]
 	[% PROCESS layout/navigation.html %]
+	
 	<div id="content">
+		<span id="path">Ti trovi in: Chiedi</span>
 		[% logged %]
 		[% success %]
 		[% IF logged %]

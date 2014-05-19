@@ -2,32 +2,33 @@
 	[% pageName = 'Registrati' %]
 	[% PROCESS layout/navigation.html %]
 
-	[% IF success %]
-		<div id="success">
-		<p>Registrazione effettuata correttamente.</p>
-		<p>Ora puoi andare alla <a tabindex="[% i=i+1; i %]" accesskey="l" href="accedi.cgi" title="Vai alla pagina per accedere">pagina per accedere</a>.</p>
-		</div>
-	[% ELSE %]
-		[% IF error %]
-			<div id="error">
-			<p>[% msg %]</p>
+	<div id="content">
+		<span id="path">Ti trovi in: Chiedi</span>
+		[% IF success %]
+			<div id="success">
+			<p>Registrazione effettuata correttamente.</p>
+			<p>Ora puoi andare alla <a tabindex="[% i=i+1; i %]" accesskey="l" href="accedi.cgi" title="Vai alla pagina per accedere">pagina per accedere</a>.</p>
 			</div>
-		[% END %]
-			<div id="content">
+		[% ELSE %]
+			[% IF error %]
+				<div id="error">
+				<p>[% msg %]</p>
+				</div>
+			[% END %]
 				<p>Benvenuto nella pagina di registrazione.</p>
 				<form action="registrati.cgi" method="post">
 					<fieldset>
 						<legend>Inserisci i dati richiesti</legend>
-						<p><label for="email">Email</label>
-						<input type="text" title="Inserisci l'email" id="email" name="email" tabindex="[% i=i+1; i %]" accesskey="m"  /></p> 
-						<p><label for="password">Password</label>
-						<input type="password" title="Inserisci la password" id="password" name="password" tabindex="[% i=i+1; i %]" accesskey="p" /> </p> 
-						<p><label for="passwordconfirm">Conferma Password</label>
-						<input type="password" title="Inserisci la password nuovamente" id="passwordconfirm" name="passwordconfirm" tabindex="[% i=i+1; i %]" accesskey="c" /> </p> 
-						<p><input type="submit" title="Effettua registrazione" value="Registrati" tabindex="[% i=i+1; i %]" accesskey="r"  /></p>
+						<label for="email">Email</label>
+						<input type="text" title="Inserisci l'email" id="email" name="email" tabindex="[% i=i+1; i %]" accesskey="m"  /><br/>
+						<label for="password">Password</label>
+						<input type="password" title="Inserisci la password" id="password" name="password" tabindex="[% i=i+1; i %]" accesskey="p" /><br/>
+						<label for="passwordconfirm">Conferma Password</label>
+						<input type="password" title="Inserisci la password nuovamente" id="passwordconfirm" name="passwordconfirm" tabindex="[% i=i+1; i %]" accesskey="c" /><br/>
+						<input type="submit" title="Effettua registrazione" value="Registrati" tabindex="[% i=i+1; i %]" accesskey="r" />
 					</fieldset>
 				</form>
-			</div>
-	[% END %]
+		[% END %]
+	</div>
 
 [% END %]
