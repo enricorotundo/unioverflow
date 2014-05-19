@@ -2,47 +2,49 @@
 	[% pageName = 'Domande' %]
 	[% PROCESS layout/navigation.html %]
 
-	<h3>Lista delle domande</h3>
-	<ul>
-	[% FOREACH question IN questions %]
-		<li><h4><a tabindex="[% i=i+1; i %]" href="[% question.path %]">[% question.title | html %]</a></h4>
-			<p>chiesto da [% question.author | html %]</p></li>
-	[% END %]
-	</ul>
-
-	[%# Si considera che la numerazione su n pagine sia [1..n]. Se:
-		 
-		1) nella query-string non è presente un parametro 'page' o
-		2) nella query-string è presente un parametro 'page=' o
-		3) nella query-string è presente un parametro 'page=0' o
-		4) nella query-string è presente un parametro 'page=1'
-
-		la pagina corrente nella paginazione sarà sempre uguale a 1.
-
-		La struttura della paginazione è tratta da:
-		https://mikewest.org/2010/02/an-accessible-pagination-pattern
-	%]
-	[% IF !pageInfo.currentPageNumber;
-		pageInfo.currentPageNumber = 1;
-	END
-	%]
-	[% IF pageInfo.totalPages != 1 %]
-		<h3 id="paginglabel" class="audible">Paginazione</h3>
+	<div id="content">
+		<h3>Lista delle domande</h3>
 		<ul>
-		[% IF pageInfo.currentPageNumber >= 3 %]
-			<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
-		[% END %]
-		[% IF pageInfo.currentPageNumber >= 2 %]
-			<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
-		[% END %]
-			<li><p><span class="audible">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
-		
-		[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
-			<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
-		[% END %]
-		[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
-			<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+		[% FOREACH question IN questions %]
+			<li><h4><a tabindex="[% i=i+1; i %]" href="[% question.path %]">[% question.title | html %]</a></h4>
+				<p>chiesto da [% question.author | html %]</p></li>
 		[% END %]
 		</ul>
-	[% END %]
+
+		[%# Si considera che la numerazione su n pagine sia [1..n]. Se:
+			 
+			1) nella query-string non è presente un parametro 'page' o
+			2) nella query-string è presente un parametro 'page=' o
+			3) nella query-string è presente un parametro 'page=0' o
+			4) nella query-string è presente un parametro 'page=1'
+
+			la pagina corrente nella paginazione sarà sempre uguale a 1.
+
+			La struttura della paginazione è tratta da:
+			https://mikewest.org/2010/02/an-accessible-pagination-pattern
+		%]
+		[% IF !pageInfo.currentPageNumber;
+			pageInfo.currentPageNumber = 1;
+		END
+		%]
+		[% IF pageInfo.totalPages != 1 %]
+			<h3 id="paginglabel" class="audible">Paginazione</h3>
+			<ul>
+			[% IF pageInfo.currentPageNumber >= 3 %]
+				<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
+			[% END %]
+			[% IF pageInfo.currentPageNumber >= 2 %]
+				<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
+			[% END %]
+				<li><p><span class="audible">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
+			
+			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
+				<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
+			[% END %]
+			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
+				<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+			[% END %]
+			</ul>
+		[% END %]
+	</div>
 [% END %]
