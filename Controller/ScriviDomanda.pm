@@ -22,9 +22,12 @@ sub handler {
 		if($fields_check->{"check"} ) {
 
 			# inserisco nel db la domanda
+			my $titleXML = replaceBadOccurrences($title); # Per togliere i caratteri speciali
+			my $contentXML = replaceBadOccurrences($content);
+
 			my $success;
 
-			if (Model::Question::insertQuestion($title, $content, $author)) {
+			if (Model::Question::insertQuestion($titleXML, $contentXML, $author)) {
 				$success = 1; 
 			} else {
 				$success = ""; 
@@ -97,5 +100,24 @@ sub fieldsCheck {
 		"title_check" => $title_check,
 	}
 }
+
+# Replace dei caratteri speciali che non validano l'XML
+sub replaceBadOccurrences {
+	my ($testo) = @_;
+    $testo = replace("&","&amp;",$testo);
+    $testo = replace('"',"&quot;",$testo);
+    $testo = replace("'","&apos;",$testo);
+    $testo = replace("<","&lt;",$testo);
+    $testo = replace(">","&gt;",$testo);
+
+    return $testo;
+}
+
+sub replace {
+      my ($from,$to,$string) = @_;
+      $string =~s/$from/$to/ig;      
+
+      return $string;
+   }
 
 1;

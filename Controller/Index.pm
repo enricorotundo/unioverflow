@@ -17,8 +17,8 @@ sub handler {
 	my $questionsPerPage = 3;
 	my $data;
 
-
-	if ($req->attr("method") eq 'POST' ) {
+	# Se è stata effettuata una ricerca e non è una ricerca vuota
+	if ($req->attr("method") eq 'POST' && trim($TestoDaCercare)!='') { 
 
 		my $totalQuestionsF = Model::Question::countQuestionsFind($TestoDaCercare); 
 
@@ -61,6 +61,15 @@ sub handler {
 
 	# Response
 	$res->write(Lib::Renderer::render('index.html', $data));
+}
+
+# Restituisce la stringa senza spazi
+sub trim($)
+{
+	my $string = shift;
+	$string =~ s/^\s+//;
+	$string =~ s/\s+$//;
+	return $string;
 }
 
 1;

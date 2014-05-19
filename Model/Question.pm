@@ -91,7 +91,7 @@ sub getLastQuestions {
 	
 }
 
-# ---------------------------------------------------------------
+# Restituisce tutte le domande in cui nel titolo è contenuta la stringa $TestoDaCercare passata come secondo parametro @_[1]
 sub getLastQuestionsFind {
 
 	my ($page) = @_[0];
@@ -135,7 +135,6 @@ sub getLastQuestionsFind {
 	}
 	
 }
-#----------------------------------------------------------------------------------
 
 # Ritorna il numero totale delle domande
 sub countQuestions {
@@ -144,7 +143,7 @@ sub countQuestions {
 	return length(@questions);
 }
 
-# Ritorna il numero totale delle domande con Find---------------------------
+# Ritorna il numero totale delle domande con Find
 sub countQuestionsFind {
 	# recupera le domande
 	my $TestoDaCercare = @_;
@@ -152,7 +151,6 @@ sub countQuestionsFind {
 	my @questions = $db->findNodes( @questionsQueryF );
 	return length(@questions);
 }
-#----------------------------------------------------------------------------
 
 sub insertQuestion {
 	my ($title, $content, $author) = @_;
