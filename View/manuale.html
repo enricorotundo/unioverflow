@@ -2,15 +2,16 @@
 	pageName = 'Manuale';
 	PROCESS layout/navigation.html %]
 	<div id="content">
+		<span id="path">Ti trovi in: Manuale</span>
 		<h3>Manuale</h3>
 		<ul id="indice">
 			<li><a tabindex="[% i=i+1; i %]" href="#Registrazione" title="Registrazione">Registrazione</a></li>
+			<li><a tabindex="[% i=i+1; i %]" href="#Autenticazione" title="Autenticazione">Autenticazione</a></li>
 			<li><a tabindex="[% i=i+1; i %]" href="#CercaDomanda" title="Cercare domanda">Cercare una domanda</a></li>
 			<li><a tabindex="[% i=i+1; i %]" href="#VediDomanda" title="Vedere domanda">Vedere una domanda</a></li>
 			<li><a tabindex="[% i=i+1; i %]" href="#RispondiDomanda" title="Rispondere a domanda">Rispondere ad una domanda</a></li>
 			<li><a tabindex="[% i=i+1; i %]" href="#ScriviDomanda" title="Scrivere domanda">Scrivere una domanda</a></li>
 			<li><a tabindex="[% i=i+1; i %]" href="#FormattaTesto" title="Formattare testo">Formattare il testo</a></li>
-			<li><a tabindex="[% i=i+1; i %]" href="#Contattaci" title="Contattarci">Come contattarci</a></li>
 		</ul>
 
 		<div id="Registrazione">
@@ -21,28 +22,53 @@
 			<p><strong>Attenzione:</strong> la <span xml:lang="en">password</span> differenzia tra caratteri minuscoli e maiuscoli.</p>
 		</div>
 
+		<div id="Autenticazione">
+			<h4>Autenticazione</h4>
+			<p>Per autenticarsi bisogna effetuare l'accesso al sistema tramite l'apposito <span xml:lang="en"><a href="accedi.cgi" title="Accedi">form</a></span> inserendo l'indirizzo <span xml:lang="en">mail</span> e la <span xml:lang="en">password</span> che hai fornito nella fase di registrazione. Nel caso in cui non ti sei ancora registrato, consulta la sezione &quot;<a href="#Registrazione" title="Registrazione">Registrazione</a>&quot;.</p>
+		</div>
+
 		<div id="CercaDomanda">
 			<h4>Cercare una domanda</h4>
+			<p>Puoi cercare una domanda utilizzando il campo di ricerca presente nella <a href="index.cgi" title="Pagina principale">pagina principale</a>. Inserisci il testo da cercare e premi sul pulsante &quot;Cerca&quot;. La ricerca viene eseguita sui titoli di tutte le domande presenti. Se la ricerca ha prodotto risultati, verr&agrave; visualizzata la lista delle domande trovate.</p>
 		</div>
 
 		<div id="VediDomanda">
 			<h4>Vedere una domanda</h4>
+			<p>Nella <a href="index.cgi" title="Pagina principale">pagina principale</a> &egrave; possibile visualizzare le domande inserite dagli utenti. Per leggere i dettagli della domanda e le relative risposte, bisogna cliccare sul titolo della domanda scelta. Se sei autenticato (vedi <a href="#Autenticazione">come autenticarsi</a>), puoi <a href="#RispondiDomanda" title="Rispondere a domanda">rispondere alla domanda</a>.</p>
 		</div>
 
 		<div id="RispondiDomanda">
 			<h4>Rispondere ad una domanda</h4>
+			[% IF logged %]
+				<p>Sembra che tu sia autenticato! Bene, il primo passo è fatto.</p>
+			[% ELSE %]
+				<p>Sembra che tu non sia autenticato. Peccato, il primo passo per rispondere ad una domanda &egrave; <a href="#Autenticazione" title="Autenticazione">autenticarsi</a>.</p>
+			[% END %]
+			<p>Puoi rispondere ad una domanda dalla sua pagina di visualizzazione (vedi <a href="#VediDomanda" title="Vedere domanda">come visualizzare una domanda</a>) utilizzando il <span xml:lang="en">form</span> presente dopo le risposte. Nonostante sia possibile rispondere ad una domada da qualsiasi intervallo di risposte, ti invitiamo a leggere tutte le risposte prima di contribuire.</p>
 		</div>
 
 		<div id="ScriviDomanda">
 			<h4>Scrivere una domanda</h4>
+			[% IF logged %]
+				<p>Sembra che tu sia autenticato! Bene, il primo passo è fatto.</p>
+			[% ELSE %]
+				<p>Sembra che tu non sia autenticato. Peccato, il primo passo per porre una domanda agli altri utenti &egrave; <a href="#Autenticazione" title="Autenticazione">autenticarsi</a>.</p>
+			[% END %]
+			<p>Puoi porre una domanda recandoti nella <a href="scrivi-domanda.cgi" title="Scrivi domanda">pagina di domanda</a>. Qui inserisci titolo e descrizione della domanda, poi clicca sul pulsante &quot;Chiedi&quot; per pubblicarla.</p>
+			<p>Puoi <a href="#FormattaTesto" title="Formattare testo">formattare il testo</a> della domanda per focalizzare l'attenzione sulle questioni importanti.</p>
 		</div>
 		
 		<div id="FormattaTesto">
 			<h4>Formattare il testo</h4>
+			<p>Quando rispondi ad una domanda o specifichi i dettagli di una posta da te, puoi formattare il testo tramite la sintassi di <span xml:lang="en"><em>markup</em></span>. Gli operatori che possono essere utilizzati sono:
+				<dl>
+					<dt><code>*testo*</code></dt>
+						<dd>formatta il testo in <em>italico</em>;</dd>
+					<dt><code>**testo**</code></dt>
+						<dd>formatta il testo in <em>grassetto</em>.</dd>
+				</dl>
+			</p>
 		</div>
 
-		<div id="Contattaci">
-			<h4>Come contattarci</h4>
-		</div>
 	</div>
 [% END %]
