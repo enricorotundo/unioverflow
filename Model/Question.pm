@@ -5,6 +5,7 @@ use CGI::Carp;
 
 use Lib::XMLCRUD;
 use Lib::Config;
+use Lib::Markup;
 use XML::LibXML;
 
 use base 'Lib::Object';
