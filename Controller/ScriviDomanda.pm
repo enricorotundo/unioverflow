@@ -85,8 +85,8 @@ sub fieldsCheck {
 	# 	$content_check = "";
 	# }
 
-	$title_check = "";
-	$content_check = "";
+	$title_check = 1;
+	$content_check = 1;
 	my $check;
 	if($title_check and $content_check) {
 		$check = 1;
