@@ -33,7 +33,8 @@ sub getQuestionById {
 			"id" => $question->findvalue( "\@id" ),
 			"author" => $question->findvalue( "author" ),
 			"title" => $question->findvalue( "title" ),
-			"content" => Lib::Markup::convert($question->findvalue( "content" ))
+			"content" => Lib::Markup::convert($question->findvalue( "content" )),
+			"status" => $question->findvalue( "status" )
 		);
 	}else
 	{
@@ -71,12 +72,14 @@ sub getLastQuestions {
 		my $title = $question->findvalue( "title" );
 		my $author = $question->findvalue( "author" );
 		my $insertDate = $question->findvalue( "insertDate" );
+		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
 			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
-			insertDate => $insertDate
+			insertDate => $insertDate,
+			status => $status
 		);
 		# Aggiungi uno
 		push @list, $obj;
@@ -116,12 +119,14 @@ sub getLastQuestionsFind {
 		my $title = $question->findvalue( "title" );
 		my $author = $question->findvalue( "author" );
 		my $insertDate = $question->findvalue( "insertDate" );
+		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
 			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
-			insertDate => $insertDate
+			insertDate => $insertDate,
+			status => $status
 		);
 		# Aggiungi uno
 		push @listF, $obj;

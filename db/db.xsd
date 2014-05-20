@@ -61,6 +61,7 @@
             <xs:element name="content" type="Tcontent" />
             <xs:element name="author" type="Temail" />
             <xs:element name="insertDate" type="xs:date" />
+            <xs:element name="status" type="Tstatus"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:unsignedInt" use="required"/>
     </xs:complexType>
@@ -107,6 +108,13 @@
         <xs:restriction base="xs:string">
           <xs:pattern value="[a-zA-Z0-9]{8,24}"/> <!-- TODO: da confermare -->
         </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Tstatus">
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="opened"/>
+        <xs:enumeration value="solved"/>
+      </xs:restriction>
     </xs:simpleType>
 
 </xs:schema>
