@@ -185,18 +185,21 @@ sub getAsNode {
 
 	my $question = XML::LibXML::Element->new('question');
 
+	my $id = XML::LibXML::Attr->new('id', $db->getLastQuestionId() + 1);
 	my $title = XML::LibXML::Element->new('title');
 	my $author = XML::LibXML::Element->new('author');
 	my $content = XML::LibXML::Element->new('content');
 	my $insertDate = XML::LibXML::Element->new('insertDate');
 	my $status = XML::LibXML::Element->new('status');
 
+	$id->setValue($db->getLastQuestionId() + 1);
 	$title->appendTextNode($self->{"title"});
 	$author->appendTextNode($self->{"author"});
 	$content->appendTextNode($self->{"content"});
 	$insertDate->appendTextNode($self->{"insertDate"});
 	$status->appendTextNode($self->{"status"});
 
+	$question->addChild($id);
 	$question->addChild($title);
 	$question->addChild($author);
 	$question->addChild($content);
