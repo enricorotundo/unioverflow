@@ -5,6 +5,7 @@ use CGI::Carp;
 
 use Lib::XMLCRUD;
 use Lib::Config;
+use Lib::Markup;
 use XML::LibXML;
 
 use base 'Lib::Object';
@@ -44,7 +45,7 @@ sub getAnswersByQuestionId {
 	foreach my $answer (@answers)
 	{
 		my $id = $answer->findvalue( "\@id" );
-		my $content = $answer->findvalue( "content" );
+		my $content = Lib::Markup::convert($answer->findvalue( "content" ));
 		my $author = $answer->findvalue( "author" );
 		my $question = $answer->findvalue( "question" );
 		my $insertDate = $answer->findvalue( "insertDate" );
