@@ -5,7 +5,7 @@
 	<div id="content">
 		<span id="path">Ti trovi in: <a href="index.cgi" title="Domande">Domande</a> &raquo; Vedi domanda</span>
 		<div class="questionStatus">
-			[% question.status ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/>Risolta' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/>Aperta' %]
+			[% question.status == 'solved' ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/>Risolta' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/>Aperta' %]
 		</div>
 		<div class="questionDetails">
 			<h3>[% question.title | html %]</h3>
