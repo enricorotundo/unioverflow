@@ -10,7 +10,7 @@
 		<div class="questionDetails">
 			<h3>[% question.title | html %]</h3>
 			<p>[% question.content | html %]</p>
-			<p>chiesto da [% question.author | html %]</p>
+			<p>chiesto da [% question.author | html %] il [% answer.insertDate | html %]</p>
 			[% IF question.author == session.email %]
 				<form action="vedi-domanda.cgi" method="POST">
 					<fieldset>
@@ -30,7 +30,7 @@
 		<h4>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h4>
 		<ul>
 			[% FOREACH answer IN answers %]
-				<li><p>[% answer.author | html %]:</p>
+				<li><p>il [% "$answer.insertDate, " | html; answer.author | html %] ha scritto:</p>
 				<p>[% answer.content | html %]</p></li>
 			[% END %]
 		</ul>

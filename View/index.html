@@ -21,7 +21,7 @@
 				</div>
 				<div class="questionDetails">
 					<h4><a tabindex="[% i=i+1; i %]" href="[% question.path %]">[% question.title | html %]</a></h4>
-					<p>chiesto da [% question.author | html %]</p>
+					<p>chiesto da [% question.author | html %] il [% answer.insertDate | html %]</p>
 				</div></li>
 		[% END %]
 		</ul>
