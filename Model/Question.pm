@@ -35,7 +35,8 @@ sub getQuestionById {
 			"author" => $question->findvalue( "author" ),
 			"title" => $question->findvalue( "title" ),
 			"content" => Lib::Markup::convert($question->findvalue( "content" )),
-			"status" => $question->findvalue( "status" )
+			"status" => $question->findvalue( "status" ),
+			"insertDate" => $question->findvalue( "insertDate" )
 		);
 	}else
 	{
