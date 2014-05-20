@@ -68,7 +68,7 @@
 			<insertDate>2014-01-19</insertDate>
 			<status>solved</status>
 		</question>
-	<question id="8"><title>222</title><author/><content> 222</content><insertDate>114-4-20</insertDate><status>opened</status></question></questions>
+	<question id="8"><title>222</title><author/><content> 222</content><insertDate>114-4-20</insertDate><status>opened</status></question><question id="9"><title>Titolo</title><author/><content>1212</content><insertDate>114-4-21</insertDate><status>opened</status></question><question id="10"><title>Titolo</title><author>xxx</author><content>adsads</content><insertDate>114-4-21</insertDate><status>opened</status></question></questions>
 	<answers>
 		<answer id="0">
 			<content>Prima risposta</content>

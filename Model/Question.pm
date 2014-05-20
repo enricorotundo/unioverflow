@@ -192,6 +192,8 @@ sub getAsNode {
 	my $insertDate = XML::LibXML::Element->new('insertDate');
 	my $status = XML::LibXML::Element->new('status');
 
+	print $self->{"author"};
+
 	$id->setValue($db->getLastQuestionId() + 1);
 	$title->appendTextNode($self->{"title"});
 	$author->appendTextNode($self->{"author"});
