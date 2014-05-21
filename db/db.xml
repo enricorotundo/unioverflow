@@ -17,7 +17,7 @@
 			<email>prova@studenti.unipd.it</email>
 			<password>utente3738AkkkaA</password>
 		</user>
-	<user><email>enrico@studenti.unipd.it</email><password>12345678</password></user><user><email>ehfsudhfusdhi@studenti.unipd.it</email><password>12345678</password></user></users>
+	</users>
 	<questions>
 		<question id="0">
 			<title>Title1</title>
@@ -68,16 +68,8 @@
 			<insertDate>2014-01-19</insertDate>
 			<status>solved</status>
 		</question>
-	<question id="8"><title>222</title><author/><content> 222</content><insertDate>114-4-20</insertDate><status>opened</status></question><question id="9"><title>Titolo</title><author/><content>1212</content><insertDate>114-4-21</insertDate><status>opened</status></question><question id="10"><title>Titolo</title><author>xxx</author><content>adsads</content><insertDate>114-4-21</insertDate><status>opened</status></question>
-		<question id="11">
-			<title>Domandaaax</title>
-			<content>Contenuto domanda 11</content>
-			<author>prova@studenti.unipd.it</author>
-			<insertDate>2014-01-19</insertDate>
-			<status>solved</status>
-		</question>
-
-</questions>
+		<question id="8"><title>erthgdth</title><author>enrico.rotundo@studenti.unipd.it</author><content> thrrthr</content><insertDate>2014-4-21</insertDate><status>opened</status></question><question id="9"><title>sdfsdf</title><author>enrico.rotundo@studenti.unipd.it</author><content> sdfsdfsdf</content><insertDate>2014-4-21</insertDate><status>opened</status></question><question id="10"><title>esdfgrt</title><author>enrico.rotundo@studenti.unipd.it</author><content> hfthdthrt</content><insertDate>2014-4-21</insertDate><status>opened</status></question><question id="11"><title>rthrth</title><author>enrico.rotundo@studenti.unipd.it</author><content> rthtrhhtrhrtgfbbfdbdfg</content><insertDate>2014-4-21</insertDate><status>opened</status></question><question id="12"><title>fgbgfbfglktyujhrew</title><author>enrico.rotundo@studenti.unipd.it</author><content> ejtyfcsdvdsfre&amp;lt;</content><insertDate>2014-4-21</insertDate><status>opened</status></question><question id="13"><title>tydjsjhrth</title><author>enrico.rotundo@studenti.unipd.it</author><content> jrhdrthrth</content><insertDate>2014-4-21</insertDate><status>opened</status></question>
+	<question id="14"><title>ghmgh</title><author>enrico.rotundo@studenti.unipd.it</author><content>ghmghmgh</content><insertDate>2014-4-21</insertDate><status>opened</status></question></questions>
 	<answers>
 		<answer id="0">
 			<content>Prima risposta</content>

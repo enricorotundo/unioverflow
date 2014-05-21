@@ -78,6 +78,7 @@ sub getLastQuestions {
 
 	    my $obj = Model::Question->new(
 			id => $id, 
+			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
 			insertDate => $insertDate,
@@ -124,6 +125,7 @@ sub getLastQuestionsFind {
 		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
+	    	id => $id, 
 			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
@@ -143,56 +145,13 @@ sub getLastQuestionsFind {
 	
 }
 
-# Ritorna il numero totale delle domande
-sub countQuestions {
-	# recupera le domande
-	my @questions = $db->findNodes( $questionsQuery );
-	return scalar(@questions);
-}
-
-# Ritorna il numero totale delle domande con Find
-sub countQuestionsFind {
-	# recupera le domande
-	my ($TestoDaCercare) = @_[0];
-	my @questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
-	my @questions = $db->findNodes( @questionsQueryF );
-	return scalar(@questions);
-}
-
-sub insertQuestion {
-	my ($title, $content, $author) = @_;
-	my $DAY;
-	my $MONTH;
-	my $YEAR;
-
-	($DAY, $MONTH, $YEAR) = (localtime)[3,4,5];
-	$YEAR += 1900; # ritorna la data a partire dal 1900
-	my $today = $YEAR . '-' . $MONTH . '-' . $DAY;
-
-	my $newQuestion = Model::Question->new(
-			title => $title, 
-			author => $author,
-			content => $content,
-			insertDate => $today,
-			status => "opened"
-	);
-
-	my $xmlQuestion = $newQuestion->getAsNode();
-	$xmlQuestion->setAttribute('id', $db->getLastQuestionId() + 1);
-	$db->addChild("/db/questions", $xmlQuestion);
-
-	return $xmlQuestion->getAttribute( 'id' );
-}
-
 # Restituisce l'elemento XML::LibXML che descrive la domanda
-
-# TODO: controllare la generazione dell ID 
 sub getAsNode {
 	my ($self) = @_;
 
 	my $question = XML::LibXML::Element->new('question');
 
-	my $id = XML::LibXML::Attr->new('id');
+	my $id = XML::LibXML::Attr->new('id', $self->{"id"});
 	my $title = XML::LibXML::Element->new('title');
 	my $author = XML::LibXML::Element->new('author');
 	my $content = XML::LibXML::Element->new('content');
@@ -230,6 +189,62 @@ sub setQuestionAsSolved {
 
 }
 
+sub setQuestionAsOpened {
+	my ($id) = @_;
+
+	my $question = getQuestionById($id);
+
+	if($question) {
+		$question->status = 'opened';
+		return save($question);
+	} else {
+		return "";
+	}
+
+}
+
+sub insertQuestion {
+	my ($title, $content, $author) = @_;
+	my $DAY;
+	my $MONTH;
+	my $YEAR;
+
+	($DAY, $MONTH, $YEAR) = (localtime)[3,4,5];
+	$YEAR += 1900; # ritorna la data a partire dal 1900
+	my $today = $YEAR . '-' . $MONTH . '-' . $DAY;
+
+	my $newQuestion = Model::Question->new(
+			title => $title, 
+			author => $author,
+			content => $content,
+			insertDate => $today,
+			status => "opened"
+	);
+
+	my $xmlQuestion = $newQuestion->getAsNode();
+	$xmlQuestion->setAttribute('id', $db->getLastQuestionId() + 1);
+	$db->addChild("/db/questions", $xmlQuestion);
+
+	return $xmlQuestion->getAttribute( 'id' );
+}
+
+# Ritorna il numero totale delle domande
+sub countQuestions {
+	# recupera le domande
+	my @questions = $db->findNodes( $questionsQuery );
+	return scalar(@questions);
+}
+
+# Ritorna il numero totale delle domande con Find
+sub countQuestionsFind {
+	# recupera le domande
+	my ($TestoDaCercare) = @_[0];
+	my @questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
+	my @questions = $db->findNodes( @questionsQueryF );
+	return scalar(@questions);
+}
+
+
 
 #############
 #  Oggetto  #
@@ -250,10 +265,11 @@ sub init {
 # Se è già presente qualcuno con l'id $self->{"id"} lo sovrascrive
 sub save {
 	my ($self) = @_;
+	my $id = $self->{"id"};
 
-	my $xmlQuestion = getAsNode($self);
+	my $question = $db->findOne( $questionsQuery . "[id = \"$id\"]" );
 
-	if ($xmlQuestion) {
+	if ($question) {
 		$self->update()
 	} else {
 		# Utente non trovato
@@ -266,7 +282,6 @@ sub save {
 sub update {
 	my ($self) = @_;
 
-	# Email non contiene virgolette, quindi la query XPath è sicura
 	my $id = $self->{"id"};
 	$db->replaceNode($questionsQuery . "[id = \"$id\" ]",  $self->getAsNode());
 
