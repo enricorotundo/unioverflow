@@ -8,7 +8,7 @@
 			<p>L'accesso è già stato effettuato.</p>
 			<p>Ora puoi andare alla <a href="index.cgi">pagina principale</a>.</p>
 		[% ELSE %]
-		<form action="esegui-accesso.cgi" method="POST">
+		<form action="esegui-accesso.cgi" method="post">
 			<fieldset>
 				<legend>Dati di accesso</legend>
 				<label for="email">Email</label><input type="text" id="email" name="email" tabindex="[% i=i+1; i %]" accesskey="e"/><br />
