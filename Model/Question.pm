@@ -179,7 +179,9 @@ sub insertQuestion {
 
 	my $xmlQuestion = $newQuestion->getAsNode();
 	$xmlQuestion->setAttribute('id', $db->getLastQuestionId() + 1);
-	$db->addChild("/db/questions", $xmlQuestion); 
+	$db->addChild("/db/questions", $xmlQuestion);
+
+	return $xmlQuestion->getAttribute( 'id' );
 }
 
 # Restituisce l'elemento XML::LibXML che descrive la domanda
