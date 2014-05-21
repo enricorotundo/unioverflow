@@ -14,6 +14,11 @@
 		</form>
 		
 		<h3>Lista delle domande</h3>
+
+		[% IF notFound %]
+			<div id="notFound"> <p>Nessuna corrispondenza trovata!</p> </div>
+		[% END %]
+
 		<ul>
 		[% FOREACH question IN questions %]
 			<li><div class="questionStatus">
