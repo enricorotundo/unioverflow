@@ -4,6 +4,7 @@ use warnings;
 use CGI::Carp;
 
 use Lib::Renderer;
+use Middleware::Session;
 use Middleware::Authentication;
 use Model::Question;
 
@@ -58,7 +59,10 @@ sub handler {
 	}
 	else {
 		$data = { 
-			"logged" => Middleware::Authentication::isLogged($req)
+			"logged" => Middleware::Authentication::isLogged($req),
+			"session" => {
+					"email" => Middleware::Session::getSession($req)->param("email")
+			}
 		}
 	}
 

@@ -6,16 +6,14 @@
 	
 		<span id="path">Ti trovi in: Chiedi</span>
 
-		[% IF logged %]
-
-			[% IF !success %]
-			[% IF error %] 
+		[% IF logged;
+			IF !success;
+				IF error %] 
 				<div id="error">
 					<p> Errore nell'inserimento della domanda! </p>
 					<p> [% msg %] </p>
 				</div>
 			[% END %]
-
 			<p> Scrivi la tua domanda!</p>
 			<p> <a tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#FormattaTesto" title="Vai alla guida su come formattare il tuo testo"> Come formattare il testo </a> </p>
 			<form action="scrivi-domanda.cgi" method="post">
@@ -26,7 +24,7 @@
 
 					<p><label for="Testo">Testo della domanda</label>
 					<textarea title="Inserisci il testo della domanda" id="testo" name="testo" tabindex="[% i=i+1; i %]" accesskey="c" rows="4" cols="50"> </textarea> </p> 
-					<input type="hidden" name="autore" value="[% email %]" />
+					<input type="hidden" name="autore" value="[% session.email %]" />
 					<p><input type="submit" title="Inserisci Domanda" value="Chiedi" tabindex="[% i=i+1; i %]" accesskey="d"  /></p>
 				</fieldset>
 			</form>
