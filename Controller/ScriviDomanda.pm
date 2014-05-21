@@ -14,7 +14,7 @@ sub handler {
 	my $data = { };
 	my $title = $req->param("titolo") or "";
 	my $content = $req->param("testo") or "";
-	my $author = $req->param("autore") or "";
+	my $author = Middleware::Session::getSession($req)->param("email") or "";
 
 	# controllo se arrivo in scrivi-domanda inviando dei dati con POST
 	if ($req->attr("method") eq 'POST') {
