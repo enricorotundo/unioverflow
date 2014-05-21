@@ -12,7 +12,7 @@ use base 'Lib::Object';
 
 my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
 
-my $questionsQuery = "/db/questions/question";
+my $questionXPath = "/db/questions/question";
 my $questionPerPage = 30;
 
 ####################
@@ -61,7 +61,7 @@ sub getLastQuestions {
 	my @list;
 
 	# recupera le domande
-	my @questions = $db->findNodes( $questionsQuery );
+	my @questions = $db->findNodes( $questionXPath );
 
 	my @questions = sort {
     	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
@@ -106,15 +106,15 @@ sub getLastQuestionsFind {
 	my ($TestoDaCercare) = @_[1];
 
 	my @listF;
-	my $questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
+	my $questionXPathF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
 
 	# recupera le domande
-	my @questions = $db->findNodes( $questionsQueryF );
+	my @questions = $db->findNodes( $questionXPathF );
 
 	my @questions = sort {
     	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
     	$aa cmp $bb;
-  		} $db->findNodes($questionsQueryF);
+  		} $db->findNodes($questionXPathF);
 
 	foreach my $question (@questions)
 	{
@@ -172,7 +172,7 @@ sub getAsNode {
 	$question->addChild($insertDate);
 	$question->addChild($status);
 
-	return $question
+	return $question;
 }
 
 sub setQuestionAsSolved {
@@ -231,7 +231,7 @@ sub insertQuestion {
 # Ritorna il numero totale delle domande
 sub countQuestions {
 	# recupera le domande
-	my @questions = $db->findNodes( $questionsQuery );
+	my @questions = $db->findNodes( $questionXPath );
 	return scalar(@questions);
 }
 
@@ -239,8 +239,8 @@ sub countQuestions {
 sub countQuestionsFind {
 	# recupera le domande
 	my ($TestoDaCercare) = @_[0];
-	my @questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
-	my @questions = $db->findNodes( @questionsQueryF );
+	my @questionXPathF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
+	my @questions = $db->findNodes( @questionXPathF );
 	return scalar(@questions);
 }
 
@@ -267,12 +267,12 @@ sub save {
 	my ($self) = @_;
 	my $id = $self->{"id"};
 
-	my $question = $db->findOne( $questionsQuery . "[id = \"$id\"]" );
+	my $question = $db->findOne( $questionXPath . "[id = \"$id\"]" );
 
 	if ($question) {
 		$self->update()
 	} else {
-		# Utente non trovato
+		# domanda non trovata
 		$self->insert()
 	}
 }
@@ -283,7 +283,7 @@ sub update {
 	my ($self) = @_;
 
 	my $id = $self->{"id"};
-	$db->replaceNode($questionsQuery . "[id = \"$id\" ]",  $self->getAsNode());
+	$db->replaceNode($questionXPath . "[id = \"$id\" ]",  $self->getAsNode());
 
 }
 
@@ -292,7 +292,7 @@ sub update {
 sub insert {
 	my ($self) = @_;
 
-	$db->addChild($questionsQuery, $self->getAsNode());
+	$db->addChild($questionXPath, $self->getAsNode());
 }
 
 
