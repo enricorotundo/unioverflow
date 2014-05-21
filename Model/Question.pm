@@ -102,7 +102,7 @@ sub getLastQuestionsFind {
 	my ($page) = @_[0];
 	# Se non ci sono parametri metti 1 di default
 	$page ||= 1;
-	my $TestoDaCercare = @_[1];
+	my ($TestoDaCercare) = @_[1];
 
 	my @listF;
 	my $questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
@@ -147,16 +147,16 @@ sub getLastQuestionsFind {
 sub countQuestions {
 	# recupera le domande
 	my @questions = $db->findNodes( $questionsQuery );
-	return length(@questions);
+	return scalar(@questions);
 }
 
 # Ritorna il numero totale delle domande con Find
 sub countQuestionsFind {
 	# recupera le domande
-	my $TestoDaCercare = @_;
+	my ($TestoDaCercare) = @_[0];
 	my @questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
 	my @questions = $db->findNodes( @questionsQueryF );
-	return length(@questions);
+	return scalar(@questions);
 }
 
 sub insertQuestion {

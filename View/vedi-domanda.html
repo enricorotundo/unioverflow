@@ -12,7 +12,7 @@
 			<p>[% question.content | html %]</p>
 			<p>chiesto da [% question.author | html %] il [% answer.insertDate | html %]</p>
 			[% IF question.author == session.email %]
-				<form action="vedi-domanda.cgi" method="POST">
+				<form action="vedi-domanda.cgi" method="post">
 					<fieldset>
 						[% IF question.status == 'opened' %]
 							<legend>Chiudi domanda</legend>
@@ -27,20 +27,25 @@
 				</form>
 			[% END %]
 		</div>
-		<h4>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h4>
-		<ul>
-			[% FOREACH answer IN answers %]
-				<li><p>il [% "$answer.insertDate, " | html; answer.author | html %] ha scritto:</p>
-				<p>[% answer.content | html %]</p></li>
-			[% END %]
-		</ul>
+		[% IF (answers.size() == 0) %]
+			<h4>Risposte</h4>
+			<p> Non ci sono ancora risposte a questa domanda! </p>
+		[% ELSE %]
+			<ul>
+			<h4>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h4>
+				[% FOREACH answer IN answers %]
+					<li><p>il [% "$answer.insertDate, " | html; answer.author | html %] ha scritto:</p>
+					<p>[% answer.content | html %]</p></li>
+				[% END %]
+			</ul>
+		[% END %]
 		[% IF logged && question.status == 'opened' %]
 			<h4>Rispondi</h4>
 			<p><a tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#formattazione" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
-			<form id="post-form" action="registra-risposta.cgi" method="POST">
+			<form id="post-form" action="registra-risposta.cgi" method="post">
 				<fieldset>
 					<legend>Inserisci la tua risposta</legend>
-					<textarea id="post-text" name="post-text" title="Inserisci il testo della risposta" tabindex="[% i=i+1; i %]" accesskey="r"></textarea></br>
+					<textarea id="post-text" name="post-text" title="Inserisci il testo della risposta" tabindex="[% i=i+1; i %]" accesskey="r" rows="4" cols="50"></textarea> 
 					<input type="submit" value="Pubblica risposta" title="Pubblica risposta" tabindex="[% i=i+1; i %]" accesskey="p"/>
 				</fieldset>
 			</form>

@@ -17,26 +17,39 @@ sub handler {
 	my $questionsPerPage = 3;
 	my $data;
 
-	# Se è stata effettuata una ricerca e non è una ricerca vuota
-	if ($req->attr("method") eq 'POST' && trim($TestoDaCercare)!='') { 
+	# Se è stata effettuata una ricerca e non è una ricerca vuota (se cerco " " mi aspetto tutte le domande)
+	if ($req->attr("method") eq 'POST' && !(trim($TestoDaCercare) eq '')) { 
 
 		my $totalQuestionsF = Model::Question::countQuestionsFind($TestoDaCercare); 
 
-		if (($page - 1) * $questionsPerPage > $totalQuestionsF) {
-			$page = ceil( $totalQuestionsF / $questionsPerPage );
-		}
-		my $totalPages = ceil( $totalQuestionsF / $questionsPerPage );
-		my @lastQuestionsFind = Model::Question::getLastQuestionsFind($page,$TestoDaCercare);
-
-		# Execution
-		$data = {
+		if ($totalQuestionsF == 0) {
+			$data = {
 			"logged" => Middleware::Authentication::isLogged($req),
-			"questions" => \@lastQuestionsFind,
+			"notFound" => 1,
 			"pageInfo" => {
-				currentPageNumber => $page,
-				totalPages => $totalPages
+					currentPageNumber => 1,
+					totalPages => 1
+				}
+			};
+		}
+		else {
+
+			if (($page - 1) * $questionsPerPage > $totalQuestionsF) {
+				$page = ceil( $totalQuestionsF / $questionsPerPage );
 			}
-		};
+			my $totalPages = ceil( $totalQuestionsF / $questionsPerPage );
+			my @lastQuestionsFind = Model::Question::getLastQuestionsFind($page,$TestoDaCercare);
+
+			# Execution
+			$data = {
+				"logged" => Middleware::Authentication::isLogged($req),
+				"questions" => \@lastQuestionsFind,
+				"pageInfo" => {
+					currentPageNumber => $page,
+					totalPages => $totalPages
+				}
+			};
+		}
 	}
 	
 	else {
@@ -67,8 +80,7 @@ sub handler {
 sub trim($)
 {
 	my $string = shift;
-	$string =~ s/^\s+//;
-	$string =~ s/\s+$//;
+	$string =~ s/\s+//g;
 	return $string;
 }
 
