@@ -77,7 +77,7 @@ sub getLastQuestions {
 		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
-			path => "vedi-domanda.cgi?id=" . $id, 
+			id => $id, 
 			title => $title, 
 			author => $author,
 			insertDate => $insertDate,
@@ -177,25 +177,27 @@ sub insertQuestion {
 			status => "opened"
 	);
 
-	$db->addChild("/db/questions", $newQuestion->getAsNode());
+	my $xmlQuestion = $newQuestion->getAsNode();
+	$xmlQuestion->setAttribute('id', $db->getLastQuestionId() + 1);
+	$db->addChild("/db/questions", $xmlQuestion); 
 }
 
 # Restituisce l'elemento XML::LibXML che descrive la domanda
+
+# TODO: controllare la generazione dell ID 
 sub getAsNode {
 	my ($self) = @_;
 
 	my $question = XML::LibXML::Element->new('question');
 
-	my $id = XML::LibXML::Attr->new('id', $db->getLastQuestionId() + 1);
+	my $id = XML::LibXML::Attr->new('id');
 	my $title = XML::LibXML::Element->new('title');
 	my $author = XML::LibXML::Element->new('author');
 	my $content = XML::LibXML::Element->new('content');
 	my $insertDate = XML::LibXML::Element->new('insertDate');
 	my $status = XML::LibXML::Element->new('status');
 
-	print $self->{"author"};
-
-	$id->setValue($db->getLastQuestionId() + 1);
+	$id->setValue($self->{"id"});
 	$title->appendTextNode($self->{"title"});
 	$author->appendTextNode($self->{"author"});
 	$content->appendTextNode($self->{"content"});
@@ -210,6 +212,20 @@ sub getAsNode {
 	$question->addChild($status);
 
 	return $question
+}
+
+sub setQuestionAsSolved {
+	my ($id) = @_;
+
+	my $question = getQuestionById($id);
+
+	if($question) {
+		$question->status = 'solved';
+		return save($question);
+	} else {
+		return "";
+	}
+
 }
 
 
@@ -233,7 +249,34 @@ sub init {
 sub save {
 	my ($self) = @_;
 
-	# TODO (quando ce ne sarà bisogno)
+	my $xmlQuestion = getAsNode($self);
+
+	if ($xmlQuestion) {
+		$self->update()
+	} else {
+		# Utente non trovato
+		$self->insert()
+	}
 }
+
+# È da considerarsi come metodo privato, non utilizzarlo.
+# Piuttosto, utilizzere il metodo save che decide se usare insert o update
+sub update {
+	my ($self) = @_;
+
+	# Email non contiene virgolette, quindi la query XPath è sicura
+	my $id = $self->{"id"};
+	$db->replaceNode($questionsQuery . "[id = \"$id\" ]",  $self->getAsNode());
+
+}
+
+# È da considerarsi come metodo privato, non utilizzarlo.
+# Piuttosto, utilizzere il metodo save che decide se usare insert o update
+sub insert {
+	my ($self) = @_;
+
+	$db->addChild($questionsQuery, $self->getAsNode());
+}
+
 
 1;
