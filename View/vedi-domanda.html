@@ -16,11 +16,11 @@
 					<fieldset>
 						[% IF question.status == 'opened' %]
 							<legend>Chiudi domanda</legend>
-							<input type="hidden" name="solved"/>
+							<input type="hidden" name="solved" value="solved"/>
 							<input type="submit" value="Risolta" title="Chiudi domanda" tabindex="[% i=i+1; i %]"/>
 						[% ELSE %]
 							<legend>Riapri domanda</legend>
-							<input type="hidden" name="opened"/>
+							<input type="hidden" name="opened" value="opened"/>
 							<input type="submit" value="Riapri" title="Riapri domanda" tabindex="[% i=i+1; i %]"/>
 						[% END %]
 					</fieldset>
