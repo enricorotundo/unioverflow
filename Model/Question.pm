@@ -12,7 +12,7 @@ use base 'Lib::Object';
 
 my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
 
-my $questionsQuery = "/db/questions/question";
+my $questionXPath = "/db/questions/question";
 my $questionPerPage = 30;
 
 ####################
@@ -61,7 +61,7 @@ sub getLastQuestions {
 	my @list;
 
 	# recupera le domande
-	my @questions = $db->findNodes( $questionsQuery );
+	my @questions = $db->findNodes( $questionXPath );
 
 	my @questions = sort {
     	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
@@ -77,6 +77,7 @@ sub getLastQuestions {
 		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
+			id => $id, 
 			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
@@ -102,18 +103,18 @@ sub getLastQuestionsFind {
 	my ($page) = @_[0];
 	# Se non ci sono parametri metti 1 di default
 	$page ||= 1;
-	my $TestoDaCercare = @_[1];
+	my ($TestoDaCercare) = @_[1];
 
 	my @listF;
-	my $questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
+	my $questionXPathF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
 
 	# recupera le domande
-	my @questions = $db->findNodes( $questionsQueryF );
+	my @questions = $db->findNodes( $questionXPathF );
 
 	my @questions = sort {
     	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
     	$aa cmp $bb;
-  		} $db->findNodes($questionsQueryF);
+  		} $db->findNodes($questionXPathF);
 
 	foreach my $question (@questions)
 	{
@@ -124,6 +125,7 @@ sub getLastQuestionsFind {
 		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
+	    	id => $id, 
 			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
@@ -143,20 +145,62 @@ sub getLastQuestionsFind {
 	
 }
 
-# Ritorna il numero totale delle domande
-sub countQuestions {
-	# recupera le domande
-	my @questions = $db->findNodes( $questionsQuery );
-	return length(@questions);
+# Restituisce l'elemento XML::LibXML che descrive la domanda
+sub getAsNode {
+	my ($self) = @_;
+
+	my $question = XML::LibXML::Element->new('question');
+
+	my $id = XML::LibXML::Attr->new('id', $self->{"id"});
+	my $title = XML::LibXML::Element->new('title');
+	my $author = XML::LibXML::Element->new('author');
+	my $content = XML::LibXML::Element->new('content');
+	my $insertDate = XML::LibXML::Element->new('insertDate');
+	my $status = XML::LibXML::Element->new('status');
+
+	$id->setValue($self->{"id"});
+	$title->appendTextNode($self->{"title"});
+	$author->appendTextNode($self->{"author"});
+	$content->appendTextNode($self->{"content"});
+	$insertDate->appendTextNode($self->{"insertDate"});
+	$status->appendTextNode($self->{"status"});
+
+	$question->addChild($id);
+	$question->addChild($title);
+	$question->addChild($author);
+	$question->addChild($content);
+	$question->addChild($insertDate);
+	$question->addChild($status);
+
+	return $question;
 }
 
-# Ritorna il numero totale delle domande con Find
-sub countQuestionsFind {
-	# recupera le domande
-	my $TestoDaCercare = @_;
-	my @questionsQueryF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
-	my @questions = $db->findNodes( @questionsQueryF );
-	return length(@questions);
+sub setQuestionAsSolved {
+	my ($id) = @_;
+
+	my $question = getQuestionById($id);
+
+	if($question) {
+		$question->status = 'solved';
+		return save($question);
+	} else {
+		return "";
+	}
+
+}
+
+sub setQuestionAsOpened {
+	my ($id) = @_;
+
+	my $question = getQuestionById($id);
+
+	if($question) {
+		$question->status = 'opened';
+		return save($question);
+	} else {
+		return "";
+	}
+
 }
 
 sub insertQuestion {
@@ -177,40 +221,29 @@ sub insertQuestion {
 			status => "opened"
 	);
 
-	$db->addChild("/db/questions", $newQuestion->getAsNode());
+	my $xmlQuestion = $newQuestion->getAsNode();
+	$xmlQuestion->setAttribute('id', $db->getLastQuestionId() + 1);
+	$db->addChild("/db/questions", $xmlQuestion);
+
+	return $xmlQuestion->getAttribute( 'id' );
 }
 
-# Restituisce l'elemento XML::LibXML che descrive la domanda
-sub getAsNode {
-	my ($self) = @_;
-
-	my $question = XML::LibXML::Element->new('question');
-
-	my $id = XML::LibXML::Attr->new('id', $db->getLastQuestionId() + 1);
-	my $title = XML::LibXML::Element->new('title');
-	my $author = XML::LibXML::Element->new('author');
-	my $content = XML::LibXML::Element->new('content');
-	my $insertDate = XML::LibXML::Element->new('insertDate');
-	my $status = XML::LibXML::Element->new('status');
-
-	print $self->{"author"};
-
-	$id->setValue($db->getLastQuestionId() + 1);
-	$title->appendTextNode($self->{"title"});
-	$author->appendTextNode($self->{"author"});
-	$content->appendTextNode($self->{"content"});
-	$insertDate->appendTextNode($self->{"insertDate"});
-	$status->appendTextNode($self->{"status"});
-
-	$question->addChild($id);
-	$question->addChild($title);
-	$question->addChild($author);
-	$question->addChild($content);
-	$question->addChild($insertDate);
-	$question->addChild($status);
-
-	return $question
+# Ritorna il numero totale delle domande
+sub countQuestions {
+	# recupera le domande
+	my @questions = $db->findNodes( $questionXPath );
+	return scalar(@questions);
 }
+
+# Ritorna il numero totale delle domande con Find
+sub countQuestionsFind {
+	# recupera le domande
+	my ($TestoDaCercare) = @_[0];
+	my @questionXPathF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
+	my @questions = $db->findNodes( @questionXPathF );
+	return scalar(@questions);
+}
+
 
 
 #############
@@ -232,8 +265,35 @@ sub init {
 # Se è già presente qualcuno con l'id $self->{"id"} lo sovrascrive
 sub save {
 	my ($self) = @_;
+	my $id = $self->{"id"};
 
-	# TODO (quando ce ne sarà bisogno)
+	my $question = $db->findOne( $questionXPath . "[id = \"$id\"]" );
+
+	if ($question) {
+		$self->update()
+	} else {
+		# domanda non trovata
+		$self->insert()
+	}
 }
+
+# È da considerarsi come metodo privato, non utilizzarlo.
+# Piuttosto, utilizzere il metodo save che decide se usare insert o update
+sub update {
+	my ($self) = @_;
+
+	my $id = $self->{"id"};
+	$db->replaceNode($questionXPath . "[id = \"$id\" ]",  $self->getAsNode());
+
+}
+
+# È da considerarsi come metodo privato, non utilizzarlo.
+# Piuttosto, utilizzere il metodo save che decide se usare insert o update
+sub insert {
+	my ($self) = @_;
+
+	$db->addChild($questionXPath, $self->getAsNode());
+}
+
 
 1;

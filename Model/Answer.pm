@@ -12,7 +12,7 @@ use base 'Lib::Object';
 
 my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
 
-my $questionsQuery = "/db/answers/answer";
+my $answerXPath = "/db/answers/answer";
 
 ####################
 #  Metodi statici  #
@@ -25,12 +25,21 @@ my $questionsQuery = "/db/answers/answer";
 sub getAnswerById {
 	my ($id) = @_;
 
-	# TODO
+	# recupera la domanda
+	my $answer = $db->findOne( $answerXPath . "[\@id='$id']" );
 
-	return Model::Answer->new(
-		"id" => $id
-		# TODO ecc ecc
-	);
+	if($answer){
+		return Model::Answer->new(
+			"id" => $answer->findvalue( "\@id" ),
+			"content" => Lib::Markup::convert($answer->findvalue( "content" )),
+			"author" => $answer->findvalue( "author" ),
+			"question" => $answer->findvalue( "question" ),
+			"insertDate" => $answer->findvalue( "insertDate" )
+		);
+	}else
+	{
+		# gestire errore
+	}
 }
 
 # Carica il file xml e restituisce l'oggetto delle risposte alla domanda 
@@ -40,7 +49,7 @@ sub getAnswersByQuestionId {
 	my @list;
 
 	# recupera le risposte
-	my @answers = $db->findNodes( $questionsQuery . "[question = $id]" );
+	my @answers = $db->findNodes( $answerXPath . "[question = $id]" );
 
 	foreach my $answer (@answers)
 	{
@@ -64,6 +73,67 @@ sub getAnswersByQuestionId {
 	return @list;
 }
 
+# Restituisce l'elemento XML::LibXML che descrive la risposta
+sub getAsNode {
+	my ($self) = @_;
+
+	my $answer = XML::LibXML::Element->new('answer');
+
+	my $id = XML::LibXML::Attr->new('id', $self->{"id"});
+	my $author = XML::LibXML::Element->new('author');
+	my $content = XML::LibXML::Element->new('content');
+	my $insertDate = XML::LibXML::Element->new('insertDate');
+	my $question = XML::LibXML::Element->new('question');
+
+	$id->setValue($self->{"id"});
+	$author->appendTextNode($self->{"author"});
+	$content->appendTextNode($self->{"content"});
+	$insertDate->appendTextNode($self->{"insertDate"});
+	$question->appendTextNode($self->{"question"});
+
+	$answer->addChild($id);
+	$answer->addChild($author);
+	$answer->addChild($content);
+	$answer->addChild($insertDate);
+	$answer->addChild($question);
+
+	return $answer;
+}
+
+sub insertAnswer {
+	my ($questionId, $content, $author) = @_;
+	my $DAY;
+	my $MONTH;
+	my $YEAR;
+
+	($DAY, $MONTH, $YEAR) = (localtime)[3,4,5];
+	$YEAR += 1900; # ritorna la data a partire dal 1900
+	my $today = $YEAR . '-' . $MONTH . '-' . $DAY;
+
+	my $newAnswer = Model::Answer->new(
+			content => $content, 
+			author => $author,
+			question => $questionId,
+			insertDate => $today
+	);
+
+	my $xmlAnswer = $newAnswer->getAsNode();
+	$xmlAnswer->setAttribute('id', $db->getLastAnswerId() + 1);
+	$db->addChild("/db/questions", $xmlAnswer);
+
+	return $xmlAnswer->getAttribute( 'id' );
+}
+
+# Ritorna il numero totale delle risposte a una domanda
+sub countAnswersOfAQuestion {
+	my ($id) = @_;
+
+	# recupera le risposte
+	my @answer = $db->findNodes( $answerXPath . "[question = \"$id\"]" );
+	return scalar(@answer);
+}
+
+
 #############
 #  Oggetto  #
 #############
@@ -83,8 +153,35 @@ sub init {
 # Se è già presente qualcuno con l'id $self->{"id"} lo sovrascrive
 sub save {
 	my ($self) = @_;
+	my $id = $self->{"id"};
 
-	# TODO (quando ce ne sarà bisogno)
+	my $answer = $db->findOne( $answerXPath . "[id = \"$id\"]" );
+
+	if ($answer) {
+		$self->update()
+	} else {
+		# risposta non trovata
+		$self->insert()
+	}
 }
+
+# È da considerarsi come metodo privato, non utilizzarlo.
+# Piuttosto, utilizzere il metodo save che decide se usare insert o update
+sub update {
+	my ($self) = @_;
+
+	my $id = $self->{"id"};
+	$db->replaceNode($answerXPath . "[id = \"$id\" ]",  $self->getAsNode());
+
+}
+
+# È da considerarsi come metodo privato, non utilizzarlo.
+# Piuttosto, utilizzere il metodo save che decide se usare insert o update
+sub insert {
+	my ($self) = @_;
+
+	$db->addChild($answerXPath, $self->getAsNode());
+}
+
 
 1;
