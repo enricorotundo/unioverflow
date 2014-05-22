@@ -17,6 +17,24 @@ sub handler {
 	
 	# TODO ...
 
+	if ($req->attr("method") eq 'POST') {
+		if ($req->param("status")) {
+
+			my $question = Model::Question::getQuestionById($req->param("questionId"));
+			my $sessionMail = Middleware::Session::getSession($req)->param('email');
+
+			# se l'utente è l'autore della domanda
+			if ($question->{author} == $sessionMail) {
+				if ($req->param("status") == 'opened') {
+					Model::Question::setQuestionAsOpened($req->param("questionId"));
+				}
+				elsif ($req->param("status") == 'solved') {
+					Model::Question::setQuestionAsSolved($req->param("questionId"));
+				}
+			}
+		}
+	}
+
 	# recupero tutte le risposte
 	my @allAnswers = Model::Answer::getAnswersByQuestionId($req->param("id"));
 

@@ -16,11 +16,13 @@
 					<fieldset>
 						[% IF question.status == 'opened' %]
 							<legend>Chiudi domanda</legend>
-							<input type="hidden" name="solved" value="solved"/>
+							<input type="hidden" name="questionId" value="[% question.identifier %]"/>
+							<input type="hidden" name="status" value="solved"/>
 							<input type="submit" value="Risolta" title="Chiudi domanda" tabindex="[% i=i+1; i %]"/>
 						[% ELSE %]
 							<legend>Riapri domanda</legend>
-							<input type="hidden" name="opened" value="opened"/>
+							<input type="hidden" name="questionId" value="[% question.identifier %]"/>
+							<input type="hidden" name="status" value="opened"/>
 							<input type="submit" value="Riapri" title="Riapri domanda" tabindex="[% i=i+1; i %]"/>
 						[% END %]
 					</fieldset>
@@ -54,18 +56,18 @@
 			<h3 id="paginglabel" class="audible">Paginazione</h3>
 			<ul>
 			[% IF pageInfo.currentPageNumber >= 3 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
 			[% END %]
 			[% IF pageInfo.currentPageNumber >= 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
 			[% END %]
 				<li><p><span class="audible">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
 			
 			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
 			[% END %]
 			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
 			[% END %]
 			</ul>
 	[% END %]

@@ -31,7 +31,7 @@ sub getQuestionById {
 
 	if($question){
 		return Model::Question->new(
-			"id" => $question->findvalue( "\@id" ),
+			"identifier" => $question->findvalue( "\@id" ),
 			"author" => $question->findvalue( "author" ),
 			"title" => $question->findvalue( "title" ),
 			"content" => Lib::Markup::convert($question->findvalue( "content" )),
@@ -77,7 +77,7 @@ sub getLastQuestions {
 		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
-			id => $id, 
+			identifier => $id, 
 			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
@@ -125,7 +125,7 @@ sub getLastQuestionsFind {
 		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
-	    	id => $id, 
+	    	identifier => $id, 
 			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
@@ -181,7 +181,7 @@ sub setQuestionAsSolved {
 	my $question = getQuestionById($id);
 
 	if($question) {
-		$question->status = 'solved';
+		$question->{status} = 'solved';
 		return save($question);
 	} else {
 		return "";
@@ -195,7 +195,7 @@ sub setQuestionAsOpened {
 	my $question = getQuestionById($id);
 
 	if($question) {
-		$question->status = 'opened';
+		$question->{status} = 'opened';
 		return save($question);
 	} else {
 		return "";
