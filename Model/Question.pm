@@ -54,7 +54,7 @@ sub getQuestionById {
 #   con le domande dalla numero 31 alla 60 (cioè dalla 30, esclusa, alla 60, inclusa)
 # Attenzione: numero non vuol dire id! Vuol dire numerarle dopo averle ordinate
 sub getLastQuestions {
-	my ($page) = @_;
+	my ($page, $questionPerPage) = @_;
 	# Se non ci sono parametri metti 1 di default
 	$page ||= 1;
 
@@ -99,11 +99,9 @@ sub getLastQuestions {
 
 # Restituisce tutte le domande in cui nel titolo è contenuta la stringa $TestoDaCercare passata come secondo parametro @_[1]
 sub getLastQuestionsFind {
-
-	my ($page) = @_[0];
+	my ($page, $questionPerPage, $TestoDaCercare) = @_;
 	# Se non ci sono parametri metti 1 di default
 	$page ||= 1;
-	my ($TestoDaCercare) = @_[1];
 
 	my @listF;
 	my $questionXPathF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";

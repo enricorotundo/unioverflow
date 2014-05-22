@@ -26,7 +26,7 @@
 				</div>
 				<div class="questionDetails">
 					<h4><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]">[% question.title | html %]</a></h4>
-					<p>chiesto da [% question.author | html %] il [% answer.insertDate | html %]</p>
+					<p>chiesto da [% question.author | html %] il [% question.insertDate | html %]</p>
 				</div></li>
 		[% END %]
 		</ul>

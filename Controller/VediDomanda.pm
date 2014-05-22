@@ -7,6 +7,7 @@ use POSIX;
 
 use Lib::Renderer;
 use Lib::Markup;
+use Lib::Utils;
 use Middleware::Session;
 use Model::Question;
 use Model::Answer;
@@ -18,6 +19,8 @@ sub handler {
 	# TODO ...
 
 	if ($req->attr("method") eq 'POST') {
+
+		# controllo se è una richiesta di cambio di stato della domanda
 		if ($req->param("status")) {
 
 			my $question = Model::Question::getQuestionById($req->param("questionId"));
@@ -33,6 +36,19 @@ sub handler {
 				}
 			}
 		}
+		# controllo se il campo di inserimento della risposta non è vuoto
+		elsif ($req->param("post-text")) {
+
+			my $text = $req->param("post-text");
+			$text = Lib::Utils::replaceXMLSpecialChars($text);
+			$text = Lib::Utils::textSecurityCheck($text);
+
+			# controllo che non si stia tentando di inserire una risposta ad una domanda chiusa
+			if (Model::Question::getQuestionById($req->param("questionId"))->{status} == 'opened') {
+				my $author = Middleware::Session::getSession($req)->param('email');
+				Model::Answer::insertAnswer($req->param("questionId"), $text, $author);
+			}
+		}
 	}
 
 	# recupero tutte le risposte
@@ -45,7 +61,12 @@ sub handler {
 
 	# prendo le risposte per la pagina $req->param("page")
 	my $answersPerPage = 3;
-	my $page = $req->param("page") || 1;
+	my $page;
+	if ($req->param("page") > 0) {
+		$page = $req->param("page");
+	} else {
+		$page = 1;
+	}
 	my $arrSize = @allAnswers;
 	if (($page - 1) * $answersPerPage > $arrSize) {
 		$page = ceil( $arrSize / $answersPerPage );
