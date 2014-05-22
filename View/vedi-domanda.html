@@ -9,7 +9,7 @@
 		</div>
 		<div class="questionDetails">
 			<h3>[% question.title | html %]</h3>
-			<p>[% question.content | html %]</p>
+			<p>[% question.content %]</p>
 			<p>chiesto da [% question.author | html %] il [% answer.insertDate | html %]</p>
 			[% IF question.author == session.email %]
 				<form action="vedi-domanda.cgi" method="post">
@@ -35,7 +35,7 @@
 			<h4>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h4>
 				[% FOREACH answer IN answers %]
 					<li><p>il [% "$answer.insertDate, " | html; answer.author | html %] ha scritto:</p>
-					<p>[% answer.content | html %]</p></li>
+					<p>[% answer.content %]</p></li>
 				[% END %]
 			</ul>
 		[% END %]
