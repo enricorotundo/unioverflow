@@ -28,7 +28,9 @@ sub handler {
 
 			my $success;
 
-			if (Model::Question::insertQuestion($titleXML, $contentXML, $author)) {
+			my $newId = Model::Question::insertQuestion($titleXML, $contentXML, $author);
+			if( $newId != 0 ) {
+			#if (Model::Question::insertQuestion($titleXML, $contentXML, $author)) {
 				$success = 1; 
 			} else {
 				$success = ""; 
@@ -36,7 +38,8 @@ sub handler {
 
 			$data = {
 				"logged" => Middleware::Authentication::isLogged($req),
-				"success" => $success
+				"success" => $success,
+				"newId" => $newId # ritorno l'id in modo da poter reindirizzare l'utente alla domanda inserita
 			};			
 
 		} else {
