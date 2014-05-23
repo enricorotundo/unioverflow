@@ -19,6 +19,30 @@ my $questionPerPage = 30;
 #  Metodi statici  #
 ####################
 
+# recupera tutte le domande
+sub getQuestions {
+	my @list;
+	my @questions = $db->findNodes( "/db/questions/" );
+
+	foreach my $question (@questions)
+	{
+
+	    my $obj =  Model::Question->new(
+			"id" => $question->findvalue( "\@id" ),
+			"author" => $question->findvalue( "author" ),
+			"title" => $question->findvalue( "title" ),
+			"content" => Lib::Markup::convert($question->findvalue( "content" )),
+			"status" => $question->findvalue( "status" ),
+			"insertDate" => $question->findvalue( "insertDate" )
+		);
+		# Aggiungi uno
+		push @list, $obj;
+	}
+
+	return @list;
+
+}
+
 # Carica il file xml e restituisce l'oggetto della domanda con id 'id'
 # oppure "" (la stringa vuota è il false di Perl) se non esiste
 # Attenzione: e se l'id che arriva contiene virgolette e caratteri strani?

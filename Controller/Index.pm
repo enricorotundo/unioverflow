@@ -8,7 +8,12 @@ use Middleware::Authentication;
 use Model::Question;
 use POSIX; # per ceil
 
+#use Model::dbFiller; #TODO da cancellare 
+
 sub handler {
+
+	#dbFiller
+	#Model::dbFiller->dbFiller(); # TODO da cancellare
 	
 	# Get parameters
 	my ($req, $res) = @_;

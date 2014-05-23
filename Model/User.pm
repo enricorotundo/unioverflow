@@ -44,6 +44,27 @@ sub getUserByEmail {
 	}
 }
 
+# recupera tutti gli utenti
+sub getUsers {
+	my @list;
+	my @users = $db->findNodes( "/db/users/*" );
+
+	foreach my $user (@users)
+	{
+		my $email = $user->findvalue( "email" );
+		my $password = $user->findvalue( "password" );
+
+	    my $obj = Model::User->new(
+			email => $email, 
+			password => $password
+		);
+		# Aggiungi uno
+		push @list, $obj;
+	}
+
+	return @list;
+}
+
 
 #############
 #  Oggetto  #
