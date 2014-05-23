@@ -6,7 +6,7 @@
 		<span id="path">Ti trovi in: Accedi</span>
 		[% IF logged %]
 			<p>L'accesso è già stato effettuato.</p>
-			<p>Ora puoi andare alla <a href="index.cgi">pagina principale</a>.</p>
+			<p>Ora puoi andare alla <a href="index.cgi" title="Home" tabindex="[% i=i+1; i %]">pagina principale</a>.</p>
 		[% ELSE %]
 		<form action="esegui-accesso.cgi" method="post">
 			<fieldset>
