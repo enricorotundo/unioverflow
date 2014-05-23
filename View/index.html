@@ -16,7 +16,7 @@
 		<h3>Lista delle domande</h3>
 
 		[% IF notFound %]
-			<div id="notFound"> <p>Nessuna corrispondenza trovata!</p> </div>
+			<div id="notFound"><p>Nessuna corrispondenza trovata!</p></div>
 		[% END %]
 
 		<ul>
@@ -25,8 +25,8 @@
 					[% question.status == 'solved' ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/>Risolta' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/>Aperta' %]
 				</div>
 				<div class="questionDetails">
-					<h4><a tabindex="[% i=i+1; i %]" href="[% question.path %]">[% question.title | html %]</a></h4>
-					<p>chiesto da [% question.author | html %] il [% answer.insertDate | html %]</p>
+					<h4><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]">[% question.title | html %]</a></h4>
+					<p>chiesto da [% question.author | html %] il [% question.insertDate | html %]</p>
 				</div></li>
 		[% END %]
 		</ul>

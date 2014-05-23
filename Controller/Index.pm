@@ -18,7 +18,12 @@ sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	my $TestoDaCercare = $req->param("testoDaCercare") or "";
-	my $page = $req->param("page") || 1;
+	my $page;
+	if ($req->param("page") > 0) {
+		$page = $req->param("page");
+	} else {
+		$page = 1;
+	}
 	my $questionsPerPage = 3;
 	my $data;
 
@@ -43,7 +48,7 @@ sub handler {
 				$page = ceil( $totalQuestionsF / $questionsPerPage );
 			}
 			my $totalPages = ceil( $totalQuestionsF / $questionsPerPage );
-			my @lastQuestionsFind = Model::Question::getLastQuestionsFind($page,$TestoDaCercare);
+			my @lastQuestionsFind = Model::Question::getLastQuestionsFind($page, $questionsPerPage, $TestoDaCercare);
 
 			# Execution
 			$data = {
@@ -64,7 +69,7 @@ sub handler {
 			$page = ceil( $totalQuestions / $questionsPerPage );
 		}
 		my $totalPages = ceil( $totalQuestions / $questionsPerPage );
-		my @lastQuestions = Model::Question::getLastQuestions($page);
+		my @lastQuestions = Model::Question::getLastQuestions($page, $questionsPerPage);
 
 		# Execution
 		$data = {

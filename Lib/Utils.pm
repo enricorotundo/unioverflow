@@ -79,4 +79,35 @@ sub safeWriteFile {
 	}
 }
 
+
+# Controlla che la stringa non sia dannosa
+sub textSecurityCheck {
+	my ($text) = @_;
+
+	# TODO ...
+
+	return $text;
+}
+
+
+# Replace dei caratteri speciali che non validano l'XML
+sub replaceXMLSpecialChars {
+	my ($text) = @_;
+	$text = replace("&","&amp;",$text);
+	$text = replace('"',"&quot;",$text);
+	$text = replace("'","&apos;",$text);
+	$text = replace("<","&lt;",$text);
+	$text = replace(">","&gt;",$text);
+
+	return $text;
+}
+
+
+sub replace {
+	my ($from,$to,$string) = @_;
+	$string =~s/$from/$to/ig;
+
+	return $string;
+}
+
 1;

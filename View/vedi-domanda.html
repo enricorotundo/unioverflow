@@ -9,18 +9,20 @@
 		</div>
 		<div class="questionDetails">
 			<h3>[% question.title | html %]</h3>
-			<p>[% question.content | html %]</p>
-			<p>chiesto da [% question.author | html %] il [% answer.insertDate | html %]</p>
+			<p>[% question.content %]</p>
+			<p>chiesto da [% question.author | html %] il [% question.insertDate | html %]</p>
 			[% IF question.author == session.email %]
 				<form action="vedi-domanda.cgi" method="post">
 					<fieldset>
 						[% IF question.status == 'opened' %]
 							<legend>Chiudi domanda</legend>
-							<input type="hidden" name="solved"/>
+							<input type="hidden" name="questionId" value="[% question.identifier %]"/>
+							<input type="hidden" name="status" value="solved"/>
 							<input type="submit" value="Risolta" title="Chiudi domanda" tabindex="[% i=i+1; i %]"/>
 						[% ELSE %]
 							<legend>Riapri domanda</legend>
-							<input type="hidden" name="opened"/>
+							<input type="hidden" name="questionId" value="[% question.identifier %]"/>
+							<input type="hidden" name="status" value="opened"/>
 							<input type="submit" value="Riapri" title="Riapri domanda" tabindex="[% i=i+1; i %]"/>
 						[% END %]
 					</fieldset>
@@ -29,23 +31,24 @@
 		</div>
 		[% IF (answers.size() == 0) %]
 			<h4>Risposte</h4>
-			<p> Non ci sono ancora risposte a questa domanda! </p>
+			<p>Non ci sono ancora risposte a questa domanda!</p>
 		[% ELSE %]
-			<ul>
 			<h4>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h4>
+			<ul>
 				[% FOREACH answer IN answers %]
 					<li><p>il [% "$answer.insertDate, " | html; answer.author | html %] ha scritto:</p>
-					<p>[% answer.content | html %]</p></li>
+					<p>[% answer.content %]</p></li>
 				[% END %]
 			</ul>
 		[% END %]
 		[% IF logged && question.status == 'opened' %]
 			<h4>Rispondi</h4>
 			<p><a tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#formattazione" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
-			<form id="post-form" action="registra-risposta.cgi" method="post">
+			<form id="post-form" action="vedi-domanda.cgi" method="post">
 				<fieldset>
 					<legend>Inserisci la tua risposta</legend>
-					<textarea id="post-text" name="post-text" title="Inserisci il testo della risposta" tabindex="[% i=i+1; i %]" accesskey="r" rows="4" cols="50"></textarea> 
+					<textarea id="post-text" name="post-text" title="Inserisci il testo della risposta" tabindex="[% i=i+1; i %]" accesskey="r" rows="4" cols="50"></textarea><br/>
+					<input type="hidden" name="questionId" value="[% question.identifier %]"/>
 					<input type="submit" value="Pubblica risposta" title="Pubblica risposta" tabindex="[% i=i+1; i %]" accesskey="p"/>
 				</fieldset>
 			</form>
@@ -54,18 +57,18 @@
 			<h3 id="paginglabel" class="audible">Paginazione</h3>
 			<ul>
 			[% IF pageInfo.currentPageNumber >= 3 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber - 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
 			[% END %]
 			[% IF pageInfo.currentPageNumber >= 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
 			[% END %]
 				<li><p><span class="audible">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
 			
 			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="audible">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
 			[% END %]
 			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.id %]&amp;page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 2 %]"><span class="audible">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
 			[% END %]
 			</ul>
 	[% END %]

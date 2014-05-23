@@ -55,7 +55,7 @@ sub getQuestionById {
 
 	if($question){
 		return Model::Question->new(
-			"id" => $question->findvalue( "\@id" ),
+			"identifier" => $question->findvalue( "\@id" ),
 			"author" => $question->findvalue( "author" ),
 			"title" => $question->findvalue( "title" ),
 			"content" => Lib::Markup::convert($question->findvalue( "content" )),
@@ -78,7 +78,7 @@ sub getQuestionById {
 #   con le domande dalla numero 31 alla 60 (cioè dalla 30, esclusa, alla 60, inclusa)
 # Attenzione: numero non vuol dire id! Vuol dire numerarle dopo averle ordinate
 sub getLastQuestions {
-	my ($page) = @_;
+	my ($page, $questionPerPage) = @_;
 	# Se non ci sono parametri metti 1 di default
 	$page ||= 1;
 
@@ -101,7 +101,7 @@ sub getLastQuestions {
 		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
-			id => $id, 
+			identifier => $id, 
 			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
@@ -123,11 +123,9 @@ sub getLastQuestions {
 
 # Restituisce tutte le domande in cui nel titolo è contenuta la stringa $TestoDaCercare passata come secondo parametro @_[1]
 sub getLastQuestionsFind {
-
-	my ($page) = @_[0];
+	my ($page, $questionPerPage, $TestoDaCercare) = @_;
 	# Se non ci sono parametri metti 1 di default
 	$page ||= 1;
-	my ($TestoDaCercare) = @_[1];
 
 	my @listF;
 	my $questionXPathF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
@@ -149,7 +147,7 @@ sub getLastQuestionsFind {
 		my $status = $question->findvalue( "status" );
 
 	    my $obj = Model::Question->new(
-	    	id => $id, 
+	    	identifier => $id, 
 			path => "vedi-domanda.cgi?id=" . $id, 
 			title => $title, 
 			author => $author,
@@ -205,7 +203,7 @@ sub setQuestionAsSolved {
 	my $question = getQuestionById($id);
 
 	if($question) {
-		$question->status = 'solved';
+		$question->{status} = 'solved';
 		return save($question);
 	} else {
 		return "";
@@ -219,7 +217,7 @@ sub setQuestionAsOpened {
 	my $question = getQuestionById($id);
 
 	if($question) {
-		$question->status = 'opened';
+		$question->{status} = 'opened';
 		return save($question);
 	} else {
 		return "";

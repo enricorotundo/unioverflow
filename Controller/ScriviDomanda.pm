@@ -4,6 +4,7 @@ use warnings;
 use CGI::Carp;
 
 use Lib::Renderer;
+use Lib::Utils;
 use Middleware::Session;
 use Middleware::Authentication;
 use Model::Question;
@@ -23,12 +24,14 @@ sub handler {
 		if($fields_check->{"check"} ) {
 
 			# inserisco nel db la domanda
-			my $titleXML = replaceBadOccurrences($title); # Per togliere i caratteri speciali
-			my $contentXML = replaceBadOccurrences($content);
+			my $titleXML = Lib::Utils::replaceXMLSpecialChars($title); # Per togliere i caratteri speciali
+			my $contentXML = Lib::Utils::replaceXMLSpecialChars($content);
 
 			my $success;
 
-			if (Model::Question::insertQuestion($titleXML, $contentXML, $author)) {
+			my $newId = Model::Question::insertQuestion($titleXML, $contentXML, $author);
+			if( $newId != 0 ) {
+			#if (Model::Question::insertQuestion($titleXML, $contentXML, $author)) {
 				$success = 1; 
 			} else {
 				$success = ""; 
@@ -36,7 +39,8 @@ sub handler {
 
 			$data = {
 				"logged" => Middleware::Authentication::isLogged($req),
-				"success" => $success
+				"success" => $success,
+				"newId" => $newId # ritorno l'id in modo da poter reindirizzare l'utente alla domanda inserita
 			};			
 
 		} else {
@@ -105,23 +109,5 @@ sub fieldsCheck {
 	}
 }
 
-# Replace dei caratteri speciali che non validano l'XML
-sub replaceBadOccurrences {
-	my ($testo) = @_;
-    $testo = replace("&","&amp;",$testo);
-    $testo = replace('"',"&quot;",$testo);
-    $testo = replace("'","&apos;",$testo);
-    $testo = replace("<","&lt;",$testo);
-    $testo = replace(">","&gt;",$testo);
-
-    return $testo;
-}
-
-sub replace {
-      my ($from,$to,$string) = @_;
-      $string =~s/$from/$to/ig;      
-
-      return $string;
-   }
 
 1;
