@@ -1,0 +1,22 @@
+/* CSS di default */
+
+/* # Indicazioni generali
+*
+* I fogli di stile sono inclusi in main.html nel seguente ordine: reset, base,
+* small, print, aural.
+* La priorità è determinata dalla specificità della regola e dalla posizione
+* della sua definizione. Pertanto, al pari di specificità, le regole definite
+* nei fogli di stile inclusi successivamente avranno priorità maggiore rispetto
+* alle altre.
+*
+* Il reset dello stile è eseguito da reset.css
+*/
+
+
+
+/* # Stili di tutti gli elementi legati all'accessibilità
+========================================================*/
+
+.aural {
+	visibility: hidden;
+}

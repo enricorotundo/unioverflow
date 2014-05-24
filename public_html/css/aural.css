@@ -1,0 +1,8 @@
+/* CSS per gli screen reader */
+
+
+.aural {}
+
+.auralNotRead {
+	visibility: hidden;
+}
