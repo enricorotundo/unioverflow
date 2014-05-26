@@ -15,6 +15,7 @@ use Model::Answer;
 sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
+	my @allAnswers;
 	
 	# TODO ...
 
@@ -49,10 +50,13 @@ sub handler {
 				Model::Answer::insertAnswer($req->param("questionId"), $text, $author);
 			}
 		}
-	}
 
-	# recupero tutte le risposte
-	my @allAnswers = Model::Answer::getAnswersByQuestionId($req->param("id"));
+		# recupero tutte le risposte
+		@allAnswers = Model::Answer::getAnswersByQuestionId($req->param('questionId'));
+	} else {
+		# recupero tutte le risposte
+		@allAnswers = Model::Answer::getAnswersByQuestionId($req->param('id'));
+	}
 
 	# TODO: ho commentato perche se la domanda non ha risposte reindirizza a page-error!
 	# if (!@allAnswers) { 
@@ -60,7 +64,7 @@ sub handler {
 	# }
 
 	# prendo le risposte per la pagina $req->param("page")
-	my $answersPerPage = 3;
+	my $answersPerPage = 9;
 	my $page;
 	if ($req->param("page") > 0) {
 		$page = $req->param("page");

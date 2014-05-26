@@ -48,27 +48,34 @@ sub getAnswersByQuestionId {
 	my ($id) = @_;
 	my @list;
 
-	# recupera le risposte
-	my @answers = $db->findNodes( $answerXPath . "[question = $id]" );
+	# if (defined $id) {
 
-	foreach my $answer (@answers)
-	{
-		my $id = $answer->findvalue( "\@id" );
-		my $content = Lib::Markup::convert($answer->findvalue( "content" ));
-		my $author = $answer->findvalue( "author" );
-		my $question = $answer->findvalue( "question" );
-		my $insertDate = $answer->findvalue( "insertDate" );
 
-	    my $obj = Model::Answer->new(
-			id => $id, 
-			content => $content, 
-			author => $author,
-			question => $question,
-			insertDate => $insertDate
-		);
-		# Aggiungi uno
-		push @list, $obj;
-	}
+
+		# recupera le risposte
+		my @answers = $db->findNodes( $answerXPath . "[question = $id]" );
+
+		foreach my $answer (@answers)
+		{
+			my $id = $answer->findvalue( "\@id" );
+			my $content = Lib::Markup::convert($answer->findvalue( "content" ));
+			my $author = $answer->findvalue( "author" );
+			my $question = $answer->findvalue( "question" );
+			my $insertDate = $answer->findvalue( "insertDate" );
+
+		    my $obj = Model::Answer->new(
+				id => $id, 
+				content => $content, 
+				author => $author,
+				question => $question,
+				insertDate => $insertDate
+			);
+			# Aggiungi uno
+			push @list, $obj;
+		}
+	# } else {
+	# 	die $id;
+	# }
 
 	return @list;
 }
@@ -119,7 +126,7 @@ sub insertAnswer {
 
 	my $xmlAnswer = $newAnswer->getAsNode();
 	$xmlAnswer->setAttribute('id', $db->getLastAnswerId() + 1);
-	$db->addChild("/db/questions", $xmlAnswer);
+	$db->addChild("/db/answers", $xmlAnswer);
 
 	return $xmlAnswer->getAttribute( 'id' );
 }
