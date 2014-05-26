@@ -48,7 +48,7 @@ sub getAnswersByQuestionId {
 	my ($id) = @_;
 	my @list;
 
-	# if (defined $id) {
+	if (defined $id) {
 
 
 
@@ -73,9 +73,7 @@ sub getAnswersByQuestionId {
 			# Aggiungi uno
 			push @list, $obj;
 		}
-	# } else {
-	# 	die $id;
-	# }
+	} 
 
 	return @list;
 }

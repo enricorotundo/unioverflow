@@ -76,6 +76,13 @@ sub handler {
 		$page = ceil( $arrSize / $answersPerPage );
 	}
 	my @answers = splice(@allAnswers, ($page - 1) * $answersPerPage, $answersPerPage);
+
+	my $idDomanda;
+	if ($req->attr("method") eq 'POST') {
+		$idDomanda = $req->param('questionId');
+	} else {
+		$idDomanda = $req->param("id");
+	}
 	
 	# Execution
 	my $data = {
@@ -83,7 +90,7 @@ sub handler {
 		"session" => {
 			"email" => Middleware::Session::getSession($req)->param("email")
 		},
-		"question" => Model::Question::getQuestionById($req->param("id")),
+		"question" => Model::Question::getQuestionById($idDomanda),
 		"answers" => \@answers,
 		"pageInfo" => {
 			currentPageNumber => $page,
