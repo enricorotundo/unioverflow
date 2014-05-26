@@ -9,14 +9,18 @@
 * nei fogli di stile inclusi successivamente avranno priorità maggiore rispetto
 * alle altre.
 *
-* Il reset dello stile è eseguito da reset.css
 */
 
-
-
-/* # Stili di tutti gli elementi legati all'accessibilità
+/* # Reset
 ========================================================*/
+* {
+	margin: 0;
+	padding: 0;
+}
 
+
+/* # Elementi legati all'accessibilità
+========================================================*/
 .aural {
 	visibility: hidden;
 }
