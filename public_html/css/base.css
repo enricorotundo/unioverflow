@@ -24,7 +24,6 @@
 body {
 	font-family: 'Trebuchet MS', 'Liberation Sans', 'DejaVu Sans', sans-serif;
 	background-color: #fff;
-	
 }
 #page {
 	margin: 0 15% 0;
@@ -53,14 +52,39 @@ body {
 ========================================================*/
 #navigation {
 	overflow: auto;
+	background-color: #77261c;
+	color: white;
 }
 #menu li {
+	border: 1px solid #77261c;
 	display: inline;
 	float: left;
+}
+#menu li:hover {
+	background-color: white;
+	border: 1px solid #77261c;
+	color: black;
+}
+#menu a {
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding: 1em;
+}
+#menu a:hover {
+	text-decoration: none;
+	color: black;
+	display: block;
 	padding: 1em;
 }
 .lateralNavItem {
 	float: right !important;
+}
+#currentPage {
+	background-color: white;
+	color: black;
+	display: block;
+	padding: 1em;
 }
 
 
@@ -81,3 +105,4 @@ body {
 .aural {
 	display: none;
 }
+
