@@ -30,5 +30,5 @@ Ci sono 2 versioni di perl: il perl4 ed il suo successore, il perl5. Questo è i
 &#13;
 *print “Hello worldn”; # Questo è un commento e verrà ignorato; verrà&#13;
 # eseguito solo il comando “print”*</content><insertDate>2014-4-26</insertDate><question>2</question></answer>
-	<answer id="3"><author>enrico.rotundo@studenti.unipd.it</author><content>&lt;&amp; /&gt;</content><insertDate>2014-4-27</insertDate><question>5</question></answer></answers>
+	</answers>
 </db>
