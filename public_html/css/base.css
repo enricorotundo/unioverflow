@@ -22,7 +22,9 @@
 /* # Base
 ========================================================*/
 body {
-	font-family: 'Trebuchet MS', 'Liberation Sans', 'DejaVu Sans', sans-serif;;
+	font-family: 'Trebuchet MS', 'Liberation Sans', 'DejaVu Sans', sans-serif;
+	background-color: #fff;
+	
 }
 #page {
 	margin: 0 15% 0;
@@ -41,6 +43,7 @@ body {
 }
 #headerText {
 	display: block;
+	font-size: xx-small;
 	padding: 1em;
 	text-align: center;
 }
@@ -61,10 +64,20 @@ body {
 }
 
 
+/* # Footer
+========================================================*/
+#footer {
+	padding: 2.5em;
+	text-align: center;
+}
+#footNote {
+	font-size: small;
+	margin-top: 1em;
+}
+
+
 /* # Elementi legati all'accessibilità
 ========================================================*/
 .aural {
 	display: none;
 }
-
-
