@@ -11,7 +11,8 @@
 		</user>
 	</users>
 	<questions>
-	<question id="1"><title>Qualcuno mi spiega cos&amp;apos;è Perl?</title><author>enrico.rotundo@studenti.unipd.it</author><content>Come da titolo.</content><insertDate>2014-4-26</insertDate><status>opened</status></question><question id="2"><title>Commentare in Perl</title><author>giacomo.fornari@studenti.unipd.it</author><content>Ho un problema con i commenti di Perl, come si usano in modo corretto? un esemio?</content><insertDate>2014-4-26</insertDate><status>opened</status></question></questions>
+		<question id="1"><title>Qualcuno mi spiega cos&amp;apos;&amp;egrave; Perl?</title><author>enrico.rotundo@studenti.unipd.it</author><content>Come da titolo.</content><insertDate>2014-4-26</insertDate><status>opened</status></question><question id="2"><title>Commentare in Perl</title><author>giacomo.fornari@studenti.unipd.it</author><content>Ho un problema con i commenti di Perl, come si usano in modo corretto? un esemio?</content><insertDate>2014-4-26</insertDate><status>opened</status></question>
+	</questions>
 	<answers>
 	<answer id="1"><author>giacomo.fornari@studenti.unipd.it</author><content>Prima di tutto, un po’ di filosofia. Il perl è spesso chiamato “linguaggio di scripting”, a differenza dei linguaggi di programmazione, perchè fu originariamente pensato non per grandi lavori, ma per l’automatizzazione di determinati tasks. Con gli anni, il perl è diventato sempre più potente ed è stato utilizzato per progetti sempre più grandi, anche se non è nato per questo.&#13;
 &#13;
@@ -28,5 +29,6 @@ L’interprete perl non compila mai il codice in codice-macchina, come fanno i c
 Ci sono 2 versioni di perl: il perl4 ed il suo successore, il perl5. Questo è in linea di massima compatibile con il perl4, ed ha inoltre features addizionali. In questo documento si farà riferimento soprattutto al perl5, visto che ormai dovrebbe essere la release più utilizzata.</content><insertDate>2014-4-26</insertDate><question>1</question></answer><answer id="2"><author>enrico.rotundo@studenti.unipd.it</author><content>In uno script perl, il cancelletto ( # ) introduce un commento, e tutto quello che viene dopo di esso in una riga viene ignorato.&#13;
 &#13;
 *print “Hello worldn”; # Questo è un commento e verrà ignorato; verrà&#13;
-# eseguito solo il comando “print”*</content><insertDate>2014-4-26</insertDate><question>2</question></answer></answers>
+# eseguito solo il comando “print”*</content><insertDate>2014-4-26</insertDate><question>2</question></answer>
+	<answer id="3"><author>enrico.rotundo@studenti.unipd.it</author><content>&lt;&amp; /&gt;</content><insertDate>2014-4-27</insertDate><question>5</question></answer></answers>
 </db>

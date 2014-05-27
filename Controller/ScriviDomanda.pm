@@ -24,8 +24,8 @@ sub handler {
 		if($fields_check->{"check"} ) {
 
 			# inserisco nel db la domanda
-			my $titleXML = Lib::Utils::replaceXMLSpecialChars($title); # Per togliere i caratteri speciali
-			my $contentXML = Lib::Utils::replaceXMLSpecialChars($content);
+			my $titleXML = $title; #Lib::Utils::replaceXMLSpecialChars($title); # Per togliere i caratteri speciali
+			my $contentXML = $content; # Lib::Utils::replaceXMLSpecialChars($content);
 
 			my $success;
 

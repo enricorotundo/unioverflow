@@ -41,7 +41,10 @@ sub handler {
 		elsif ($req->param("post-text")) {
 
 			my $text = $req->param("post-text");
-			$text = Lib::Utils::replaceXMLSpecialChars($text);
+
+			#va fatto perche si sta inserendo una risposta
+			# $text = Lib::Utils::replaceXMLSpecialChars($text);
+			# controllo sicurezza campi
 			$text = Lib::Utils::textSecurityCheck($text);
 
 			# controllo che non si stia tentando di inserire una risposta ad una domanda chiusa
@@ -83,7 +86,7 @@ sub handler {
 	} else {
 		$idDomanda = $req->param("id");
 	}
-	
+
 	# Execution
 	my $data = {
 		"logged" => Middleware::Authentication::isLogged($req),
