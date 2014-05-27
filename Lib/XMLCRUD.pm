@@ -63,6 +63,20 @@ sub getLastQuestionId {
 	return $value;
 }
 
+sub getLastAnswerId {
+	my ($self) = @_;
+	my $lastid;
+	my $xpath = '/db/answers/answer[last()]/@id';
+
+	my $doc = $self->loadDoc();
+	my $root = $doc->documentElement();
+	my $xpc = XML::LibXML::XPathContext->new($root);
+	my $value = $xpc->findvalue($xpath);
+
+	return $value;
+}
+
+
 # Restituisce il nodo corrispondente all'xpath oppure undef se non ce ne sono.
 # Se ce ne sono più di uno genera un errore
 sub loadFindOneXPath {
