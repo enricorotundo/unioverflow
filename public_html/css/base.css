@@ -28,13 +28,9 @@ body {
 
 /* # Header
 ========================================================*/
-#header {
-	display: block;
-	margin: 0 5% 0;
-}
 #headImg {
 	float: left;
-	margin: 1em;
+	margin: 1%;
 	width: 30%;
 }
 #headerText h1 {
@@ -42,8 +38,9 @@ body {
 }
 #headerText {
 	display: block;
-	margin-left: 30%;
-	padding-bottom: 100px;
+	margin-left: 31%;
+	padding: 1em;
+	text-align: right;
 }
 
 
@@ -56,5 +53,17 @@ body {
 
 
 
+
+
+
+#page {
+	margin: 0 15% 0;
+}
+
+
+
+#menu li {
+	display: inline;
+}
 
 
