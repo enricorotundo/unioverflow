@@ -19,8 +19,42 @@
 }
 
 
+/* # Base
+========================================================*/
+body {
+	font-family: 'Trebuchet MS', 'Liberation Sans', 'DejaVu Sans', sans-serif;;
+}
+
+
+/* # Header
+========================================================*/
+#header {
+	display: block;
+	margin: 0 5% 0;
+}
+#headImg {
+	float: left;
+	margin: 1em;
+	width: 30%;
+}
+#headerText h1 {
+	position: absolute;
+}
+#headerText {
+	display: block;
+	margin-left: 30%;
+	padding-bottom: 100px;
+}
+
+
 /* # Elementi legati all'accessibilità
 ========================================================*/
 .aural {
-	visibility: hidden;
+	display: none;
 }
+
+
+
+
+
+
