@@ -43,7 +43,7 @@ sub handler {
 			my $text = $req->param("post-text");
 
 			#va fatto perche si sta inserendo una risposta
-			# $text = Lib::Utils::replaceXMLSpecialChars($text);
+			$text = Lib::Utils::replaceXMLSpecialChars($text);
 			# controllo sicurezza campi
 			$text = Lib::Utils::textSecurityCheck($text);
 
