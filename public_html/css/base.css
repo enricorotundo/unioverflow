@@ -91,7 +91,8 @@ body {
 /* # Footer
 ========================================================*/
 #footer {
-	padding: 2.5em;
+	margin-top: 0.5em;
+	padding: 2em;
 	text-align: center;
 }
 #footNote {
