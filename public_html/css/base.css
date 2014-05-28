@@ -22,7 +22,7 @@
 /* # Base
 ========================================================*/
 body {
-	font-family: 'Trebuchet MS', 'Liberation Sans', 'DejaVu Sans', sans-serif;;
+	font-family: 'Georgia', 'Liberation Sans', 'DejaVu Sans', sans-serif;
 }
 
 
@@ -43,6 +43,50 @@ body {
 	text-align: right;
 }
 
+/* # Content
+========================================================*/
+#cerca {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-bottom: 0.5em;
+}
+
+#cerca input[type="text"] {
+	height: 1.5%;
+	width: 50%;
+	margin: 0.4em;
+}
+
+.question {	
+	height: auto;
+	border: 10px;
+	padding: 2em 0.5em 3em 0.5em;
+	border-bottom: 1px solid;
+	margin: 0;
+	display: block;
+}
+
+.questionDetails {
+	padding: 0em 0em 0em 4em;
+	text-width: 100%;
+}
+
+.questionDetails p {
+	text-indent: right;
+	font-family:"Georgia", Times, serif;
+	font-weight:bold;
+	font-size: 0.9em;
+}
+
+.questionStatus {
+	float: left;
+	text-align: center;
+	width: 3em;	
+}
+
+.questionStatus img {
+	max-width: 100%;
+}
 
 /* # Elementi legati all'accessibilità
 ========================================================*/
@@ -50,20 +94,17 @@ body {
 	display: none;
 }
 
-
-
-
-
-
-
 #page {
 	margin: 0 15% 0;
 }
-
-
 
 #menu li {
 	display: inline;
 }
 
+ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
 

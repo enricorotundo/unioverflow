@@ -4,11 +4,11 @@
 
 	<div id="content">
 		<span id="path">Ti trovi in: Domande</span>
-		<form action="index.cgi" method="post">
+		<form action="index.cgi" method="post" id="cerca">
 			<fieldset>
 				<legend>Cerca</legend>
 				<label for="testoDaCercare"></label>
-				<input type="text" title="Inserisci il testo da cercare" id="testoDaCercare" name="testoDaCercare" tabindex="[% i=i+1; i %]" />
+				<input type="text" title="Inserisci il testo da cercare" id="testoDaCercare" name="testoDaCercare" tabindex="[% i=i+1; i %]" placeholder= "Cerca" />
 				<input type="submit" title="Effettua ricerca" value="Cerca" tabindex="[% i=i+1; i %]" accesskey="c"/>
 			</fieldset>
 		</form>
@@ -21,13 +21,17 @@
 
 		<ul>
 		[% FOREACH question IN questions %]
-			<li><div class="questionStatus">
-					[% question.status == 'solved' ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/>Risolta' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/>Aperta' %]
+			<li>
+				<div class="question">
+					<div class="questionStatus">
+						[% question.status == 'solved' ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/><p>Risolta</p>' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/><p>Aperta</p>' %]
+					</div>
+					<div class="questionDetails">
+						<h4><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]">[% question.title  %]</a></h4>
+						<p>chiesto da [% question.author | html %] il [% question.insertDate | html %]</p>
+					</div>
 				</div>
-				<div class="questionDetails">
-					<h4><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]">[% question.title | html %]</a></h4>
-					<p>chiesto da [% question.author | html %] il [% question.insertDate | html %]</p>
-				</div></li>
+			</li>
 		[% END %]
 		</ul>
 

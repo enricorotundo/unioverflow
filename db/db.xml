@@ -11,7 +11,7 @@
 		</user>
 	</users>
 	<questions>
-	<question id="1"><title>Qualcuno mi spiega cos&amp;apos;è Perl?</title><author>enrico.rotundo@studenti.unipd.it</author><content>Come da titolo.</content><insertDate>2014-4-26</insertDate><status>opened</status></question><question id="2"><title>Commentare in Perl</title><author>giacomo.fornari@studenti.unipd.it</author><content>Ho un problema con i commenti di Perl, come si usano in modo corretto? un esemio?</content><insertDate>2014-4-26</insertDate><status>opened</status></question></questions>
+	<question id="1"><title>Qualcuno mi spiega cos&apos;è Perl?</title><author>enrico.rotundo@studenti.unipd.it</author><content>Come da titolo.</content><insertDate>2014-4-26</insertDate><status>opened</status></question><question id="2"><title>Commentare in Perl</title><author>giacomo.fornari@studenti.unipd.it</author><content>Ho un problema con i commenti di Perl, come si usano in modo corretto? un esemio?</content><insertDate>2014-4-26</insertDate><status>opened</status></question></questions>
 	<answers>
 	<answer id="1"><author>giacomo.fornari@studenti.unipd.it</author><content>Prima di tutto, un po’ di filosofia. Il perl è spesso chiamato “linguaggio di scripting”, a differenza dei linguaggi di programmazione, perchè fu originariamente pensato non per grandi lavori, ma per l’automatizzazione di determinati tasks. Con gli anni, il perl è diventato sempre più potente ed è stato utilizzato per progetti sempre più grandi, anche se non è nato per questo.&#13;
 &#13;
