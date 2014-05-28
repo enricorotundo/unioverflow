@@ -24,11 +24,11 @@
 			<li>
 				<div class="question">
 					<div class="questionStatus">
-						[% question.status == 'solved' ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/><p>Risolta</p>' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/><p>Aperta</p>' %]
+						[% question.status == 'solved' ? '<img class="solved" src="../images/solvedQuestion.png" alt="Domanda risolta"/><p>Risolta</p>' : '<img class="opened" src="../images/openedQuestion.png" alt="Domanda aperta"/><p>Aperta</p>' %]
 					</div>
 					<div class="questionDetails">
 						<h4><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]">[% question.title  %]</a></h4>
-						<p>chiesto da [% question.author | html %] il [% question.insertDate | html %]</p>
+						<p>chiesto da <span class="author">[% question.author | html %]</span> il [% question.insertDate | html %]</p>
 					</div>
 				</div>
 			</li>
