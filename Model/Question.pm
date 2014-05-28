@@ -189,8 +189,8 @@ sub getAsNode {
 
 	$question->addChild($id);
 	$question->addChild($title);
-	$question->addChild($author);
 	$question->addChild($content);
+	$question->addChild($author);
 	$question->addChild($insertDate);
 	$question->addChild($status);
 

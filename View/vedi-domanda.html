@@ -8,7 +8,7 @@
 			[% question.status == 'solved' ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/>Risolta' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/>Aperta' %]
 		</div>
 		<div class="questionDetails">
-			<h3>[% question.title | html %]</h3>
+			<h3>[% question.title %]</h3>
 			<p>[% question.content %]</p>
 			<p>chiesto da [% question.author | html %] il [% question.insertDate | html %]</p>
 			[% IF question.author == session.email %]

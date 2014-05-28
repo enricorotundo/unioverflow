@@ -91,17 +91,17 @@ sub getAsNode {
 	my $question = XML::LibXML::Element->new('question');
 
 	$id->setValue($self->{"id"});
-	$author->appendTextNode($self->{"author"});
 	$content->appendTextNode($self->{"content"});
-	$insertDate->appendTextNode($self->{"insertDate"});
+	$author->appendTextNode($self->{"author"});
 	$question->appendTextNode($self->{"question"});
+	$insertDate->appendTextNode($self->{"insertDate"});
 
 	$answer->addChild($id);
-	$answer->addChild($author);
 	$answer->addChild($content);
-	$answer->addChild($insertDate);
+	$answer->addChild($author);
 	$answer->addChild($question);
-
+	$answer->addChild($insertDate);
+	
 	return $answer;
 }
 

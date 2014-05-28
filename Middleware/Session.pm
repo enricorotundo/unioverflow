@@ -38,7 +38,7 @@ sub createSession {
 	my ($request) = @_;
 	
 	my $session = CGI::Session->new();
-	$session->expire('+6h');
+	$session->expire('3h');
 	$request->attr("cookie")->set("CGISESSID", $session->id());
 	$session->param("email", $request->param("email"));
 	return $session;

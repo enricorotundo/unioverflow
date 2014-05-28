@@ -93,11 +93,41 @@ sub textSecurityCheck {
 # Replace dei caratteri speciali che non validano l'XML
 sub replaceXMLSpecialChars {
 	my ($text) = @_;
-	$text = replace("&","&amp;",$text);
+
+	# $text = replace("&","&amp;",$text);
 	$text = replace('"',"&quot;",$text);
 	$text = replace("'","&apos;",$text);
 	$text = replace("<","&lt;",$text);
 	$text = replace(">","&gt;",$text);
+
+	# italian specials characaters
+	# source: http://webdesign.about.com/od/localization/l/blhtmlcodes-it.htm
+
+	$text = replace("À","&Agrave;",$text);
+	$text = replace("à","&agrave;",$text);
+	$text = replace("Á","&Aacute;",$text);
+	$text = replace("á","&aacute;",$text);
+	$text = replace("È","&Egrave;",$text);
+	$text = replace("è","&egrave;",$text);
+	$text = replace("É","&Eacute;",$text);
+	$text = replace("é","&eacute;",$text);
+	$text = replace("Ì","&Igrave;",$text);
+	$text = replace("ì","&igrave;",$text);
+	$text = replace("Í","&Iacute;",$text);
+	$text = replace("í","&iacute;",$text);
+	$text = replace("Ò","&Ograve;",$text);
+	$text = replace("ò","&ograve;",$text);
+	$text = replace("Ó","&Oacute;",$text);
+	$text = replace("ó","&oacute;",$text);
+	$text = replace("Ù","&Ugrave;",$text);
+	$text = replace("ù","&ugrave;",$text);
+	$text = replace("Ú","&Uacute;",$text);
+	$text = replace("ú","&uacute;",$text);
+	$text = replace("«","&laquo;",$text);
+	$text = replace("»","&raquo;",$text);
+	$text = replace("€","&euro;",$text);
+	$text = replace("₤","&#x20A4;",$text);
+	
 
 	return $text;
 }

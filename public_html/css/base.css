@@ -22,25 +22,34 @@
 /* # Base
 ========================================================*/
 body {
-	font-family: 'Georgia', 'Liberation Sans', 'DejaVu Sans', sans-serif;
+	font-family: 'Trebuchet MS', 'Liberation Sans', 'DejaVu Sans', sans-serif;
+	background-color: #fff;
+}
+#page {
+	margin: 0 15% 0;
+}
+ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
 }
 
 
 /* # Header
 ========================================================*/
 #headImg {
-	float: left;
-	margin: 1%;
-	width: 30%;
+	display: block;
+	margin: auto;
+	width: 60%;
 }
 #headerText h1 {
 	position: absolute;
 }
 #headerText {
 	display: block;
-	margin-left: 31%;
+	font-size: xx-small;
 	padding: 1em;
-	text-align: right;
+	text-align: center;
 }
 
 /* # Content
@@ -88,23 +97,60 @@ body {
 	max-width: 100%;
 }
 
+/* # Navigation
+========================================================*/
+#navigation {
+	overflow: auto;
+	background-color: #77261c;
+	color: white;
+}
+#menu li {
+	border: 1px solid #77261c;
+	display: inline;
+	float: left;
+}
+#menu li:hover {
+	background-color: white;
+	border: 1px solid #77261c;
+	color: black;
+}
+#menu a {
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding: 1em;
+}
+#menu a:hover {
+	text-decoration: none;
+	color: black;
+	display: block;
+	padding: 1em;
+}
+.lateralNavItem {
+	float: right !important;
+}
+#currentPage {
+	background-color: white;
+	color: black;
+	display: block;
+	padding: 1em;
+}
+
+/* # Footer
+========================================================*/
+#footer {
+	margin-top: 0.5em;
+	padding: 2em;
+	text-align: center;
+}
+#footNote {
+	font-size: small;
+	margin-top: 1em;
+}
+
+
 /* # Elementi legati all'accessibilità
 ========================================================*/
 .aural {
 	display: none;
 }
-
-#page {
-	margin: 0 15% 0;
-}
-
-#menu li {
-	display: inline;
-}
-
-ul {
-	list-style-type: none;
-	padding: 0px;
-	margin: 0px;
-}
-
