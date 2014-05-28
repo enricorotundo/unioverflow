@@ -1,2 +1,36 @@
 /* CSS per i dispositivi handheld (schermo piccolo, banda limitata) o dagli screen con larghezza <= 480px */
 
+
+/* # Base
+========================================================*/
+#page {
+	margin: auto;
+	width: 100%;
+}
+
+
+/* # Header
+========================================================*/
+#headImg {
+	width: 100%;
+}
+
+
+/* # Navigation
+========================================================*/
+#menu li {
+	display: block;
+	float: none;
+}
+.lateralNavItem {
+	float: none !important;
+}
+#menu a {
+	padding: 0.5em;
+}
+#menu a:hover {
+	padding: 0.5em;
+}
+#currentPage {
+	padding: 0.5em;
+}

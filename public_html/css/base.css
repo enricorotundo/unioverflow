@@ -162,3 +162,10 @@ ul {
 .aural {
 	display: none;
 }
+
+#path {
+	background-color: gainsboro;
+	display: block;
+	font-size: small;
+	padding: 0.5em 1em 0.5em;
+}
