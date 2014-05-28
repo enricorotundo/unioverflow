@@ -28,6 +28,12 @@ body {
 #page {
 	margin: 0 15% 0;
 }
+h3 {
+	margin: 1em 0em; 
+}
+h4 {
+	margin: 0.8em 0em;
+}
 ul {
 	list-style-type: none;
 	padding: 0px;
@@ -51,6 +57,17 @@ ul {
 	padding: 1em;
 	text-align: center;
 }
+
+
+/* # Breadcrumb
+========================================================*/
+#path {
+	background-color: gainsboro;
+	display: block;
+	font-size: small;
+	padding: 0.5em 1em 0.5em;
+}
+
 
 /* # Content
 ========================================================*/
@@ -153,11 +170,4 @@ ul {
 ========================================================*/
 .aural {
 	display: none;
-}
-
-#path {
-	background-color: gainsboro;
-	display: block;
-	font-size: small;
-	padding: 0.5em 1em 0.5em;
 }
