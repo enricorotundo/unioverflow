@@ -59,11 +59,11 @@ Grazie</content><author>enrico.rotundo@studenti.unipd.it</author>
 			<insertDate>2014-4-27</insertDate>
 			<status>solved</status>
 		</question>
-	</questions>
+	<question id="7"><title>àòèùàòè&lt;&gt;&lt;&gt;?'"£$%</title><content>àòèùàòè&lt;&gt;&lt;&gt;?'"£$%</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-4-29</insertDate><status>opened</status></question></questions>
 
 	<answers>
 		<answer id="1">
-			<content>Perl è un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalit&amp;agrave; ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content>
+			<content>Perl è un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalità ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content>
 			<author>enrico.rotundo@studenti.unipd.it</author>
 			<question>1</question>
 			<insertDate>2014-4-27</insertDate>
