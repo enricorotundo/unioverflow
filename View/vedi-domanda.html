@@ -53,7 +53,7 @@
 		[% IF logged && question.status == 'opened' %]
 			<div id="rispondi">
 				<h4>Rispondi</h4>
-				<p><a id="rispondi-linkFormatta" tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#formattazione" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
+				<p><a id="rispondi-linkFormatta" tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#FormattaTesto" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
 				<form id="rispondi-form" action="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.totalPages %]" method="post">
 					<fieldset>
 						<legend>Inserisci la tua risposta</legend>
