@@ -6,7 +6,9 @@ use CGI::Carp;
 # Elimina tutto quello che non è una cifra tra 0 e 9
 sub number {
 	my ($string) = @_;
-	$string = $string or "";
+	if (not defined $string) {
+		$string = "";
+	}
 
 	$string =~s/[^0-9]//ig;
 
@@ -16,7 +18,9 @@ sub number {
 # Elimina le virgolette dalla query
 sub search_query {
 	my ($string) = @_;
-	$string = $string or "";
+	if (not defined $string) {
+		$string = "";
+	}
 	
 	$string =~s/["']//ig;
 
@@ -26,7 +30,9 @@ sub search_query {
 # Restituisce una mail giusta o niente
 sub email {
 	my ($string) = @_;
-	$string = $string or "";
+	if (not defined $string) {
+		$string = "";
+	}
 	
 	# Mettere ^ all'inizio e $ alla fine della regexp per garantire
 	# che tutto rispetti la regexp, e non solo una sottostringa
@@ -40,7 +46,9 @@ sub email {
 # Restituisce una password giusta o niente
 sub password {
 	my ($string) = @_;
-	$string = $string or "";
+	if (not defined $string) {
+		$string = "";
+	}
 	
 	# Mettere ^ all'inizio e $ alla fine della regexp per garantire
 	# che tutto rispetti la regexp, e non solo una sottostringa
@@ -53,7 +61,9 @@ sub password {
 
 sub title {
 	my ($string) = @_;
-	$string = $string or "";
+	if (not defined $string) {
+		$string = "";
+	}
 	
 	# Va bene tutto
 	return $string;
@@ -61,7 +71,9 @@ sub title {
 
 sub content {
 	my ($string) = @_;
-	$string = $string or "";
+	if (not defined $string) {
+		$string = "";
+	}
 	
 	# Va bene tutto
 	return $string;

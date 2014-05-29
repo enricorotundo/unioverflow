@@ -21,7 +21,7 @@ sub handler {
 	my $TestoDaCercare = Lib::Sanitize::search_query($req->param("testoDaCercare")) or "";
 	# Evita XSS attack
 	my $page = Lib::Sanitize::number($req->param("page"));
-	if ($page <= 0) {
+	if ($page eq "" or $page == 0) {
 		$page = 1;
 	}
 	my $questionsPerPage = 3;
