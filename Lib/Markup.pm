@@ -11,7 +11,7 @@ sub convert {
 	my ($text) = @_;
 
 	# Codifica i caratteri speciali dell'html
-	$text = encode_entities($test)
+	$text = encode_entities($text);
 
 	# la regex ha il formato:    /originaltext/newtext/
 	# my $regex =~ s/originaltext/newtext/;
