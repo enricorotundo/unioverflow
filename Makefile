@@ -38,3 +38,8 @@ flags-tecweb:
 	@find cgi-bin/ -type f -name '*.pl' -or -name '*.cgi' -exec chmod u+x,o+x '{}' \;
 	@find db/ -type f -name '*.xml' -exec chmod +w '{}' \;
 	@echo "(*) Fatto."
+
+validate-db:
+	@echo "(*) Valido il database XML usando lo schema XSD..."
+	xmllint --noout --schema db/db.xsd db/db.xml
+	@echo "(*) Fatto."

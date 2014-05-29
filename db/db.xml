@@ -32,8 +32,8 @@ Grazie</content>
 			<status>opened</status>
 		</question>
 		<question id="3">
-			<title>Siamo sicuri che i caratteri "ÀÈÌÒÙàèìòùÈÉ<>%&amp;$?^#" vengano visualizzati correttamente?</title>
-			<content>Siamo sicuri che i caratteri "ÀÈÌÒÙàèìòùÈÉ<>%&amp;$?^#" vengano visualizzati correttamente?</content><author>federico.poli.1@studenti.unipd.it</author>
+			<title>Siamo sicuri che i caratteri "ÀÈÌÒÙàèìòùÈÉ&lt;&gt;%&amp;$?^#" vengano visualizzati correttamente?</title>
+			<content>Siamo sicuri che i caratteri "ÀÈÌÒÙàèìòùÈÉ&lt;&gt;%&amp;$?^#" vengano visualizzati correttamente?</content><author>federico.poli.1@studenti.unipd.it</author>
 			<insertDate>2014-4-27</insertDate>
 			<status>opened</status>
 		</question>
