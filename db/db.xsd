@@ -92,13 +92,13 @@
         </xs:restriction> 
     </xs:simpleType>
 
-    <xs:simpleType name="Tcontent" base="xs:string"> 
+    <xs:simpleType name="Tcontent"> 
         <xs:restriction base="xs:string"> 
             <xs:maxLength value="3000" />
         </xs:restriction> 
     </xs:simpleType>
 
-    <xs:simpleType name="Ttitle" base="xs:string"> 
+    <xs:simpleType name="Ttitle"> 
         <xs:restriction base="xs:string"> 
             <xs:maxLength value="300" />
         </xs:restriction> 
