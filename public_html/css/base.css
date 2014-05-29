@@ -28,10 +28,35 @@ body {
 #page {
 	margin: 0 15% 0;
 }
+h3 {
+	margin: 1em 0em; 
+}
+h4 {
+	margin: 0.9em 0em 0.8em 0em;
+}
 ul {
 	list-style-type: none;
 	padding: 0px;
 	margin: 0px;
+}
+table, th, td {
+	border: 1px solid black;
+}
+table {
+	border-collapse: collapse;
+	margin: auto;
+	width: 85%;
+}
+th, td {
+	padding: 0.3em;
+}
+th {
+	background-color: #77261c;
+	color: white;
+}
+caption {
+	font-size: 90%;
+	padding: 0.2em;
 }
 
 
@@ -51,6 +76,17 @@ ul {
 	padding: 1em;
 	text-align: center;
 }
+
+
+/* # Breadcrumb
+========================================================*/
+#path {
+	background-color: gainsboro;
+	display: block;
+	font-size: small;
+	padding: 0.5em 1em 0.5em;
+}
+
 
 /* # Content
 ========================================================*/
@@ -109,6 +145,7 @@ ul {
 .author{
 	font-style:oblique;
 }
+
 
 /* vedi-domanda */
 .questionV{
@@ -202,25 +239,48 @@ ul {
 
 }
 
+/* Manuale */
+#indice {
+	display: block;
+	float: left;
+	margin: 0% 1%;
+	width: 25%;
+}
+.sezioneManuale {
+	margin-left: 27%;
+}
+#indice li a {
+	display: block;
+	background: transparent url(../images/link-arrow.png) 0 no-repeat;
+	padding-left: 10px;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+}
+#indice li a:hover {
+	background-position: 3px;
+}
+.sezioneManuale h4 {
+	border-bottom: 1px solid #545454;
+}
+
+
 /* # Navigation
 ========================================================*/
 #navigation {
 	overflow: auto;
 	background-color: #77261c;
+	border: 1px solid #77261c;
 	color: white;
 }
 #menu li {
-	border: 1px solid #77261c;
 	display: inline;
 	float: left;
 }
 #menu li:hover {
 	background-color: white;
-	border: 1px solid #77261c;
 	color: black;
 }
 #menu a {
-	text-decoration: none;
 	color: white;
 	display: block;
 	padding: 1em;
@@ -236,9 +296,17 @@ ul {
 }
 #currentPage {
 	background-color: white;
+	border-left: 1px solid #77261c;
+	border-right: 1px solid #77261c;
 	color: black;
 	display: block;
 	padding: 1em;
+}
+ul#menu>:first-child {
+	border-left: 0px;
+}
+ul#menu>:last-child {
+	border-right: 0px;
 }
 
 /* # Footer
@@ -258,10 +326,9 @@ ul {
 .aural {
 	display: none;
 }
-
-#path {
-	background-color: gainsboro;
-	display: block;
-	font-size: small;
-	padding: 0.5em 1em 0.5em;
+.tornaSu {
+	font-size: 80%;
+	text-align: right;
+	padding: 0.8em 0em;
+	width: 100%;
 }

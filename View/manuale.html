@@ -14,7 +14,7 @@
 			<li><a tabindex="[% i=i+1; i %]" href="#FormattaTesto" title="Formattare testo">Formattare il testo</a></li>
 		</ul>
 
-		<div id="Registrazione">
+		<div id="Registrazione" class="sezioneManuale">
 			<h4>Registrazione</h4>
 			<p>Per registrarsi al servizio, &egrave; necessario recarsi nella <a href="registrati.cgi" title="Registrati">pagina di registrazione</a> e compilare il modulo inserendo l'indirizzo <span xml:lang="en">mail</span>, la <span xml:lang="en">password</span> e la <span xml:lang="en">password</span> di conferma.</p>
 			<p>L'indirizzo <span xml:lang="en">mail</span> deve necessariamente essere di dominio <em>studenti.unipd.it</em>. La <span xml:lang="en">password</span> deve essere composta da un minimo di 8 ad un massimo di 24 caratteri alfanumerici.</p>
@@ -22,22 +22,22 @@
 			<p><strong>Attenzione:</strong> la <span xml:lang="en">password</span> differenzia tra caratteri minuscoli e maiuscoli.</p>
 		</div>
 
-		<div id="Autenticazione">
+		<div id="Autenticazione" class="sezioneManuale">
 			<h4>Autenticazione</h4>
 			<p>Per autenticarsi bisogna effetuare l'accesso al sistema tramite l'apposito <span xml:lang="en"><a href="accedi.cgi" title="Accedi">form</a></span> inserendo l'indirizzo <span xml:lang="en">mail</span> e la <span xml:lang="en">password</span> che hai fornito nella fase di registrazione. Nel caso in cui non ti sei ancora registrato, consulta la sezione &quot;<a href="#Registrazione" title="Registrazione">Registrazione</a>&quot;.</p>
 		</div>
 
-		<div id="CercaDomanda">
+		<div id="CercaDomanda" class="sezioneManuale">
 			<h4>Cercare una domanda</h4>
 			<p>Puoi cercare una domanda utilizzando il campo di ricerca presente nella <a href="index.cgi" title="Pagina principale">pagina principale</a>. Inserisci il testo da cercare e premi sul pulsante &quot;Cerca&quot;. La ricerca viene eseguita sui titoli di tutte le domande presenti. Se la ricerca ha prodotto risultati, verr&agrave; visualizzata la lista delle domande trovate.</p>
 		</div>
 
-		<div id="VediDomanda">
+		<div id="VediDomanda" class="sezioneManuale">
 			<h4>Vedere una domanda</h4>
 			<p>Nella <a href="index.cgi" title="Pagina principale">pagina principale</a> &egrave; possibile visualizzare le domande inserite dagli utenti. Per leggere i dettagli della domanda e le relative risposte bisogna cliccare sul titolo della domanda scelta. Se sei autenticato (vedi <a href="#Autenticazione">come autenticarsi</a>), puoi <a href="#RispondiDomanda" title="Rispondere a domanda">rispondere alla domanda</a>. Se sei l'autore della domanda puoi decidere di chiuderla se &egrave; stata risolta, oppure di riaprirla nel caso fosse stata chiusa accidentalmente o se si pensava erroneamente di aver ricevuto una risposta adeguata.</p>
 		</div>
 
-		<div id="RispondiDomanda">
+		<div id="RispondiDomanda" class="sezioneManuale">
 			<h4>Rispondere ad una domanda</h4>
 			[% IF logged %]
 				<p>Sembra che tu sia autenticato! Bene, il primo passo è fatto.</p>
@@ -47,7 +47,7 @@
 			<p>Puoi rispondere ad una domanda dalla sua pagina di visualizzazione (vedi <a href="#VediDomanda" title="Vedere domanda">come visualizzare una domanda</a>) utilizzando il <span xml:lang="en">form</span> presente dopo le risposte. Nonostante sia possibile rispondere ad una domada da qualsiasi intervallo di risposte, ti invitiamo a leggere tutte le risposte prima di contribuire.</p>
 		</div>
 
-		<div id="ScriviDomanda">
+		<div id="ScriviDomanda" class="sezioneManuale">
 			<h4>Scrivere una domanda</h4>
 			[% IF logged %]
 				<p>Sembra che tu sia autenticato! Bene, il primo passo è fatto.</p>
@@ -58,7 +58,7 @@
 			<p>Puoi <a href="#FormattaTesto" title="Formattare testo">formattare il testo</a> della domanda per focalizzare l'attenzione sulle questioni importanti.</p>
 		</div>
 		
-		<div id="FormattaTesto">
+		<div id="FormattaTesto" class="sezioneManuale">
 			<h4>Formattare il testo</h4>
 			<p>Quando rispondi ad una domanda o specifichi i dettagli di una posta da te, puoi formattare il testo tramite la sintassi di <span xml:lang="en"><em>markup</em></span>. Gli operatori che possono essere utilizzati sono descritti nella seguente tabella:
 			</p>
@@ -67,18 +67,18 @@
 				<caption>Operatori di formattazione del testo</caption>
 				<thead>
 					<tr>
-						<th scope="col" abbr="Operatore">Operatore</th>
-						<th scope="col" abbr="Effetto">Effetto sul testo</th>
+						<th id="c1" scope="col" abbr="Operatore">Operatore</th>
+						<th id="c2" scope="col" abbr="Effetto">Effetto sul testo</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>*testo*</td>
-						<td>Formatta il testo in <em>italico</em></td>
+						<td headers="c1">*testo*</td>
+						<td headers="c2">Formatta il testo in <em>italico</em></td>
 					</tr>
 					<tr>
-						<td>**testo**</td>
-						<td>Formatta il testo in <strong>grassetto</strong></td>
+						<td headers="c1">**testo**</td>
+						<td headers="c2">Formatta il testo in <strong>grassetto</strong></td>
 					</tr>
 				</tbody>
 				
