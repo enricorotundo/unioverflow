@@ -215,8 +215,8 @@ caption {
 }
 #rispondi-form fieldset {
 	padding-right: 0.5em;
-    padding-left: 0.5em;
-    border:1px solid black;
+	padding-left: 0.5em;
+	border:1px solid black;
 }
 
 #rispondi-form fieldset textarea {
@@ -269,13 +269,11 @@ caption {
 #navigation {
 	overflow: auto;
 	background-color: #77261c;
-	border-left: 1px solid #77261c;
+	border: 1px solid #77261c;
 	color: white;
 }
 #menu li {
 	display: inline;
-	border: 1px solid #77261c;
-	border-left: 0px;
 	float: left;
 }
 #menu li:hover {
@@ -298,6 +296,8 @@ caption {
 }
 #currentPage {
 	background-color: white;
+	border-left: 1px solid #77261c;
+	border-right: 1px solid #77261c;
 	color: black;
 	display: block;
 	padding: 1em;
