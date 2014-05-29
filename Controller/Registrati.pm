@@ -5,20 +5,26 @@ use CGI::Carp;
 
 use Lib::Renderer;
 use Model::User;
+use Lib::Sanitize; # Per filtrare gli input
+use Lib::Utils;
 
 sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	my $data;
-	my $email = $req->param("email") or "";
-	my $password = $req->param("password") or "";
-	my $password_confirm = $req->param("passwordconfirm") or "";
 
 	# controllo se arrivo in registarti inviando dei dati con POST
 	if ($req->attr("method") eq 'POST') {
-		my $fields_check = fieldsCheck($email, $password, $password_confirm);
+		my $fields_check = fieldsCheck(
+			$req->param("email"),
+			$req->param("password"),
+			$req->param("passwordconfirm")
+		);
 
-		if($fields_check->{"check"} ) {
+		if ($fields_check->{"check"}) {
+
+			my $email = Lib::Sanitize::email($req->param("email"));
+			my $password = Lib::Sanitize::password($req->param("password"));
 
 			# controllo che l'utente non sia già presente nel db
 			my $user = Model::User::getUserByEmail($email);
@@ -28,7 +34,7 @@ sub handler {
 				# Execution
 				$data = {
 					"error" => 1,
-					"msg" => "L'email utilizzata è già utilizzata"
+					"msg" => "L'email inserita è già stata utilizzata"
 				};
 
 			} else {
@@ -50,13 +56,13 @@ sub handler {
 			# creo il msg di errore
 			my $msg = "I seguenti campi contengono errori: <br>";
 			if (not $fields_check->{"email_check"}) {
-				$msg = $msg . "L'email deve finire con 'studenti.unipd.it' <br>"
+				$msg = $msg . "L'email deve finire con '\@studenti.unipd.it' <br>"
 			}
 			if (not $fields_check->{"password_check"}) {
 				$msg = $msg . "La password deve essere almeno di 8 caratteri e non può contenere caratteri speciali<br>"
 			}
 			if (not $fields_check->{"password_confirm_check"}) {
-				$msg = $msg . "La password di Conferma non corrisponde!"
+				$msg = $msg . "La password di conferma non corrisponde!"
 			}
 
 			# Execution
@@ -78,17 +84,13 @@ sub fieldsCheck {
 	my $password_check;
 	my $password_confirm_check;
 
-	# Mettere ^ all'inizio e $ alla fine della regexp per garantire
-	# che tutto rispetti la regexp, e non solo una sottostringa
-	if ($email =~ m/^[a-z.0-9]{1,64}\@studenti.unipd.it$/) {
-			$email_check = 1;
+	if (Lib::Utils::not_empty($email) and $email eq Lib::Sanitize::email($email)) {
+		$email_check = 1;
 	} else {
 		$email_check = "";
 	}
 
-	# Mettere ^ all'inizio e $ alla fine della regexp per garantire
-	# che tutto rispetti la regexp, e non solo una sottostringa
-	if ($password =~ m/^[a-zA-Z0-9]{8,24}$/) {
+	if (Lib::Utils::not_empty($password) and $password eq Lib::Sanitize::password($password)) {
 		$password_check = 1;
 	} else {
 		$password_check = "";
