@@ -172,16 +172,15 @@ caption {
 #navigation {
 	overflow: auto;
 	background-color: #77261c;
+	border: 1px solid #77261c;
 	color: white;
 }
 #menu li {
-	border: 1px solid #77261c;
 	display: inline;
 	float: left;
 }
 #menu li:hover {
 	background-color: white;
-	border: 1px solid #77261c;
 	color: black;
 }
 #menu a {
@@ -200,6 +199,8 @@ caption {
 }
 #currentPage {
 	background-color: white;
+	border-left: 1px solid #77261c;
+	border-right: 1px solid #77261c;
 	color: black;
 	display: block;
 	padding: 1em;
