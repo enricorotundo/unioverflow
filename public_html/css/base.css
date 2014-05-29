@@ -54,6 +54,8 @@ ul {
 
 /* # Content
 ========================================================*/
+
+/* index */
 #cerca {
 	padding-top: 1em;
 	padding-bottom: 1em;
@@ -75,10 +77,11 @@ ul {
 }
 
 .questionDetails {
-	padding: 0em 0em 0em 4em;	
+	padding: 0em 0em 0em 4em;
+	word-wrap: break-word;	
 }
 
-.questionDetails p {
+.questionDetails p, .questionDetailsV p:nth-of-type(2) {
 	font-family:"Georgia", Times, serif;
 	font-weight:bold;
 	padding: 1em 0em 0em 0em;
@@ -106,6 +109,99 @@ ul {
 .author{
 	font-style:oblique;
 }
+
+/* vedi-domanda */
+.questionV{
+	height: auto;
+	border: 10px;
+	padding: 1em 0.5em 2em 0.2em;
+	margin: 0;
+	border-bottom: 1px solid;
+}
+
+.questionDetailsV {
+	/*padding: 0em 0em 0em 4em;*/
+	margin-left: 4em;	
+	font-size: 120%;
+	word-wrap: break-word;
+}
+
+.questionDetailsV .Qcontent {
+	padding: 1em 0em 0em 0em;
+	font-size: 90%;
+}
+
+.answer {
+	padding: 1em 0em 0em 4.6em;
+	/*border-bottom: 1px solid ;*/
+}
+
+#container-answer {
+	clear: both;
+}
+.answer p:nth-of-type(1){
+	font-size: 80%;
+	font-weight: bold;
+	padding: 0em 0em 1em 0em;
+}
+
+#status{	
+	width: 20%;
+}
+#status-form fieldset legend{
+	display: none;
+}
+#status-form fieldset fieldset{
+}
+
+#status-chiudi, #status-riapri{ /* Per ora */
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding: 0.9em;
+	background-color: #77261c;
+	width: auto;
+} 
+
+#rispondi {
+	padding: 3em 0em 0em 4.5em;
+}
+#rispondi-linkFormatta{
+	float: right;
+}
+#rispondi-form
+{
+	width: 100%;
+	margin: 0 auto; 
+	text-align: center;
+	clear: both;
+}
+#rispondi-form fieldset {
+	padding-right: 0.5em;
+    padding-left: 0.5em;
+    border:1px solid black;
+}
+
+#rispondi-form fieldset textarea {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}
+
+#rispondi-form fieldset legend{
+	
+}
+#rispondi-submit{
+	text-decoration: none;
+	color: white;
+	display: inline-block;
+	padding: 0.9em;
+	background-color: #77261c;
+	width: auto;
+	text-align: center;
+
+}
+
 /* # Navigation
 ========================================================*/
 #navigation {
