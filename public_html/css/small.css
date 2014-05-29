@@ -34,3 +34,12 @@
 #currentPage {
 	padding: 0.5em;
 }
+#indice {
+	float: none;
+	margin: 0 1% 0;
+	width: 100%;
+}
+
+.sezioneManuale {
+	margin: 0 1% 0;
+}
