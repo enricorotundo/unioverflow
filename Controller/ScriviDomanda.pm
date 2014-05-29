@@ -24,14 +24,11 @@ sub handler {
 		if($fields_check->{"check"} ) {
 
 			# inserisco nel db la domanda
-			my $titleXML = Lib::Utils::replaceXMLSpecialChars($title); # Per togliere i caratteri speciali
-			my $contentXML = Lib::Utils::replaceXMLSpecialChars($content);
-
 			my $success;
 
-			my $newId = Model::Question::insertQuestion($titleXML, $contentXML, $author);
+			my $newId = Model::Question::insertQuestion($title, $content, $author);
 			if( $newId != 0 ) {
-			#if (Model::Question::insertQuestion($titleXML, $contentXML, $author)) {
+			#if (Model::Question::insertQuestion($title, $content, $author)) {
 				$success = 1; 
 			} else {
 				$success = ""; 

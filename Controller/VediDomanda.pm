@@ -42,11 +42,6 @@ sub handler {
 
 			my $text = $req->param("post-text");
 
-			#va fatto perche si sta inserendo una risposta
-			$text = Lib::Utils::replaceXMLSpecialChars($text);
-			# controllo sicurezza campi
-			$text = Lib::Utils::textSecurityCheck($text);
-
 			# controllo che non si stia tentando di inserire una risposta ad una domanda chiusa
 			if (Model::Question::getQuestionById($req->param("questionId"))->{status} == 'opened') {
 				my $author = Middleware::Session::getSession($req)->param('email');

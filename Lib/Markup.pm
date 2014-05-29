@@ -3,21 +3,31 @@ use strict;
 use warnings;
 use CGI::Carp;
 
-use base 'Lib::Object';
+use HTML::Entities;
 
+# Input: testo grezzo, senza codifica html, con formattazione markup e a-capo
+# Output: codice html pronto per essere inviato al browser
 sub convert {
 	my ($text) = @_;
+
+	# Codifica i caratteri speciali dell'html
+	$text = encode_entities($test)
+
 	# la regex ha il formato:    /originaltext/newtext/
 	# my $regex =~ s/originaltext/newtext/;
 
-    # <strong> must go first:
-    $text =~ s{ (\*\*|__) (?=\S) (.+?[*_]*) (?<=\S) \1 }
-        {<strong>$2</strong>}gsx;
+	# <strong>, va per primo
+	$text =~ s{ (\*\*) (?=\S) (.+?[*]*) (?<=\S) \1 }{<strong>$2</strong>}gsx;
 
-    $text =~ s{ (\*|_) (?=\S) (.+?) (?<=\S) \1 }
-        {<em>$2</em>}gsx;
+	# <em>
+	$text =~ s{ (\*) (?=\S) (.+?) (?<=\S) \1 }{<em>$2</em>}gsx;
 
-    return $text;
+	# Codifica gli a-capo
+	# mi raccomando: rimpiazzare prima \r\n e poi \n, \r
+	$text =~ s/\r\n/<br\/>/g;
+	$text =~ s/\n|\r/<br\/>/g;
+
+	return $text;
 }
 
 1;
