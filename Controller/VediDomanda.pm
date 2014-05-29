@@ -90,6 +90,7 @@ sub handler {
 		},
 		"question" => Model::Question::getQuestionById($idDomanda),
 		"answers" => \@answers,
+		"totalAnswers" => $arrSize,
 		"pageInfo" => {
 			currentPageNumber => $page,
 			totalPages => ceil( $arrSize / $answersPerPage )

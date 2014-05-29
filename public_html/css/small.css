@@ -15,6 +15,12 @@
 	width: 100%;
 }
 
+/* # Content
+=======================================================*/
+#rispondi-linkFormatta {
+	float:left;
+	font-size: 0.8em;
+}
 
 /* # Navigation
 ========================================================*/
@@ -32,14 +38,27 @@
 	padding: 0.5em;
 }
 #currentPage {
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 1px solid #77261c;
+	border-bottom: 1px solid #77261c;
 	padding: 0.5em;
 }
+ul#menu>:first-child {
+	border-top: 0px;
+}
+ul#menu>:last-child {
+	border-bottom: 0px;
+}
+
+
+/* # Content
+========================================================*/
 #indice {
 	float: none;
 	margin: 0 1% 0;
 	width: 100%;
 }
-
 .sezioneManuale {
 	margin: 0 1% 0;
 }
