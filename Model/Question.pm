@@ -12,7 +12,8 @@ use base 'Lib::Object';
 
 my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
 
-my $questionXPath = "/db/questions/question";
+my $questionBaseXPath = "/db/questions";
+my $questionXPath = $questionBaseXPath."/question";
 my $questionPerPage = 30;
 
 ####################
@@ -314,7 +315,7 @@ sub update {
 sub insert {
 	my ($self) = @_;
 
-	$db->addChild($questionXPath, $self->getAsNode());
+	$db->addChild($questionBaseXPath, $self->getAsNode());
 }
 
 
