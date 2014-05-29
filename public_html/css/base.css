@@ -205,6 +205,12 @@ caption {
 	display: block;
 	padding: 1em;
 }
+ul#menu>:first-child {
+	border-left: 0px;
+}
+ul#menu>:last-child {
+	border-right: 0px;
+}
 
 /* # Footer
 ========================================================*/
