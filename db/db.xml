@@ -38,7 +38,7 @@ Grazie</content>
 			<status>opened</status>
 		</question>
 		<question id="4">
-			<title>Cos'è Perl?</title>
+			<title>Cos'è Perl?1</title>
 			<content>Mi spiegate di cosa si tratta?
 Grazie</content>
 			<author>enrico.rotundo@studenti.unipd.it</author>
@@ -46,21 +46,20 @@ Grazie</content>
 			<status>opened</status>
 		</question>
 		<question id="5">
-			<title>Cos'è Perl?</title>
+			<title>Cos'è Perl?2</title>
 			<content>Mi spiegate di cosa si tratta?
 Grazie</content><author>enrico.rotundo@studenti.unipd.it</author>
 			<insertDate>2014-04-27</insertDate>
 			<status>opened</status>
 		</question>
 		<question id="6">
-			<title>Cos'è Perl?</title>
+			<title>Cos'è Perl?3</title>
 			<content>Mi spiegate di cosa si tratta?
 Grazie</content><author>enrico.rotundo@studenti.unipd.it</author>
 			<insertDate>2014-04-27</insertDate>
 			<status>solved</status>
 		</question>
 	</questions>
-
 	<answers>
 		<answer id="1">
 			<content>Perl è un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalità ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content>
