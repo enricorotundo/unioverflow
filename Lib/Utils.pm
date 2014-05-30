@@ -122,12 +122,8 @@ sub trim {
 
 sub not_empty {
 	my ($string) = @_;
-
-	if($string ne "" and (length $string > 1)){
-		return $string;
-	} else 	{
-		return "";
-	}
+	$string = trim($string);
+	return (($string ne "") || (length $string > 1))
 }
 
 1;
