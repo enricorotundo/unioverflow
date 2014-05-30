@@ -20,22 +20,15 @@
 	</users>
 
 	<questions>
-			<question id="1">
-			<title>Cos'è Perl?1</title>
-			<content>Mi spiegate di cosa si tratta?
-Grazie</content>
-			<author>enrico.rotundo@studenti.unipd.it</author>
-			<insertDate>2014-04-27</insertDate>
-			<status>opened</status>
-		</question>
-		<question id="2">
+			
+		<question id="1">
 			<title>Come viene visualizzato questa domanda quando l'utente è incapace e inserisce un titolo che è decisamente troppo lungo per essere visualizzato tutto sulla stessa riga? E se il titolo fosse ancora più lungo di quello che uno potebbe immaginarsi?</title>
 			<content>Ho scritto tutto nel titolo</content>
 			<author>federico.poli.1@studenti.unipd.it</author>
 			<insertDate>2014-04-27</insertDate>
 			<status>opened</status>
 		</question>
-		<question id="3">
+		<question id="2">
 			<title>Siamo sicuri che i caratteri "ÀÈÌÒÙàèìòùÈÉ&lt;&gt;%&amp;$?^#" vengano visualizzati correttamente?</title>
 			<content>Siamo sicuri che i caratteri "ÀÈÌÒÙàèìòùÈÉ&lt;&gt;%&amp;$?^#" vengano visualizzati correttamente?</content><author>federico.poli.1@studenti.unipd.it</author>
 			<insertDate>2014-04-27</insertDate>
