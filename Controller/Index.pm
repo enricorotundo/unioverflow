@@ -20,7 +20,7 @@ sub handler {
 	if ($page eq "" or $page == 0) {
 		$page = 1;
 	}
-	my $questionsPerPage = 3;
+	my $questionsPerPage = 9;
 	my $data;
 
 	# Se è stata effettuata una ricerca e non è una ricerca vuota (se cerco " " mi aspetto tutte le domande)
