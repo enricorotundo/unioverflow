@@ -9,13 +9,9 @@ use Model::Question;
 use POSIX; # per ceil
 use Lib::Sanitize; # Per filtrare gli input
 use Lib::Utils;
-#use Model::dbFiller; #TODO da cancellare 
 
 sub handler {
 
-	#dbFiller
-	#Model::dbFiller->dbFiller(); # TODO da cancellare
-	
 	# Get parameters
 	my ($req, $res) = @_;
 	my $TestoDaCercare = Lib::Sanitize::search_query($req->param("testoDaCercare")) or "";

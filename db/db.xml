@@ -59,7 +59,7 @@ non sono sicuro di aver capito come svolgere questa parte.&#13;
                              riduci(arco p,&#13;
                                          vertice p);&#13;
       }&#13;
-}*</content><author>giacomo.fornari@studenti.unipd.it</author><insertDate>2014-05-30</insertDate><status>opened</status></question><question id="3"><title>Linguaggio C, dividere una stringa in più stringhe</title><content>**Testo:**&#13;
+}*</content><author>giacomo.fornari@studenti.unipd.it</author><insertDate>2014-05-12</insertDate><status>opened</status></question><question id="3"><title>Linguaggio C, dividere una stringa in più stringhe</title><content>**Testo:**&#13;
 &#13;
 Definire il tipo di dato record Automobile, contenente i seguenti campi:&#13;
 - marca, di tipo stringa (max 20 caratteri)&#13;
@@ -78,11 +78,11 @@ fiat panda 9000&#13;
 lancia y 12500&#13;
 volkswagen golf 15000&#13;
 fiat punto 11000&#13;
-audi quattro 60000*</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-30</insertDate><status>opened</status></question><question id="4"><title>elimare elemento di una lista</title><content>ragazzi scusate è possibile implementare una funzione void che elimini un elemento da una lista doppiamente puntata?</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-30</insertDate><status>opened</status></question><question id="1"><title>PROBLEMA COMPILAZIONE FILE C++ SU UBUNTU</title><content>Salv a tutti, sono uno studente di informatica e sto eseguendo un progetto riguardo la realizazzione di un GPS. &#13;
+audi quattro 60000*</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-15</insertDate><status>opened</status></question><question id="4"><title>elimare elemento di una lista</title><content>ragazzi scusate è possibile implementare una funzione void che elimini un elemento da una lista doppiamente puntata?</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-30</insertDate><status>opened</status></question><question id="1"><title>PROBLEMA COMPILAZIONE FILE C++ SU UBUNTU</title><content>Salv a tutti, sono uno studente di informatica e sto eseguendo un progetto riguardo la realizazzione di un GPS. &#13;
 Qaundo vado a compilare il file main.cpp spunta questo errore: In file included from main.cpp:14:0:&#13;
 TA.h:24:2: error: expected class-name before ‘{’ token&#13;
 &#13;
-Qualcuno di voi sa cosa possa essere? Se volete vi posso anche inviare il codice.</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-30</insertDate><status>solved</status></question><question id="5"><title>[C++]Memorizzare file in memoria.</title><content>Salve a tutti, devo memorizzare il contenuto di un file in memoria, dato che nel corso del mio programma dovrò accedervi molte volte e scrorrerlo un po' in tutti i modi, inoltre ha un numero limitato di righe, ecco un esempio:&#13;
+Qualcuno di voi sa cosa possa essere? Se volete vi posso anche inviare il codice.</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-15</insertDate><status>solved</status></question><question id="5"><title>[C++]Memorizzare file in memoria.</title><content>Salve a tutti, devo memorizzare il contenuto di un file in memoria, dato che nel corso del mio programma dovrò accedervi molte volte e scrorrerlo un po' in tutti i modi, inoltre ha un numero limitato di righe, ecco un esempio:&#13;
 &#13;
 ID NOME COGNOME NUMERO&#13;
 1 Andrea Bianchi 544234234&#13;
@@ -101,7 +101,7 @@ int i=0;&#13;
    {&#13;
     mazzoPrincipale&gt;&gt;contentPrinc[i][0]&gt;&gt;contentPrinc[i][1]&gt;&gt;contentPrinc[i][2]&gt;&gt;contentPrinc[i][3]&#13;
         i++;&#13;
-   }*</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-30</insertDate><status>opened</status></question><question id="6"><title>Esercizio esame imminente</title><content>Ciao a tutti ragazzi, ho un problema con questo semplice programma. Praticamente non mi stampa la lista aggiornata una volta che faccio l'inserimento in coda. Grazie a tutti!&#13;
+   }*</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question><question id="6"><title>Esercizio esame imminente</title><content>Ciao a tutti ragazzi, ho un problema con questo semplice programma. Praticamente non mi stampa la lista aggiornata una volta che faccio l'inserimento in coda. Grazie a tutti!&#13;
 P.s. vi allego programma e output&#13;
 &#13;
 /* Programma per la costruzione e l'inserimento in coda di un elemento in una stringa */&#13;
@@ -191,11 +191,11 @@ scanf(" %c", &amp;elem);&#13;
 insincoda(&amp;lista, elem);&#13;
 stampalista(lista);&#13;
 return 0;&#13;
-}* </content><author>serena.girardi@studenti.unipd.it</author><insertDate>2014-05-30</insertDate><status>opened</status></question><question id="7"><title>Linguaggio C, ritornare puntatore alla componente dell'array</title><content>Implementare float* minimo(const float* array, int size)&#13;
+}* </content><author>serena.girardi@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question><question id="7"><title>Linguaggio C, ritornare puntatore alla componente dell'array</title><content>Implementare float* minimo(const float* array, int size)&#13;
 &#13;
-che, presi in input un array di float e la sua dimensione size, restituisce il puntatore alla componente dell’array contenente il valore minimo. </content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-30</insertDate><status>opened</status></question><question id="8"><title>Linguaggio C, ritornare puntatore alla componente dell'array</title><content>Implementare float* minimo(const float* array, int size)&#13;
+che, presi in input un array di float e la sua dimensione size, restituisce il puntatore alla componente dell’array contenente il valore minimo. </content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question><question id="8"><title>Linguaggio C, ritornare puntatore alla componente dell'array</title><content>Implementare float* minimo(const float* array, int size)&#13;
 &#13;
-che, presi in input un array di float e la sua dimensione size, restituisce il puntatore alla componente dell’array contenente il valore minimo. </content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-30</insertDate><status>opened</status></question></questions>
+che, presi in input un array di float e la sua dimensione size, restituisce il puntatore alla componente dell’array contenente il valore minimo. </content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question></questions>
 	<answers>
 		<answer id="1">
 			<content>Perl è un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalità ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content>
@@ -213,7 +213,7 @@ Si vedono bene?</content>
 			<insertDate>2014-04-29</insertDate>
 		</answer>
 	<answer id="3"><content>Funziona tutto no?&#13;
-*Serena*</content><author>serena.girardi@studenti.unipd.it</author><question>2</question><insertDate>2014-05-30</insertDate></answer><answer id="4"><content>Mostra l'include</content><author>federico.poli.1@studenti.unipd.it</author><question>3</question><insertDate>2014-05-30</insertDate></answer><answer id="5"><content>*#include &lt;unistd.h&gt;&#13;
+*Serena*</content><author>serena.girardi@studenti.unipd.it</author><question>2</question><insertDate>2014-05-18</insertDate></answer><answer id="4"><content>Mostra l'include</content><author>federico.poli.1@studenti.unipd.it</author><question>3</question><insertDate>2014-05-30</insertDate></answer><answer id="5"><content>*#include &lt;unistd.h&gt;&#13;
 #include &lt;pthread.h&gt;&#13;
 #include &lt;stdlib.h&gt;&#13;
 #include &lt;stdio.h&gt;&#13;
@@ -221,7 +221,7 @@ Si vedono bene?</content>
 #include &lt;math.h&gt;&#13;
 &#13;
 //#include "GPS.h"&#13;
-#include "TA.h"*</content><author>serena.girardi@studenti.unipd.it</author><question>3</question><insertDate>2014-05-30</insertDate></answer><answer id="6"><content>Beh ... io intendevo il contenuto di TA.h ...</content><author>serena.girardi@studenti.unipd.it</author><question>3</question><insertDate>2014-05-30</insertDate></answer><answer id="7"><content>scusa avevo letto male...&#13;
+#include "TA.h"*</content><author>serena.girardi@studenti.unipd.it</author><question>3</question><insertDate>2014-05-21</insertDate></answer><answer id="6"><content>Beh ... io intendevo il contenuto di TA.h ...</content><author>serena.girardi@studenti.unipd.it</author><question>3</question><insertDate>2014-05-22</insertDate></answer><answer id="7"><content>scusa avevo letto male...&#13;
 *#include &lt;stdio.h&gt;&#13;
 #include &lt;string.h&gt;&#13;
 #include "GPS.h"&#13;
@@ -546,7 +546,7 @@ fclose(positionFile);&#13;
 direzione = direction;&#13;
 velocita = speed;&#13;
 }&#13;
-};*</content><author>giacomo.fornari@studenti.unipd.it</author><question>3</question><insertDate>2014-05-30</insertDate></answer><answer id="8"><content>1) INFINITO: qualuque numero MOOOOLTO grande va bene. A seconda del tipo di numero che usi, e' definito il numero piu' grande esprimibile: int, long, long long, float, double, long double. Tra l'altro, se cerchi un po' con Google, trovi anche il .h che contiene le definizioni di tali valori.&#13;
+};*</content><author>giacomo.fornari@studenti.unipd.it</author><question>3</question><insertDate>2014-05-22</insertDate></answer><answer id="8"><content>1) INFINITO: qualuque numero MOOOOLTO grande va bene. A seconda del tipo di numero che usi, e' definito il numero piu' grande esprimibile: int, long, long long, float, double, long double. Tra l'altro, se cerchi un po' con Google, trovi anche il .h che contiene le definizioni di tali valori.&#13;
 &#13;
 2) fondamentalmente ti serve sapere quali nodi del grafi hai processato e quali devi ancora processare.&#13;
 Non esiste una soluzione unica. Immagina una possibile soluzione e descrivila. Poi se ne parla.&#13;
@@ -557,7 +557,7 @@ Molto dipende da come identificherai i nodi del grafo:&#13;
 2) mediante una stringa?&#13;
 3) mediante il puntatore&#13;
 4) mediante un numero generato a caso?&#13;
-5) qualche altro meccanismo?</content><author>giacomo.fornari@studenti.unipd.it</author><question>4</question><insertDate>2014-05-30</insertDate></answer>
+5) qualche altro meccanismo?</content><author>giacomo.fornari@studenti.unipd.it</author><question>4</question><insertDate>2014-05-22</insertDate></answer>
 <answer id="9"><content>Innanzitutto ti ringrazio per la risposta.  :) &#13;
 &#13;
 Tornando all'esercizio:&#13;
@@ -592,7 +592,7 @@ v_d v_a 18.2 7.3 19.7&#13;
 v_d v_c 12.5 1.6 5.4&#13;
 v_d v_e 11.6 3.2 12.7&#13;
 1&#13;
-v_e v_a 12.6 16.2 14.1*</content><author>giacomo.fornari@studenti.unipd.it</author><question>4</question><insertDate>2014-05-30</insertDate></answer><answer id="10"><content>Ora che ci penso, per rappresentare questi due:&#13;
+v_e v_a 12.6 16.2 14.1*</content><author>giacomo.fornari@studenti.unipd.it</author><question>4</question><insertDate>2014-05-24</insertDate></answer><answer id="10"><content>Ora che ci penso, per rappresentare questi due:&#13;
 /costruisci un insieme per i vertici già considerati (inizialmente vuoto) .;&#13;
 /costruisci una struttura per i vertici da considerare (inizialmente tutti) .;&#13;
 &#13;
