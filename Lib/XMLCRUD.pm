@@ -137,7 +137,7 @@ sub findOne {
 sub replaceNode {
 	my ($self, $xpath, $element) = @_;
 	
-	my ($doc, $result) = $self->loadFindXPath( $xpath );
+	my ($doc, $result) = $self->loadFindOneXPath( $xpath );
 	
 	my $parent = $result->parentNode;
 	$parent->removeChild($result);
@@ -153,7 +153,7 @@ sub replaceNode {
 sub deleteNode {
 	my ($self, $xpath) = @_;
 	
-	my ($doc, $result) = $self->loadFindXPath( $xpath );
+	my ($doc, $result) = $self->loadFindOneXPath( $xpath );
 	
 	my $parent = $result->parentNode;
 	$parent->removeChild($result);

@@ -58,9 +58,36 @@ sub getQuestionById {
 	if($question){
 		return Model::Question->new(
 			"identifier" => $question->findvalue( "\@id" ),
+			"id" => $question->findvalue( "\@id" ),
 			"author" => $question->findvalue( "author" ),
 			"title" => $question->findvalue( "title" ),
 			"content" => Lib::Markup::convert($question->findvalue( "content" )),
+			"status" => $question->findvalue( "status" ),
+			"insertDate" => $question->findvalue( "insertDate" )
+		);
+	}else
+	{
+		# gestire errore
+	}
+}
+
+
+# Carica il file xml e restituisce l'oggetto della domanda con id 'id'
+# oppure "" (la stringa vuota è il false di Perl) se non esiste
+# non effettua il markup -> usata da setQuestionAsSolved e setQuestionAsOpened (riefettuava piu volte il markup)
+sub getQuestionByIdNoMarkup {
+	my ($id) = @_;
+
+	# recupera la domanda
+	my $question = $db->findOne( "/db/questions/question[\@id='$id']" );
+
+	if($question){
+		return Model::Question->new(
+			"identifier" => $question->findvalue( "\@id" ),
+			"id" => $question->findvalue( "\@id" ),
+			"author" => $question->findvalue( "author" ),
+			"title" => $question->findvalue( "title" ),
+			"content" => $question->findvalue( "content" ),
 			"status" => $question->findvalue( "status" ),
 			"insertDate" => $question->findvalue( "insertDate" )
 		);
@@ -91,7 +118,7 @@ sub getLastQuestions {
 
 	my @questions = sort {
     	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
-    	$aa cmp $bb;
+    	$bb cmp $aa;
   		} $db->findNodes('/db/questions/question');
 
 	foreach my $question (@questions)
@@ -137,7 +164,7 @@ sub getLastQuestionsFind {
 
 	my @questions = sort {
     	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
-    	$aa cmp $bb;
+    	$bb cmp $aa;
   		} $db->findNodes($questionXPathF);
 
 	foreach my $question (@questions)
@@ -201,8 +228,7 @@ sub getAsNode {
 
 sub setQuestionAsSolved {
 	my ($id) = @_;
-
-	my $question = getQuestionById($id);
+	my $question = getQuestionByIdNoMarkup($id);
 
 	if($question) {
 		$question->{status} = 'solved';
@@ -216,7 +242,7 @@ sub setQuestionAsSolved {
 sub setQuestionAsOpened {
 	my ($id) = @_;
 
-	my $question = getQuestionById($id);
+	my $question = getQuestionByIdNoMarkup($id);
 
 	if($question) {
 		$question->{status} = 'opened';
@@ -286,7 +312,7 @@ sub save {
 	my ($self) = @_;
 	my $id = $self->{"id"};
 
-	my $question = $db->findOne( $questionXPath . "[id = \"$id\"]" );
+	my $question = $db->findOne( $questionXPath . "[\@id = \"$id\"]" );
 
 	if ($question) {
 		$self->update()
@@ -302,7 +328,7 @@ sub update {
 	my ($self) = @_;
 
 	my $id = $self->{"id"};
-	$db->replaceNode($questionXPath . "[id = \"$id\" ]",  $self->getAsNode());
+	$db->replaceNode($questionXPath . "[\@id = \"$id\" ]",  $self->getAsNode());
 
 }
 

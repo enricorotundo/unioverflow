@@ -13,7 +13,8 @@ use base 'Lib::Object';
 
 my $db = Lib::XMLCRUD->new( "path" => $Lib::Config::dbPath );
 
-my $answerXPath = "/db/answers/answer";
+my $answerBaseXPath = "/db/answers";
+my $answerXPath = $answerBaseXPath."/answer";
 
 ####################
 #  Metodi statici  #
@@ -181,7 +182,7 @@ sub update {
 sub insert {
 	my ($self) = @_;
 
-	$db->addChild($answerXPath, $self->getAsNode());
+	$db->addChild($answerBaseXPath, $self->getAsNode());
 }
 
 
