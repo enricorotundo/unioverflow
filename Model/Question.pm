@@ -141,11 +141,11 @@ sub getLastQuestions {
 		push @list, $obj;
 	}
 
-	if (length(@list) <= $questionPerPage ) {
+	if (scalar(@list) <= $questionPerPage ) {
 		return @list;
 	}
 	else{
-		return @list[($page-1)*$questionPerPage .. ($page)*$questionPerPage - 1];
+		return splice(@list, ($page-1) * $questionPerPage, $questionPerPage);
 	}
 	
 }
