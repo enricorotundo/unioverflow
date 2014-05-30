@@ -111,4 +111,18 @@ sub replace {
 	return $string;
 }
 
+# Restituisce la stringa senza gli spazi all'inizio e alla fine
+# es. "   na na na na batman   " --> "na na na na batman"
+sub trim {
+	my ($string) = @_;
+	$string =~ s/^\s+//g;
+	$string =~ s/\s+$//g;
+	return $string;
+}
+
+sub not_empty {
+	my ($string) = @_;
+	return $string ne "";
+}
+
 1;

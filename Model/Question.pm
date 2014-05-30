@@ -7,6 +7,7 @@ use Lib::XMLCRUD;
 use Lib::Config;
 use Lib::Markup;
 use XML::LibXML;
+use Time::Piece; # per la data ISO
 
 use base 'Lib::Object';
 
@@ -228,13 +229,8 @@ sub setQuestionAsOpened {
 
 sub insertQuestion {
 	my ($title, $content, $author) = @_;
-	my $DAY;
-	my $MONTH;
-	my $YEAR;
 
-	($DAY, $MONTH, $YEAR) = (localtime)[3,4,5];
-	$YEAR += 1900; # ritorna la data a partire dal 1900
-	my $today = $YEAR . '-' . $MONTH . '-' . $DAY;
+	my $today = localtime->ymd();
 
 	my $newQuestion = Model::Question->new(
 			title => $title, 
