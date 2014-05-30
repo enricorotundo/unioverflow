@@ -16,14 +16,7 @@
 	</users>
 
 	<questions>
-		<question id="1">
-			<title>Cos'è Perl?</title>
-			<content>Mi spiegate di cosa si tratta?
-Grazie</content>
-			<author>enrico.rotundo@studenti.unipd.it</author>
-			<insertDate>2014-04-27</insertDate>
-			<status>opened</status>
-		</question>
+		
 		<question id="2">
 			<title>Come viene visualizzato questa domanda quando l'utente è incapace e inserisce un titolo che è decisamente troppo lungo per essere visualizzato tutto sulla stessa riga? E se il titolo fosse ancora più lungo di quello che uno potebbe immaginarsi?</title>
 			<content>Ho scritto tutto nel titolo</content>
@@ -59,7 +52,7 @@ Grazie</content><author>enrico.rotundo@studenti.unipd.it</author>
 			<insertDate>2014-04-27</insertDate>
 			<status>solved</status>
 		</question>
-	</questions>
+	<question id="1"><title>Cos'è Perl?</title><content>Mi spiegate di cosa si tratta?&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;br/&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;Grazie</content><author>enrico.rotundo@studenti.unipd.it</author><insertDate>2014-04-27</insertDate><status>solved</status></question></questions>
 	<answers>
 		<answer id="1">
 			<content>Perl è un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalità ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content>

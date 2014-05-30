@@ -58,6 +58,7 @@ sub getQuestionById {
 	if($question){
 		return Model::Question->new(
 			"identifier" => $question->findvalue( "\@id" ),
+			"id" => $question->findvalue( "\@id" ),
 			"author" => $question->findvalue( "author" ),
 			"title" => $question->findvalue( "title" ),
 			"content" => Lib::Markup::convert($question->findvalue( "content" )),
@@ -201,7 +202,6 @@ sub getAsNode {
 
 sub setQuestionAsSolved {
 	my ($id) = @_;
-
 	my $question = getQuestionById($id);
 
 	if($question) {
@@ -286,7 +286,7 @@ sub save {
 	my ($self) = @_;
 	my $id = $self->{"id"};
 
-	my $question = $db->findOne( $questionXPath . "[id = \"$id\"]" );
+	my $question = $db->findOne( $questionXPath . "[\@id = \"$id\"]" );
 
 	if ($question) {
 		$self->update()
@@ -302,7 +302,7 @@ sub update {
 	my ($self) = @_;
 
 	my $id = $self->{"id"};
-	$db->replaceNode($questionXPath . "[id = \"$id\" ]",  $self->getAsNode());
+	$db->replaceNode($questionXPath . "[\@id = \"$id\" ]",  $self->getAsNode());
 
 }
 
