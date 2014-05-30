@@ -17,7 +17,7 @@
 
 /* # Content
 =======================================================*/
-#rispondi-linkFormatta {
+#rispondi-linkFormatta, #chiedi-linkFormatta {
 	float:left;
 	font-size: 0.8em;
 }
