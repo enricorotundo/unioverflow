@@ -4,3 +4,4 @@
 log.txt
 config.mk
 *.DS_Store
+*.xml
