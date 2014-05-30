@@ -278,7 +278,9 @@ caption {
 	overflow: auto;
 	margin:0 auto;
 }
-
+#notLogged p, #error p, #domandaInserita p {
+	padding-top: 1em;
+}
 /* Manuale */
 #indice {
 	display: block;
@@ -302,7 +304,21 @@ caption {
 .sezioneManuale h4 {
 	border-bottom: 1px solid #545454;
 }
-
+/* Registrati */
+#success p, #error p {
+	padding-top: 1em;
+}
+#pageTitleRegistrazione{
+	display: block;
+	margin-top: 1em;
+	text-align: center;
+	font-size: 100%;
+	font-weight: bold;
+}
+/* Esci */
+#esci p {
+	padding-top: 1em;
+}
 
 /* # Navigation
 ========================================================*/

@@ -29,16 +29,17 @@
 			</form>
 
 			[% ELSE %]
-				<!-- TODO reindirizzare alla pagina vedi-domanda corrispondente -->
-				<p> La tua domanda è stata inserita correttamente! </br>
-					<a tabindex="[% i=i+1; i %]" accesskey="l" href="vedi-domanda.cgi?id=[% newId %]" title="Vai alla domanda che hai inserito">Vai alla domanda appena inserita! </a>
-				</p>
+				<div id="domandaInserita">
+					<p> La tua domanda è stata inserita correttamente! </br>
+						<a tabindex="[% i=i+1; i %]" accesskey="l" href="vedi-domanda.cgi?id=[% newId %]" title="Vai alla domanda che hai inserito">Vai alla domanda appena inserita! </a>
+					</p>
+				</div>
 			[% END %]
 
 
 		[% ELSE %]
 			<div id="notLogged">
-				<p> Per scrivere una domanda devi aver eseguito l'accesso! </p>
+				<p><strong>Per scrivere una domanda devi aver eseguito l'accesso!</strong></p>
 				<p> 
 					<a tabindex="[% i=i+1; i %]" accesskey="l" href="accedi.cgi" title="Vai alla pagina per accedere">Effettua accesso </a> o 
 					<a tabindex="[% i=i+1; i %]" accesskey="l" href="registrati.cgi" title="Vai alla pagina per registrarti">registrati </a>
