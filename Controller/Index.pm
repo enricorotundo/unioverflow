@@ -30,12 +30,12 @@ sub handler {
 
 		if ($totalQuestionsF == 0) {
 			$data = {
-			"logged" => Middleware::Authentication::isLogged($req),
-			"notFound" => 1,
-			"pageInfo" => {
-					currentPageNumber => 1,
-					totalPages => 1
-				}
+				"logged" => Middleware::Authentication::isLogged($req),
+				"notFound" => 1,
+				"pageInfo" => {
+						currentPageNumber => 1,
+						totalPages => 1
+					}
 			};
 		}
 		else {

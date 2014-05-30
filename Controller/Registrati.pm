@@ -59,7 +59,7 @@ sub handler {
 				$msg = $msg . "L'email deve finire con '\@studenti.unipd.it' <br>"
 			}
 			if (not $fields_check->{"password_check"}) {
-				$msg = $msg . "La password deve essere almeno di 8 caratteri e non può contenere caratteri speciali<br>"
+				$msg = $msg . "La password deve essere almeno di 8 caratteri e non pu&ograve; contenere caratteri speciali<br>"
 			}
 			if (not $fields_check->{"password_confirm_check"}) {
 				$msg = $msg . "La password di conferma non corrisponde!"
