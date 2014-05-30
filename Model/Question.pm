@@ -71,6 +71,32 @@ sub getQuestionById {
 	}
 }
 
+
+# Carica il file xml e restituisce l'oggetto della domanda con id 'id'
+# oppure "" (la stringa vuota è il false di Perl) se non esiste
+# non effettua il markup -> usata da setQuestionAsSolved e setQuestionAsOpened (riefettuava piu volte il markup)
+sub getQuestionByIdNoMarkup {
+	my ($id) = @_;
+
+	# recupera la domanda
+	my $question = $db->findOne( "/db/questions/question[\@id='$id']" );
+
+	if($question){
+		return Model::Question->new(
+			"identifier" => $question->findvalue( "\@id" ),
+			"id" => $question->findvalue( "\@id" ),
+			"author" => $question->findvalue( "author" ),
+			"title" => $question->findvalue( "title" ),
+			"content" => $question->findvalue( "content" ),
+			"status" => $question->findvalue( "status" ),
+			"insertDate" => $question->findvalue( "insertDate" )
+		);
+	}else
+	{
+		# gestire errore
+	}
+}
+
 # Ordina tutte le domande per data (o per id...) e ne restituisce $questionPerPage
 # quelle che vanno dalla numero ($page-1)*$questionPerPage (esclusa) alla ($page)*$questionPerPage (inclusa)
 # es.
@@ -202,7 +228,7 @@ sub getAsNode {
 
 sub setQuestionAsSolved {
 	my ($id) = @_;
-	my $question = getQuestionById($id);
+	my $question = getQuestionByIdNoMarkup($id);
 
 	if($question) {
 		$question->{status} = 'solved';
@@ -216,7 +242,7 @@ sub setQuestionAsSolved {
 sub setQuestionAsOpened {
 	my ($id) = @_;
 
-	my $question = getQuestionById($id);
+	my $question = getQuestionByIdNoMarkup($id);
 
 	if($question) {
 		$question->{status} = 'opened';
