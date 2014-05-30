@@ -57,8 +57,8 @@
 
     <xs:complexType name="Tquestion">
         <xs:sequence>
-            <xs:element name="title" type="Ttitle" />
-            <xs:element name="content" type="Tcontent" />
+            <xs:element name="title" type="xs:string" />
+            <xs:element name="content" type="xs:string" />
             <xs:element name="author" type="Temail" />
             <xs:element name="insertDate" type="xs:date" />
             <xs:element name="status" type="Tstatus"/>
@@ -76,7 +76,7 @@
 
     <xs:complexType name="Tanswer">
         <xs:sequence>
-            <xs:element name="content" type="Tcontent" />
+            <xs:element name="content" type="xs:string" />
             <xs:element name="author" type="Temail" />
             <xs:element name="question" type="xs:unsignedInt" />
             <xs:element name="insertDate" type="xs:date" />
@@ -92,21 +92,9 @@
         </xs:restriction> 
     </xs:simpleType>
 
-    <xs:simpleType name="Tcontent"> 
-        <xs:restriction base="xs:string"> 
-            <xs:maxLength value="3000" />
-        </xs:restriction> 
-    </xs:simpleType>
-
-    <xs:simpleType name="Ttitle"> 
-        <xs:restriction base="xs:string"> 
-            <xs:maxLength value="300" />
-        </xs:restriction> 
-    </xs:simpleType>
-
     <xs:simpleType name="Tpassword"> 
         <xs:restriction base="xs:string">
-          <xs:pattern value="[a-zA-Z0-9]{8,24}"/> <!-- TODO: da confermare -->
+          <xs:pattern value="[a-zA-Z0-9]{8,24}"/>
         </xs:restriction>
     </xs:simpleType>
 
