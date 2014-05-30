@@ -4,7 +4,7 @@
 
 	<div id="content">
 		<span id="path">Ti trovi in: Domande</span>
-		<form action="index.cgi" method="post" id="cerca">
+		<form id="cerca" action="index.cgi" method="post">
 			<fieldset>
 				<legend>Cerca</legend>
 				<label for="testoDaCercare"></label>
@@ -52,23 +52,24 @@
 		END
 		%]
 		[% IF pageInfo.totalPages != 1 %]
-			<h3 id="paginglabel" class="aural">Paginazione</h3>
-			<ul>
-			[% IF pageInfo.currentPageNumber >= 3 %]
-				<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber - 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
-			[% END %]
-			[% IF pageInfo.currentPageNumber >= 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="aural">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
-			[% END %]
-				<li><p><span class="aural">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
-			
-			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
-				<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="aural">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
-			[% END %]
-			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber + 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
-			[% END %]
-			</ul>
+			<div id="pagination-wrapper">
+				<h3 id="paginationLabel" class="aural">Paginazione</h3>
+				<ul id="pagination">
+				[% IF pageInfo.currentPageNumber >= 3 %]
+					<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber - 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
+				[% END %]
+				[% IF pageInfo.currentPageNumber >= 2 %]
+					<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="aural">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
+				[% END %]
+					<li><p><span class="aural">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
+				[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
+					<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="aural">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
+				[% END %]
+				[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
+					<li><a tabindex="[% i=i+1; i %]" href="index.cgi?page=[% pageInfo.currentPageNumber + 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+				[% END %]
+				</ul>
+			</div>
 		[% END %]
 	</div>
 [% END %]
