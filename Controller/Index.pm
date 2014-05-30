@@ -26,18 +26,7 @@ sub handler {
 	my $error;
 
 	# Se è stata effettuata una ricerca e non è una ricerca vuota (se cerco " " mi aspetto tutte le domande)
-	if ($req->attr("method") eq 'POST' && !(Lib::Utils::trim($TestoDaCercareSano) eq '')) { 
-
-		if($TestoDaCercareOriginale ne $TestoDaCercareSano){
-			# creo il msg di errore
-			my $msg = "I caratteri &quot; &#39; sono stati ignorati.";
-
-			# Execution
-			$error = {
-				"error" => 1,
-				"msg" => $msg
-			};
-		}
+	if ($req->attr("method") eq 'GET' && !(Lib::Utils::trim($TestoDaCercareSano) eq '')) { 
 
 		my $totalQuestionsF = Model::Question::countQuestionsFind($TestoDaCercareSano); 
 
@@ -59,15 +48,35 @@ sub handler {
 			my $totalPages = ceil( $totalQuestionsF / $questionsPerPage );
 			my @lastQuestionsFind = Model::Question::getLastQuestionsFind($page, $questionsPerPage, $TestoDaCercareSano);
 
-			# Execution
-			$data = {
-				"logged" => Middleware::Authentication::isLogged($req),
-				"questions" => \@lastQuestionsFind,
-				"pageInfo" => {
-					currentPageNumber => $page,
-					totalPages => $totalPages
-				}
-			};
+
+			if($TestoDaCercareOriginale ne $TestoDaCercareSano){
+				# creo il msg di errore
+				my $msg = "I caratteri &quot; &#39; sono stati ignorati.";
+
+				# Execution
+				$data = {
+					"logged" => Middleware::Authentication::isLogged($req),
+					"questions" => \@lastQuestionsFind,
+					"pageInfo" => {
+						currentPageNumber => $page,
+						totalPages => $totalPages
+					},
+					"error" => 1,
+					"msg" => $msg
+				};
+			}
+			else {
+
+				# Execution
+				$data = {
+					"logged" => Middleware::Authentication::isLogged($req),
+					"questions" => \@lastQuestionsFind,
+					"pageInfo" => {
+						currentPageNumber => $page,
+						totalPages => $totalPages
+					}
+				};
+			}
 		}	
 	}
 	
@@ -90,8 +99,6 @@ sub handler {
 			}
 		};
 	}
-
-	$data = ($data, $error); 
 
 	# Response
 	$res->write(Lib::Renderer::render('index.html', $data));
