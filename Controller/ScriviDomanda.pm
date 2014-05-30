@@ -8,30 +8,36 @@ use Lib::Utils;
 use Middleware::Session;
 use Middleware::Authentication;
 use Model::Question;
+use Lib::Sanitize; # Per filtrare gli input
+use Lib::Utils;
 
 sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	my $data = { };
-	my $title = $req->param("titolo") or "";
-	my $content = $req->param("testo") or "";
-	my $author = Middleware::Session::getSession($req)->param("email") or "";
+	my $session = Middleware::Session::getSession($req);
+	my $author = "";
+	if ($session) {
+		$author = $session->param("email") or "";
+	}
 
 	# controllo se arrivo in scrivi-domanda inviando dei dati con POST
 	if ($req->attr("method") eq 'POST') {
-		my $fields_check = fieldsCheck($title, $content);
+		my $fields_check = fieldsCheck(
+			$req->param("titolo"),
+			$req->param("testo")
+		);
 
 		if($fields_check->{"check"} ) {
-
+			my $title = Lib::Sanitize::title($req->param("titolo"));
+			my $content = Lib::Sanitize::content($req->param("testo"));
+			
 			# inserisco nel db la domanda
-			my $titleXML = Lib::Utils::replaceXMLSpecialChars($title); # Per togliere i caratteri speciali
-			my $contentXML = Lib::Utils::replaceXMLSpecialChars($content);
-
 			my $success;
 
-			my $newId = Model::Question::insertQuestion($titleXML, $contentXML, $author);
+			my $newId = Model::Question::insertQuestion($title, $content, $author);
 			if( $newId != 0 ) {
-			#if (Model::Question::insertQuestion($titleXML, $contentXML, $author)) {
+			#if (Model::Question::insertQuestion($title, $content, $author)) {
 				$success = 1; 
 			} else {
 				$success = ""; 
@@ -65,7 +71,7 @@ sub handler {
 		$data = { 
 			"logged" => Middleware::Authentication::isLogged($req),
 			"session" => {
-					"email" => Middleware::Session::getSession($req)->param("email")
+				"email" => $author
 			}
 		}
 	}
@@ -80,18 +86,17 @@ sub fieldsCheck {
 	my $title_check;
 	my $content_check;
 
-	# TODO trovare come verificare che il testo inserito non sia un'arma distruttiva 
-	# if ($title ~= cattivoCodice) {
-	# 		$title_check = 1;
-	# } else {
-	# 	$title_check = "";
-	# }
+	if (Lib::Utils::not_empty($title) and $title eq Lib::Sanitize::title($title)) {
+		$title_check = 1;
+	} else {
+		$title_check = "";
+	}
 
-	# if ($content =~ superCattivoCodice) {
-	# 	$content_check = 1;
-	# } else {
-	# 	$content_check = "";
-	# }
+	if (Lib::Utils::not_empty($content) and $content eq Lib::Sanitize::title($content)) {
+		$content_check = 1;
+	} else {
+		$content_check = "";
+	}
 
 	$title_check = 1;
 	$content_check = 1;
@@ -108,6 +113,5 @@ sub fieldsCheck {
 		"title_check" => $title_check,
 	}
 }
-
 
 1;

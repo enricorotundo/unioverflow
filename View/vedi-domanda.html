@@ -35,11 +35,11 @@
 		</div>
 		</div>
 		<div id="container-answer">
-		[% IF (answers.size() == 0) %]
-			<h4>Risposte</h4>
+		[% IF (totalAnswers == 0) %]
+			<h4>0 risposte</h4>
 			<p>Non ci sono ancora risposte a questa domanda!</p>
 		[% ELSE %]
-			<h4>[% answers.size() == 1 ? 'Risposta' : 'Risposte' %]</h4>
+			<h4>[% totalAnswers == 1 ? '1 risposta' : totalAnswers _ ' risposte' %]</h4>
 			<ul>
 				[% FOREACH answer IN answers %]
 					<li class="answer">
@@ -53,7 +53,7 @@
 		[% IF logged && question.status == 'opened' %]
 			<div id="rispondi">
 				<h4>Rispondi</h4>
-				<p><a id="rispondi-linkFormatta" tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#formattazione" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
+				<p><a id="rispondi-linkFormatta" tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#FormattaTesto" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
 				<form id="rispondi-form" action="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.totalPages %]" method="post">
 					<fieldset>
 						<legend>Inserisci la tua risposta</legend>
@@ -64,24 +64,26 @@
 				</form>
 			</div>
 		[% END %]
-		[% IF pageInfo.totalPages != 1 %]
-			<h3 id="paginationLabel" class="aural">Paginazione</h3>
-			<ul id="pagination">
-			[% IF pageInfo.currentPageNumber >= 3 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber - 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
-			[% END %]
-			[% IF pageInfo.currentPageNumber >= 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="aural">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
-			[% END %]
-				<li><p><span class="aural">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
-			
-			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="aural">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
-			[% END %]
-			[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
-				<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
-			[% END %]
-			</ul>
-	[% END %]
+		[% IF pageInfo.totalPages > 1 %]
+			<div id="pagination-wrapper">
+				<h3 id="paginationLabel" class="aural">Paginazione</h3>
+				<ul id="pagination">
+				[% IF pageInfo.currentPageNumber >= 3 %]
+					<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber - 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
+				[% END %]
+				[% IF pageInfo.currentPageNumber >= 2 %]
+					<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber - 1 %]" rel="prev"><span class="prev">Precedente<span class="aural">: Pagina </span></span>[% pageInfo.currentPageNumber - 1 %]</a></li>
+				[% END %]
+					<li><p><span class="aural">Attualmente stai leggendo pagina </span>[% pageInfo.currentPageNumber %]</p></li>
+
+				[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 1 %]
+					<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 1 %]" rel="next"><span class="next">Successiva<span class="aural">: Pagina </span></span>[% pageInfo.currentPageNumber + 1 %]</a></li>
+				[% END %]
+				[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
+					<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+				[% END %]
+				</ul>
+			</div>
+		[% END %]
 	</div>
 [% END %]

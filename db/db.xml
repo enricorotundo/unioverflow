@@ -6,27 +6,82 @@
 			<password>12345678</password>
 		</user>
 		<user>
-		<email>giacomo.fornari@studenti.unipd.it</email>
+			<email>giacomo.fornari@studenti.unipd.it</email>
 			<password>12345678</password>
 		</user>
+		<user>
+			<email>federico.poli.1@studenti.unipd.it</email>
+			<password>federico</password>
+		</user>
+		<user>
+			<email>serena.girardi@studenti.unipd.it</email>
+			<password>qwertyuiop</password>
+		</user>
 	</users>
-	<questions>
 
-	<question id="1"><title>Cos&amp;apos;&amp;egrave; Perl?</title><content>Mi spiegate di cosa si tratta?&#13;
-Grazie</content><author>enrico.rotundo@studenti.unipd.it</author><insertDate>2014-4-27</insertDate><status>opened</status></question>
-<question id="2"><title>Cos&amp;apos;&amp;egrave; Perl? bene male la morte?</title><content>Mi spiegate di cosa si tratta?Alcune caratteristiche del Perl, tra cui la sintassi, permettono una sintesi raramente possibile con altri linguaggi ed impossibile con linguaggi tipo Java e i sorgenti possono dunque essere molto densi di significato, tanto da risultare criptici a chi non ne conosca i rudimenti. In compenso su Internet cè così tanta documentazione sul Perl che è possibile avvicinarsi rapidamente al linguaggio e con opportuni testi di riferimento iniziarne la strada dell apprendimento.&#13;
-Grazie</content><author>enrico.rotundo@studenti.unipd.it</author><insertDate>2014-4-27</insertDate><status>opened</status></question>
-<question id="3"><title>Cos&amp;apos;&amp;egrave; Perl?</title><content>Mi spiegate di cosa si tratta?&#13;
-Grazie</content><author>enrico.rotundo@studenti.unipd.it</author><insertDate>2014-4-27</insertDate><status>opened</status></question>
-<question id="4"><title>Cos&amp;apos;&amp;egrave; Perl?</title><content>Mi spiegate di cosa si tratta?&#13;
-Grazie</content><author>enrico.rotundo@studenti.unipd.it</author><insertDate>2014-4-27</insertDate><status>opened</status></question>
-<question id="5"><title>Cos&amp;apos;&amp;egrave; Perl?</title><content>Mi spiegate di cosa si tratta?&#13;
-Grazie</content><author>enrico.rotundo@studenti.unipd.it</author><insertDate>2014-4-27</insertDate><status>solved</status></question>
-<question id="6"><title>Foo</title><content>Bar</content><author>enrico.rotundo@studenti.unipd.it</author><insertDate>2014-4-29</insertDate><status>opened</status></question><question id="7"><title>                         </title><content/><author>enrico.rotundo@studenti.unipd.it</author><insertDate>2014-4-29</insertDate><status>opened</status></question></questions>
+	<questions>
+		<question id="1">
+			<title>Cos'è Perl?</title>
+			<content>Mi spiegate di cosa si tratta?
+Grazie</content>
+			<author>enrico.rotundo@studenti.unipd.it</author>
+			<insertDate>2014-04-27</insertDate>
+			<status>opened</status>
+		</question>
+		<question id="2">
+			<title>Come viene visualizzato questa domanda quando l'utente è incapace e inserisce un titolo che è decisamente troppo lungo per essere visualizzato tutto sulla stessa riga? E se il titolo fosse ancora più lungo di quello che uno potebbe immaginarsi?</title>
+			<content>Ho scritto tutto nel titolo</content>
+			<author>federico.poli.1@studenti.unipd.it</author>
+			<insertDate>2014-04-27</insertDate>
+			<status>opened</status>
+		</question>
+		<question id="3">
+			<title>Siamo sicuri che i caratteri "ÀÈÌÒÙàèìòùÈÉ&lt;&gt;%&amp;$?^#" vengano visualizzati correttamente?</title>
+			<content>Siamo sicuri che i caratteri "ÀÈÌÒÙàèìòùÈÉ&lt;&gt;%&amp;$?^#" vengano visualizzati correttamente?</content><author>federico.poli.1@studenti.unipd.it</author>
+			<insertDate>2014-04-27</insertDate>
+			<status>opened</status>
+		</question>
+		<question id="4">
+			<title>Cos'è Perl?</title>
+			<content>Mi spiegate di cosa si tratta?
+Grazie</content>
+			<author>enrico.rotundo@studenti.unipd.it</author>
+			<insertDate>2014-04-27</insertDate>
+			<status>opened</status>
+		</question>
+		<question id="5">
+			<title>Cos'è Perl?</title>
+			<content>Mi spiegate di cosa si tratta?
+Grazie</content><author>enrico.rotundo@studenti.unipd.it</author>
+			<insertDate>2014-04-27</insertDate>
+			<status>opened</status>
+		</question>
+		<question id="6">
+			<title>Cos'è Perl?</title>
+			<content>Mi spiegate di cosa si tratta?
+Grazie</content><author>enrico.rotundo@studenti.unipd.it</author>
+			<insertDate>2014-04-27</insertDate>
+			<status>solved</status>
+		</question>
+	</questions>
 
 	<answers>
-	<answer id="1"><content>Perl &amp;egrave; un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalit&amp;agrave; ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content><author>enrico.rotundo@studenti.unipd.it</author><question>1</question><insertDate>2014-4-27</insertDate></answer>
-<answer id="2"><content>Perl &amp;egrave; un linguaggio di programmazione ad **alto livello**, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalit&amp;agrave; ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content><author>enrico.rotundo@studenti.unipd.it</author><question>2</question><insertDate>2014-4-27</insertDate></answer>
-<answer id="3"><content>Perl &amp;egrave; un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalit&amp;agrave; *ereditate* da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content><author>enrico.rotundo@studenti.unipd.it</author><question>2</question><insertDate>2014-4-27</insertDate></answer><answer id="4"><content>Ciao</content><author>enrico.rotundo@studenti.unipd.it</author><question>2</question><insertDate>2014-4-29</insertDate></answer><answer id="5"><content>Gli errori strani nel testo sono dovuti al copia e incolla e non all'inserimento vero delle domande con corrispondente validazione xml, don't worry.</content><author>enrico.rotundo@studenti.unipd.it</author><question>2</question><insertDate>2014-4-29</insertDate></answer><answer id="6"><content>Ciao</content><author>enrico.rotundo@studenti.unipd.it</author><question>2</question><insertDate>2014-4-29</insertDate></answer><answer id="7"><content>Secondo me si</content><author>enrico.rotundo@studenti.unipd.it</author><question>2</question><insertDate>2014-4-29</insertDate></answer>
-<answer id="8"><content>Ho cambiato idea</content><author>enrico.rotundo@studenti.unipd.it</author><question>2</question><insertDate>2014-4-29</insertDate></answer></answers>
+		<answer id="1">
+			<content>Perl è un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalità ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content>
+			<author>enrico.rotundo@studenti.unipd.it</author>
+			<question>1</question>
+			<insertDate>2014-04-27</insertDate>
+		</answer>
+	<answer id="2"><content>Questa è una *risposta* con tanta ma **tanta** formattazione. E ci sono anche
+tanti
+tanti
+a-capo.
+Si vedono bene?</content>
+			<author>federico.poli.1@studenti.unipd.it</author>
+			<question>1</question>
+			<insertDate>2014-04-29</insertDate>
+		</answer>
+	<answer id="3"><content>Funziona tutto no?&#13;
+*Serena*</content><author>serena.girardi@studenti.unipd.it</author><question>2</question><insertDate>2014-05-30</insertDate></answer></answers>
+
 </db>

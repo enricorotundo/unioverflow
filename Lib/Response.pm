@@ -46,6 +46,8 @@ sub send {
 	
 	$self->header("Content-Type: text/html; charset=utf-8");
 
+	binmode STDOUT, ":utf8";
+	
 	print $self->{"header"};
 	for my $cookie (values %{$self->{"cookie"}->all()}) {
 		print "Set-Cookie: ",$cookie->as_string,"\n";

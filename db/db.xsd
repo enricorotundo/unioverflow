@@ -88,19 +88,19 @@
 
     <xs:simpleType name="Temail"> 
         <xs:restriction base="xs:string"> 
-            <xs:pattern value="[a-z.]{1,64}@studenti.unipd.it"/> 
+            <xs:pattern value="[a-z0-9._%+-]{1,64}@studenti.unipd.it"/> 
         </xs:restriction> 
     </xs:simpleType>
 
     <xs:simpleType name="Tcontent"> 
         <xs:restriction base="xs:string"> 
-            <xs:pattern value=".+"/>  <!-- TODO: completare regex -->
+            <xs:maxLength value="3000" />
         </xs:restriction> 
     </xs:simpleType>
 
     <xs:simpleType name="Ttitle"> 
         <xs:restriction base="xs:string"> 
-            <xs:pattern value=".{1,300}"/>  <!-- TODO: completare regex -->
+            <xs:maxLength value="300" />
         </xs:restriction> 
     </xs:simpleType>
 

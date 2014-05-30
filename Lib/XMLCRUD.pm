@@ -27,7 +27,7 @@ sub init {
 sub loadDoc {
 	my ($self) = @_;
 	
-	my $parser = XML::LibXML->new();
+	my $parser = XML::LibXML->new('1.0','UTF-8');
 	my $doc = $parser->parse_file($self->{"path"});
 
 	return $doc;

@@ -8,6 +8,7 @@ use POSIX;
 use Lib::Renderer;
 use Lib::Markup;
 use Lib::Utils;
+use Lib::Sanitize;
 use Middleware::Session;
 use Model::Question;
 use Model::Answer;
@@ -17,48 +18,55 @@ sub handler {
 	my ($req, $res) = @_;
 	my @allAnswers;
 	
+	my $questionId;
+	if ($req->attr("method") eq 'POST') {
+		# Evita XPath injection
+		$questionId = Lib::Sanitize::number($req->param('questionId'));
+	} else {
+		# Evita XPath injection
+		$questionId = Lib::Sanitize::number($req->param("id"));
+	}
+
+	my $session = Middleware::Session::getSession($req);
+	my $sessionEmail = "";
+	if ($session) {
+		$sessionEmail = $session->param("email") or "";
+	}
+
 	# TODO ...
 
 	if ($req->attr("method") eq 'POST') {
-
+		
 		# controllo se è una richiesta di cambio di stato della domanda
 		if ($req->param("status")) {
-
-			my $question = Model::Question::getQuestionById($req->param("questionId"));
-			my $sessionMail = Middleware::Session::getSession($req)->param('email');
-
+			my $question = Model::Question::getQuestionById($questionId);
+			
 			# se l'utente è l'autore della domanda
-			if ($question->{author} == $sessionMail) {
-				if ($req->param("status") == 'opened') {
-					Model::Question::setQuestionAsOpened($req->param("questionId"));
+			if ($question->{author} eq $sessionEmail) {
+				if ($req->param("status") eq 'opened') {
+					Model::Question::setQuestionAsOpened($questionId);
 				}
-				elsif ($req->param("status") == 'solved') {
-					Model::Question::setQuestionAsSolved($req->param("questionId"));
+				elsif ($req->param("status") eq 'solved') {
+					Model::Question::setQuestionAsSolved($questionId);
 				}
 			}
 		}
 		# controllo se il campo di inserimento della risposta non è vuoto
 		elsif ($req->param("post-text")) {
 
-			my $text = $req->param("post-text");
-
-			#va fatto perche si sta inserendo una risposta
-			$text = Lib::Utils::replaceXMLSpecialChars($text);
-			# controllo sicurezza campi
-			$text = Lib::Utils::textSecurityCheck($text);
+			my $text = Lib::Sanitize::content($req->param("post-text"));
 
 			# controllo che non si stia tentando di inserire una risposta ad una domanda chiusa
-			if (Model::Question::getQuestionById($req->param("questionId"))->{status} == 'opened') {
-				my $author = Middleware::Session::getSession($req)->param('email');
-				Model::Answer::insertAnswer($req->param("questionId"), $text, $author);
+			if (Model::Question::getQuestionById($questionId)->{status} eq 'opened') {
+				Model::Answer::insertAnswer($questionId, $text, $sessionEmail);
 			}
 		}
 
 		# recupero tutte le risposte
-		@allAnswers = Model::Answer::getAnswersByQuestionId($req->param('questionId'));
+		@allAnswers = Model::Answer::getAnswersByQuestionId($questionId);
 	} else {
 		# recupero tutte le risposte
-		@allAnswers = Model::Answer::getAnswersByQuestionId($req->param('id'));
+		@allAnswers = Model::Answer::getAnswersByQuestionId($questionId);
 	}
 
 	# TODO: ho commentato perche se la domanda non ha risposte reindirizza a page-error!
@@ -68,10 +76,9 @@ sub handler {
 
 	# prendo le risposte per la pagina $req->param("page")
 	my $answersPerPage = 9;
-	my $page;
-	if ($req->param("page") > 0) {
-		$page = $req->param("page");
-	} else {
+	# Evita XSS attack
+	my $page = Lib::Sanitize::number($req->param("page"));
+	if ($page eq "" or $page == 0) {
 		$page = 1;
 	}
 	my $arrSize = @allAnswers;
@@ -80,21 +87,15 @@ sub handler {
 	}
 	my @answers = splice(@allAnswers, ($page - 1) * $answersPerPage, $answersPerPage);
 
-	my $idDomanda;
-	if ($req->attr("method") eq 'POST') {
-		$idDomanda = $req->param('questionId');
-	} else {
-		$idDomanda = $req->param("id");
-	}
-
 	# Execution
 	my $data = {
 		"logged" => Middleware::Authentication::isLogged($req),
 		"session" => {
-			"email" => Middleware::Session::getSession($req)->param("email")
+			"email" => $sessionEmail
 		},
-		"question" => Model::Question::getQuestionById($idDomanda),
+		"question" => Model::Question::getQuestionById($questionId),
 		"answers" => \@answers,
+		"totalAnswers" => $arrSize,
 		"pageInfo" => {
 			currentPageNumber => $page,
 			totalPages => ceil( $arrSize / $answersPerPage )

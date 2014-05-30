@@ -213,8 +213,8 @@ caption {
 }
 #rispondi-form fieldset {
 	padding-right: 0.5em;
-    padding-left: 0.5em;
-    border:1px solid black;
+	padding-left: 0.5em;
+	border:1px solid black;
 }
 
 #rispondi-form fieldset textarea {
@@ -345,9 +345,62 @@ caption {
 ul#menu>:first-child {
 	border-left: 0px;
 }
-ul#menu>:last-child {
+
+/* trick per selezionare il primo elemento figlio
+della lista con class="lateralNavItem" */
+ul#menu .lateralNavItem {
 	border-right: 0px;
+	border-left: 0px;
 }
+ul#menu .lateralNavItem ~ .lateralNavItem {
+	border-right: 1px solid #77261c;
+}
+/* fine trick */
+
+
+/* # Paginazione
+========================================================*/
+#pagination-wrapper {
+	padding: 1.5em;
+	text-align: center;
+	width: 100%;
+}
+#pagination {
+	display: inline;
+	position: relative;
+	width: 100%;
+}
+#pagination li a:hover, #pagination a:hover .prev, #pagination a:hover .next,
+#pagination li a:focus, #pagination a:focus .prev, #pagination a:focus .next {
+	background-color: #77261c;
+	color: white;
+}
+#pagination li, #pagination p {
+	display: inline;
+}
+#pagination a, #pagination p, .prev, .next {
+	border: 1px solid #545454;
+	padding: 0.2em 0.4em;
+	margin: 0 0.3em;
+}
+.next, .prev {
+	position: absolute;
+	text-decoration: underline;
+	top: -0.25em;
+}
+.next {
+	right: -8em;
+}
+.next:after {
+	content: " →";
+}
+.prev {
+	left: -8.5em;
+}
+.prev:before {
+	content: "← ";
+}
+
 
 /* # Footer
 ========================================================*/
@@ -360,6 +413,7 @@ ul#menu>:last-child {
 	font-size: small;
 	margin-top: 1em;
 }
+
 
 /* # Elementi legati all'accessibilità
 ========================================================*/
