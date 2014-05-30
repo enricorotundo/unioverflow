@@ -12,6 +12,12 @@
 				<input type="submit" title="Effettua ricerca" value="Cerca" tabindex="[% i=i+1; i %]" accesskey="c"/>
 			</fieldset>
 		</form>
+
+		[% IF error %]
+			<div id="error">
+				<p>[% msg %]</p>
+			</div>
+		[% END %]
 		
 		<h3>Lista delle domande</h3>
 

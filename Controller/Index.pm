@@ -14,7 +14,8 @@ sub handler {
 
 	# Get parameters
 	my ($req, $res) = @_;
-	my $TestoDaCercare = Lib::Sanitize::search_query($req->param("testoDaCercare")) or "";
+	my $TestoDaCercareOriginale = $req->param("testoDaCercare");
+	my $TestoDaCercareSano = Lib::Sanitize::search_query($TestoDaCercareOriginale) or "";
 	# Evita XSS attack
 	my $page = Lib::Sanitize::number($req->param("page"));
 	if ($page eq "" or $page == 0) {
@@ -24,38 +25,51 @@ sub handler {
 	my $data;
 
 	# Se è stata effettuata una ricerca e non è una ricerca vuota (se cerco " " mi aspetto tutte le domande)
-	if ($req->attr("method") eq 'POST' && !(Lib::Utils::trim($TestoDaCercare) eq '')) { 
+	if ($req->attr("method") eq 'POST' && !(Lib::Utils::trim($TestoDaCercareSano) eq '')) { 
 
-		my $totalQuestionsF = Model::Question::countQuestionsFind($TestoDaCercare); 
+		if($TestoDaCercareOriginale eq $TestoDaCercareSano){
+			my $totalQuestionsF = Model::Question::countQuestionsFind($TestoDaCercareSano); 
 
-		if ($totalQuestionsF == 0) {
-			$data = {
-				"logged" => Middleware::Authentication::isLogged($req),
-				"notFound" => 1,
-				"pageInfo" => {
-						currentPageNumber => 1,
-						totalPages => 1
-					}
-			};
-		}
-		else {
-
-			if (($page - 1) * $questionsPerPage > $totalQuestionsF) {
-				$page = ceil( $totalQuestionsF / $questionsPerPage );
+			if ($totalQuestionsF == 0) {
+				$data = {
+					"logged" => Middleware::Authentication::isLogged($req),
+					"notFound" => 1,
+					"pageInfo" => {
+							currentPageNumber => 1,
+							totalPages => 1
+						}
+				};
 			}
-			my $totalPages = ceil( $totalQuestionsF / $questionsPerPage );
-			my @lastQuestionsFind = Model::Question::getLastQuestionsFind($page, $questionsPerPage, $TestoDaCercare);
+			else {
+
+				if (($page - 1) * $questionsPerPage > $totalQuestionsF) {
+					$page = ceil( $totalQuestionsF / $questionsPerPage );
+				}
+				my $totalPages = ceil( $totalQuestionsF / $questionsPerPage );
+				my @lastQuestionsFind = Model::Question::getLastQuestionsFind($page, $questionsPerPage, $TestoDaCercareSano);
+
+				# Execution
+				$data = {
+					"logged" => Middleware::Authentication::isLogged($req),
+					"questions" => \@lastQuestionsFind,
+					"pageInfo" => {
+						currentPageNumber => $page,
+						totalPages => $totalPages
+					}
+				};
+			}
+			
+		} else {
+			# creo il msg di errore
+			my $msg = "I caratteri &quot; &#39; non sono inseribili nel campo di ricerca.";
 
 			# Execution
 			$data = {
-				"logged" => Middleware::Authentication::isLogged($req),
-				"questions" => \@lastQuestionsFind,
-				"pageInfo" => {
-					currentPageNumber => $page,
-					totalPages => $totalPages
-				}
+				"error" => 1,
+				"msg" => $msg
 			};
 		}
+			
 	}
 	
 	else {
