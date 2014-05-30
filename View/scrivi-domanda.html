@@ -10,34 +10,36 @@
 			IF !success;
 				IF error %] 
 				<div id="error">
-					<p> Errore nell'inserimento della domanda! </p>
+					<p> Errore nell'inserimento della domanda! </p> 
 					<p> [% msg %] </p>
 				</div>
 			[% END %]
-			<p> Scrivi la tua domanda!</p>
-			<p> <a tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#FormattaTesto" title="Vai alla guida su come formattare il tuo testo"> Come formattare il testo </a> </p>
-			<form action="scrivi-domanda.cgi" method="post">
+			<span id="pageTitle"> Scrivi la tua domanda!</span>
+			<p> <a id="chiedi-linkFormatta" tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#FormattaTesto" title="Vai alla guida su come formattare il tuo testo"> Come formattare il testo </a> </p>
+
+			<form id="chiedi-form" action="scrivi-domanda.cgi" method="post">
 				<fieldset>
 					<legend>Inserisci i dati richiesti</legend>
-					<label for="titolo">Titolo della tua domanda</label>
+					<label for="titolo">Titolo della tua domanda:</label>
 					<input type="text" title="Inserisci titolo" id="titolo" name="titolo" tabindex="[% i=i+1; i %]" accesskey="t" /><br/>
-					<label for="testo">Testo della domanda</label>
-					<textarea title="Inserisci il testo della domanda" id="testo" name="testo" tabindex="[% i=i+1; i %]" accesskey="c" rows="4" cols="50"></textarea><br/>
-					<input type="submit" title="Inserisci Domanda" value="Chiedi" tabindex="[% i=i+1; i %]" accesskey="d" />
+					<label for="testo">Testo della domanda:</label>
+					<textarea title="Inserisci il testo della domanda" id="testo" name="testo" tabindex="[% i=i+1; i %]" accesskey="c" rows="4" cols="300"></textarea><br/>
+					<input id="chiedi-submit" type="submit" title="Inserisci Domanda" value="Chiedi" tabindex="[% i=i+1; i %]" accesskey="d" />
 				</fieldset>
 			</form>
 
 			[% ELSE %]
-				<!-- TODO reindirizzare alla pagina vedi-domanda corrispondente -->
-				<p> La tua domanda è stata inserita correttamente! </br>
-					<a tabindex="[% i=i+1; i %]" accesskey="l" href="vedi-domanda.cgi?id=[% newId %]" title="Vai alla domanda che hai inserito">Vai alla domanda appena inserita! </a>
-				</p>
+				<div id="domandaInserita">
+					<p> La tua domanda è stata inserita correttamente! </br>
+						<a tabindex="[% i=i+1; i %]" accesskey="l" href="vedi-domanda.cgi?id=[% newId %]" title="Vai alla domanda che hai inserito">Vai alla domanda appena inserita! </a>
+					</p>
+				</div>
 			[% END %]
 
 
 		[% ELSE %]
 			<div id="notLogged">
-				<p> Per scrivere una domanda devi aver eseguito l'accesso! </p>
+				<p><strong>Per scrivere una domanda devi aver eseguito l'accesso!</strong></p>
 				<p> 
 					<a tabindex="[% i=i+1; i %]" accesskey="l" href="accedi.cgi" title="Vai alla pagina per accedere">Effettua accesso </a> o 
 					<a tabindex="[% i=i+1; i %]" accesskey="l" href="registrati.cgi" title="Vai alla pagina per registrarti">registrati </a>

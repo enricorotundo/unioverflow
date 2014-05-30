@@ -113,14 +113,14 @@ caption {
 }
 
 .questionDetails {
-	padding: 0em 0em 0em 4em;
+	padding-left: 4em;
 	word-wrap: break-word;	
 }
 
 .questionDetails p, .questionDetailsV p:nth-of-type(2) {
 	font-family:"Georgia", Times, serif;
 	font-weight:bold;
-	padding: 1em 0em 0em 0em;
+	padding-top: 1em;
 	font-size: 0.9em;
 }
 
@@ -164,7 +164,7 @@ caption {
 }
 
 .questionDetailsV .Qcontent {
-	padding: 1em 0em 0em 0em;
+	padding-top: 1em;
 	font-size: 90%;
 }
 
@@ -179,7 +179,7 @@ caption {
 .answer p:nth-of-type(1){
 	font-size: 80%;
 	font-weight: bold;
-	padding: 0em 0em 1em 0em;
+	padding-bottom: 1em;
 }
 
 #status{	
@@ -187,8 +187,6 @@ caption {
 }
 #status-form fieldset legend{
 	display: none;
-}
-#status-form fieldset fieldset{
 }
 
 #status-chiudi, #status-riapri{ /* Per ora */
@@ -203,7 +201,7 @@ caption {
 #rispondi {
 	padding: 3em 0em 0em 4.5em;
 }
-#rispondi-linkFormatta{
+#rispondi-linkFormatta, #chiedi-linkFormatta{
 	float: right;
 }
 #rispondi-form
@@ -236,9 +234,53 @@ caption {
 	background-color: #77261c;
 	width: auto;
 	text-align: center;
-
 }
 
+/* scrivi-domanda */
+#pageTitle{
+	display: block;
+	margin-top: 1em;
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+}
+#chiedi-form {
+	width: 100%;
+	margin: 0 auto; 
+	resize:none;
+	clear: both;
+}
+
+#chiedi-form fieldset legend{
+	text-align: center;
+}
+#chiedi-form fieldset textarea{
+	width: 100%;
+	height: 20em;
+}
+#chiedi-form fieldset{
+	padding: 1em 1em 1em 1em;
+    border:1px solid black;
+}
+#chiedi-form input[type="text"] {
+	height: auto;
+	width: 100%;
+	margin-bottom: 1em;
+	overflow: auto;
+}
+#chiedi-submit{
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding: 0.9em;
+	background-color: #77261c;
+	width: auto;
+	overflow: auto;
+	margin:0 auto;
+}
+#notLogged p, #error p, #domandaInserita p {
+	padding-top: 1em;
+}
 /* Manuale */
 #indice {
 	display: block;
@@ -262,7 +304,21 @@ caption {
 .sezioneManuale h4 {
 	border-bottom: 1px solid #545454;
 }
-
+/* Registrati */
+#success p, #error p {
+	padding-top: 1em;
+}
+#pageTitleRegistrazione{
+	display: block;
+	margin-top: 1em;
+	text-align: center;
+	font-size: 100%;
+	font-weight: bold;
+}
+/* Esci */
+#esci p {
+	padding-top: 1em;
+}
 
 /* # Navigation
 ========================================================*/
