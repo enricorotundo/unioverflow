@@ -72,7 +72,7 @@ sub handler {
 			};
 		}
 	}
-
+	
 	# Response
 	$res->write(Lib::Renderer::render('registrati.html', $data));
 }
