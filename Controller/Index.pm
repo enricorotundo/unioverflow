@@ -23,30 +23,49 @@ sub handler {
 	}
 	my $questionsPerPage = 9;
 	my $data;
+	my $error;
 
 	# Se è stata effettuata una ricerca e non è una ricerca vuota (se cerco " " mi aspetto tutte le domande)
-	if ($req->attr("method") eq 'POST' && !(Lib::Utils::trim($TestoDaCercareSano) eq '')) { 
+	if ($req->attr("method") eq 'GET' && !(Lib::Utils::trim($TestoDaCercareSano) eq '')) { 
 
-		if($TestoDaCercareOriginale eq $TestoDaCercareSano){
-			my $totalQuestionsF = Model::Question::countQuestionsFind($TestoDaCercareSano); 
+		my $totalQuestionsF = Model::Question::countQuestionsFind($TestoDaCercareSano); 
 
-			if ($totalQuestionsF == 0) {
+		if ($totalQuestionsF == 0) {
+			$data = {
+				"logged" => Middleware::Authentication::isLogged($req),
+				"notFound" => 1,
+				"pageInfo" => {
+						currentPageNumber => 1,
+						totalPages => 1
+					}
+			};
+		}
+		else {
+
+			if (($page - 1) * $questionsPerPage > $totalQuestionsF) {
+				$page = ceil( $totalQuestionsF / $questionsPerPage );
+			}
+			my $totalPages = ceil( $totalQuestionsF / $questionsPerPage );
+			my @lastQuestionsFind = Model::Question::getLastQuestionsFind($page, $questionsPerPage, $TestoDaCercareSano);
+
+
+			if($TestoDaCercareOriginale ne $TestoDaCercareSano){
+				# creo il msg di errore
+				my $msg = "I caratteri &quot; &#39; sono stati ignorati.";
+
+				# Execution
 				$data = {
 					"logged" => Middleware::Authentication::isLogged($req),
-					"notFound" => 1,
+					"questions" => \@lastQuestionsFind,
 					"pageInfo" => {
-							currentPageNumber => 1,
-							totalPages => 1
-						}
+						currentPageNumber => $page,
+						totalPages => $totalPages
+					},
+					"error" => 1,
+					"msg" => $msg
 				};
 			}
 			else {
-
-				if (($page - 1) * $questionsPerPage > $totalQuestionsF) {
-					$page = ceil( $totalQuestionsF / $questionsPerPage );
-				}
-				my $totalPages = ceil( $totalQuestionsF / $questionsPerPage );
-				my @lastQuestionsFind = Model::Question::getLastQuestionsFind($page, $questionsPerPage, $TestoDaCercareSano);
 
 				# Execution
 				$data = {
@@ -58,18 +77,7 @@ sub handler {
 					}
 				};
 			}
-			
-		} else {
-			# creo il msg di errore
-			my $msg = "I caratteri &quot; &#39; non sono inseribili nel campo di ricerca.";
-
-			# Execution
-			$data = {
-				"error" => 1,
-				"msg" => $msg
-			};
-		}
-			
+		}	
 	}
 	
 	else {

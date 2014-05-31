@@ -6,6 +6,7 @@ use CGI::Carp;
 use Lib::Request;
 use CGI;
 use Fcntl qw(:flock SEEK_END);
+# use HTML::Entities;
 
 sub parse_input {
 	die
@@ -99,6 +100,8 @@ sub replaceHTMLChars {
 	$text = replace("'","&apos;",$text);
 	$text = replace("<","&lt;",$text);
 	$text = replace(">","&gt;",$text);
+
+	# encode_entities($text, "\200-\377"); # usa use HTML::Entities da decommentare
 
 	return $text;
 }
