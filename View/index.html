@@ -3,13 +3,13 @@
 	[% PROCESS layout/navigation.html %]
 
 	<div id="content">
-		<span id="path">Ti trovi in: Domande</span>
+		<span id="path">Ti trovi in: Domande, pagina [% pageInfo.currentPageNumber %]</span>
 		<form id="cerca" action="index.cgi" method="post">
 			<fieldset>
-				<legend>Cerca</legend>
+				<legend>Cerca tra i titoli delle domande</legend>
 				<label for="testoDaCercare"></label>
-				<input type="text" title="Inserisci il testo da cercare" id="testoDaCercare" name="testoDaCercare" tabindex="[% i=i+1; i %]" placeholder= "Cerca" />
-				<input type="submit" title="Effettua ricerca" value="Cerca" tabindex="[% i=i+1; i %]" accesskey="c"/>
+				<input type="text" title="Inserisci il testo da cercare" id="testoDaCercare" name="testoDaCercare" tabindex="[% i=i+1; i %]"/>
+				<input type="submit" title="Effettua ricerca" value="Cerca tra i titoli delle domande" tabindex="[% i=i+1; i %]" accesskey="c"/>
 			</fieldset>
 		</form>
 
@@ -57,7 +57,7 @@
 			pageInfo.currentPageNumber = 1;
 		END
 		%]
-		[% IF pageInfo.totalPages != 1 %]
+		[% IF pageInfo.totalPages > 1 %]
 			<div id="pagination-wrapper">
 				<h3 id="paginationLabel" class="aural">Paginazione</h3>
 				<ul id="pagination">

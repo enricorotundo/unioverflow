@@ -145,34 +145,36 @@ ul {
 .author{
 	font-style:oblique;
 }
-
+#cerca fieldset, #status fieldset {
+	border: 0;
+}
+.questionStatus p {
+	font-size: 80%;
+}
 
 /* vedi-domanda */
-.questionV{
+.questionV {
 	height: auto;
 	border: 10px;
 	padding: 1em 0.5em 2em 0.2em;
 	margin: 0;
 	border-bottom: 1px solid;
 }
-
 .questionDetailsV {
 	/*padding: 0em 0em 0em 4em;*/
 	margin-left: 4em;	
 	font-size: 120%;
 	word-wrap: break-word;
 }
-
 .questionDetailsV .Qcontent {
 	padding-top: 1em;
 	font-size: 90%;
 }
-
 .answer {
-	padding: 1em 0em 0em 4.6em;
-	/*border-bottom: 1px solid ;*/
+	margin: 1em 0em 1em 4.6em;
+	padding: 0.4em 0em;
+	border-bottom: 1px solid #515151;
 }
-
 #container-answer {
 	clear: both;
 }
@@ -181,11 +183,10 @@ ul {
 	font-weight: bold;
 	padding-bottom: 1em;
 }
-
-
-
-
-#status-chiudi, #status-riapri{ /* Per ora */
+.date-author {
+	margin-left: 3em;
+}
+#status-chiudi, #status-riapri {
 	text-decoration: none;
 	color: white;
 	display: block;
@@ -193,7 +194,6 @@ ul {
 	background-color: #77261c;
 	width: auto;
 } 
-
 #rispondi {
 	padding: 3em 0em 0em 4.5em;
 }
@@ -257,6 +257,7 @@ ul {
 #notLogged p, #error p, #domandaInserita p {
 	padding-top: 1em;
 }
+
 /* Manuale */
 #indice {
 	display: block;
@@ -280,6 +281,7 @@ ul {
 .sezioneManuale h4 {
 	border-bottom: 1px solid #545454;
 }
+
 /* Registrati */
 #success p, #error p {
 	padding-top: 1em;
@@ -291,10 +293,12 @@ ul {
 	font-size: 100%;
 	font-weight: bold;
 }
+
 /* Esci */
 #esci p {
 	padding-top: 1em;
 }
+
 
 /* # Navigation
 ========================================================*/
@@ -417,7 +421,4 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 	text-align: right;
 	padding: 0.8em 0em;
 	width: 100%;
-}
-#cerca fieldset, #status fieldset {
-	border: 0;
 }
