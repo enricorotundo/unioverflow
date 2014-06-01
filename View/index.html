@@ -5,6 +5,7 @@
 	<div id="content">
 		[% IF isFromSearch %]
 			<span id="path">Ti trovi in: <a href="index.cgi" title="Domande">Domande</a> &raquo; Risultati della ricerca</span>
+			
 		[% ELSE %]
 			<span id="path">Ti trovi in: Domande, pagina [% pageInfo.currentPageNumber %]</span>
 		[% END %]
@@ -21,6 +22,10 @@
 			<div id="error">
 				<p>[% msg %]</p>
 			</div>
+		[% END;
+		
+		IF isFromSearch %]
+			<a href="index.cgi" title="Domande">Visualizza tutte le domande</a>
 		[% END %]
 		
 		<h3>Lista delle domande</h3>
