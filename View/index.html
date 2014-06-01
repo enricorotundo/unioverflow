@@ -3,7 +3,11 @@
 	[% PROCESS layout/navigation.html %]
 
 	<div id="content">
-		<span id="path">Ti trovi in: Domande, pagina [% pageInfo.currentPageNumber %]</span>
+		[% IF isFromSearch %]
+			<span id="path">Ti trovi in: <a href="index.cgi" title="Domande">Domande</a> &raquo; Risultati della ricerca</span>
+		[% ELSE %]
+			<span id="path">Ti trovi in: Domande, pagina [% pageInfo.currentPageNumber %]</span>
+		[% END %]
 		<form id="cerca" action="index.cgi" method="get">
 			<fieldset>
 				<legend>Cerca tra i titoli delle domande</legend>

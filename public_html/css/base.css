@@ -422,3 +422,7 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 	padding: 0.8em 0em;
 	width: 100%;
 }
+
+.tornaSu a:after {
+	content: ' ▲';
+}

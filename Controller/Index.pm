@@ -34,6 +34,7 @@ sub handler {
 			$data = {
 				"logged" => Middleware::Authentication::isLogged($req),
 				"notFound" => 1,
+				"isFromSearch" => 1,
 				"pageInfo" => {
 						currentPageNumber => 1,
 						totalPages => 1
@@ -57,6 +58,7 @@ sub handler {
 				$data = {
 					"logged" => Middleware::Authentication::isLogged($req),
 					"questions" => \@lastQuestionsFind,
+					"isFromSearch" => 1,
 					"pageInfo" => {
 						currentPageNumber => $page,
 						totalPages => $totalPages
@@ -71,6 +73,7 @@ sub handler {
 				$data = {
 					"logged" => Middleware::Authentication::isLogged($req),
 					"questions" => \@lastQuestionsFind,
+					"isFromSearch" => 1,
 					"pageInfo" => {
 						currentPageNumber => $page,
 						totalPages => $totalPages
