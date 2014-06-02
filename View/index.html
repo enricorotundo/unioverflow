@@ -1,6 +1,7 @@
-[% WRAPPER layout/main.html %]
-	[% pageName = 'Domande' %]
-	[% PROCESS layout/navigation.html %]
+[% WRAPPER layout/main.html;
+	pageName = 'Domande';
+	PROCESS layout/header.html;
+	PROCESS layout/navigation.html %]
 
 	<div id="content">
 		[% IF isFromSearch %]
@@ -38,8 +39,12 @@
 		[% FOREACH question IN questions %]
 			<li>
 				<div class="question">
-					<div class="questionStatus">
-						[% question.status == 'solved' ? '<img class="solved" src="../images/solvedQuestion.png" alt="Domanda risolta"/><p>Risolta</p>' : '<img class="opened" src="../images/openedQuestion.png" alt="Domanda aperta"/><p>Aperta</p>' %]
+					<div class="questionStatus [% question.status %]">
+					[% IF question.status == 'solved' %]
+						<p><span class="aural">Domanda </span>risolta</p>
+					[% ELSIF question.status == 'opened' %]
+						<p><span class="aural">Domanda </span>aperta</p>
+					[% END %]
 					</div>
 					<div class="questionDetails">
 						<h4><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]">[% question.title  %]</a></h4>

@@ -1,6 +1,7 @@
-[% WRAPPER layout/main.html %]
-	[% pageName = 'Accedi' %]
-	[% PROCESS layout/navigation.html %]
+[% WRAPPER layout/main.html;
+	pageName = 'Accedi';
+	PROCESS layout/header.html;
+	PROCESS layout/navigation.html %]
 
 	<div id="content">
 		<span id="path">Ti trovi in: Accedi</span>

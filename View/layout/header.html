@@ -1,5 +1,9 @@
 <div id="header">
+[% IF pageName == 'Domande' %]
+	<img id="headImg" src="../images/logo-unioverflow.png" alt="Logo di Unioverflow" title="Vai alle domande"/>
+[% ELSE %]
 	<a class="auralNotRead" href="index.cgi"><img id="headImg" src="../images/logo-unioverflow.png" alt="Logo di Unioverflow" title="Vai alle domande"/></a>
+[% END %]
 	<span class="aural"><a href="#content" title="Passa al contenuto">Passa direttamente al contenuto</a></span>
 	<div id="headerText">
 		<h1 class="aural">Unioverflow</h1>

@@ -42,7 +42,6 @@ h3 {
 h4 {
 	margin: 0.9em 0em 0.8em 0em;
 }
-
 table, th, td {
 	border: 1px solid black;
 }
@@ -88,7 +87,7 @@ ul {
 #path {
 	background-color: gainsboro;
 	display: block;
-	font-size: small;
+	font-size: 80%;
 	padding: 0.5em 1em 0.5em;
 }
 
@@ -109,20 +108,18 @@ ul {
 	width: 50%;
 	margin: 0.4em;
 }
-.question {	
-	height: auto;
-	border: 10px;
-	padding: 1em 0.5em 2em 0.2em;
-	border-bottom: 1px solid;
-	margin: 0;
+.question {
+	border-bottom: 2px solid darkslategray;
+	padding: 2em 1em;
+	position: relative;
 }
 .questionDetails {
 	padding-left: 4em;
 	word-wrap: break-word;	
 }
-.questionDetails p, .questionDetailsV p:nth-of-type(2) {
-	font-family:"Georgia", Times, serif;
-	font-weight:bold;
+.questionDetailsV p:nth-of-type(2) {
+	font-family: "Georgia", Times, serif;
+	font-weight: bold;
 	padding-top: 1em;
 	font-size: 0.9em;
 }
@@ -135,20 +132,33 @@ ul {
 }
 .questionStatus {
 	float: left;
+	padding-top: 2.5em;
+	position: absolute;
 	text-align: center;
-	width: 3em;	
+	width: 4em;
 }
 .questionStatus img {
 	max-width: 100%;
 }
 .author{
-	font-style:oblique;
+	font-style: oblique;
 }
 #cerca fieldset, #status fieldset {
 	border: 0;
 }
 .questionStatus p {
 	font-size: 80%;
+}
+.opened {
+	background-image: url(../images/openedQuestion.png);
+}
+.solved {
+	background-image: url(../images/solvedQuestion.png);
+}
+.opened, .solved {
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: 2.5em;
 }
 
 /* vedi-domanda */
@@ -165,7 +175,7 @@ ul {
 	font-size: 120%;
 	word-wrap: break-word;
 }
-.questionDetailsV .Qcontent {
+.questionContent {
 	padding-top: 1em;
 	font-size: 90%;
 }
@@ -177,14 +187,13 @@ ul {
 #container-answer {
 	clear: both;
 }
-.answer p:nth-of-type(1){
+.date-author {
 	font-size: 80%;
 	font-weight: bold;
+	margin-left: 3em;
 	padding-bottom: 1em;
 }
-.date-author {
-	margin-left: 3em;
-}
+
 #status-chiudi, #status-riapri {
 	text-decoration: none;
 	color: white;
@@ -427,3 +436,7 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 }
 
 
+
+.questionDetails h4 {
+	margin: 0;
+}

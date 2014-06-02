@@ -1,6 +1,7 @@
-[% WRAPPER layout/main.html %]
-	[% pageName = 'PageError' %]
-	[% PROCESS layout/navigation.html %]
+[% WRAPPER layout/main.html;
+	pageName = 'PageError';
+	PROCESS layout/header.html;
+	PROCESS layout/navigation.html %]
 	<div id="content">
 		<span id="path">Ti trovi in: Pagina di errore</span>
 		<div id="errorContent">

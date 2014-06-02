@@ -27,6 +27,7 @@
 #menu li {
 	display: block;
 	float: none;
+	font-size: 2em;
 }
 .lateralNavItem {
 	float: none !important;

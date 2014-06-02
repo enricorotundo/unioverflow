@@ -1,38 +1,52 @@
-[% WRAPPER layout/main.html %]
-	[% pageName = 'VediDomanda' %]
-	[% PROCESS layout/navigation.html %]
+[% WRAPPER layout/main.html;
+	pageName = 'VediDomanda';
+	PROCESS layout/header.html;
+	PROCESS layout/navigation.html %]
 
 	<div id="content">
 		<span id="path">Ti trovi in: <a href="index.cgi" title="Domande">Domande</a> &raquo; Vedi domanda <span class="auralNotRead">#</span><span class="aural">numero </span>[% question.identifier %]</span>
-		<div class="questionV">
+		<!-- <div class="questionV">
 			<div class="questionStatus">
 				[% question.status == 'solved' ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/><p>Risolta</p>' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/><p>Aperta</p>' %]
 			</div>
 			<div class="questionDetailsV">
 				<h3>[% question.title %]</h3>
 				<p class="Qcontent">[% question.content %]</p>
-				<p>chiesto da <span class="author">[% question.author | html %]</span> il [% question.insertDate | html %]</p>
+				<p>chiesto da <span class="author">[% question.author | html %]</span> il [% question.insertDate | html %]</p> -->
+
+		<div class="question">
+			<div class="questionStatus [% question.status %]">
+			[% IF question.status == 'solved' %]
+				<p><span class="aural">Domanda </span>risolta</p>
+			[% ELSIF question.status == 'opened' %]
+				<p><span class="aural">Domanda </span>aperta</p>
+			[% END %]
+			</div>
+			<div class="questionDetails">
+				<h3>[% question.title  %]</h3>
+				<p class="questionContent">[% question.content %]</p>
+				<p class="date-author">chiesto da <span class="author">[% question.author | html %]</span> il [% question.insertDate | html %]</p>
 			
 			[% IF question.author == session.email %]
-					<div id="status">
-						<form id="status-form" action="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber %]" method="post">
-							<fieldset>
-								[% IF question.status == 'opened' %]
-									<legend>Chiudi domanda</legend>
-									<input type="hidden" name="questionId" value="[% question.identifier %]"/>
-									<input type="hidden" name="status" value="solved"/>
-									<input id="status-chiudi" type="submit" value="Risolta" title="Chiudi domanda" tabindex="[% i=i+1; i %]"/>
-								[% ELSE %]
-									<legend>Riapri domanda</legend>
-									<input type="hidden" name="questionId" value="[% question.identifier %]"/>
-									<input type="hidden" name="status" value="opened"/>
-									<input id="status-riapri" type="submit" value="Riapri" title="Riapri domanda" tabindex="[% i=i+1; i %]"/>
-								[% END %]
-							</fieldset>
-						</form>
-					</div>
-				[% END %]
-		</div>
+				<div id="status">
+					<form id="status-form" action="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber %]" method="post">
+						<fieldset>
+							[% IF question.status == 'opened' %]
+								<legend>Chiudi domanda</legend>
+								<input type="hidden" name="questionId" value="[% question.identifier %]"/>
+								<input type="hidden" name="status" value="solved"/>
+								<input id="status-chiudi" type="submit" value="Risolta" title="Chiudi domanda" tabindex="[% i=i+1; i %]"/>
+							[% ELSE %]
+								<legend>Riapri domanda</legend>
+								<input type="hidden" name="questionId" value="[% question.identifier %]"/>
+								<input type="hidden" name="status" value="opened"/>
+								<input id="status-riapri" type="submit" value="Riapri" title="Riapri domanda" tabindex="[% i=i+1; i %]"/>
+							[% END %]
+						</fieldset>
+					</form>
+				</div>
+			[% END %]
+			</div>
 		</div>
 		<div id="container-answer">
 		[% IF (totalAnswers == 0) %]
@@ -43,7 +57,7 @@
 			<ul>
 				[% FOREACH answer IN answers %]
 					<li class="answer">
-						<p class="date-author">il [% "$answer.insertDate, " | html; answer.author | html %] ha scritto:</p>
+						<p class="date-author">il [% answer.insertDate | html %] <span class="author">[% answer.author | html %]</span> ha scritto:</p>
 						<p>[% answer.content %]</p>
 					</li>
 				[% END %]
