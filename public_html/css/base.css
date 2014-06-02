@@ -313,11 +313,11 @@ ul {
 	margin-right: 12%;
 	margin-left: 12%;
 }
-#registrati-form{
+#registrati-form, #accedi-form{
 	width: 60%;
 	margin: 0 auto;
 }
-#registrati-form legend {
+#registrati-form legend, #accedi-form legend {
 	font-weight: bold;
 }
 #registrati-form fieldset {
@@ -325,7 +325,7 @@ ul {
     margin-top: 2em;
     border:1px solid black;
 }
-#registrati-form label {
+#registrati-form label, #accedi-form label {
 	width: 4em;
 	float: left;
 	text-align: right;
@@ -333,7 +333,7 @@ ul {
 	width: 4em;
 	display: block
 }
-#registrati-form input {
+#registrati-form input , #accedi-form input{
 	margin-bottom: 1em;
 }
 #registrati-form input[type="text"] {
@@ -346,6 +346,24 @@ ul {
 	padding: 0.9em;
 	background-color: #77261c;
 	width: auto;
+}
+/* Accedi */ 
+#accedi-form{
+	margin-top: 1em;
+}
+#accedi-submit{
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding: 0.9em;
+	background-color: #77261c;
+	width: auto;
+	margin: 0 auto;
+}
+
+/* Esegui-accesso */
+p {
+	padding-top: 1em;
 }
 /* Esci */
 #esci p {
