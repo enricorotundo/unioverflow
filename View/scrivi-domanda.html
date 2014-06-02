@@ -15,8 +15,8 @@
 					<p> [% msg %] </p>
 				</div>
 			[% END %]
-			<span id="pageTitle"> Scrivi la tua domanda!</span>
-			<p> <a id="chiedi-linkFormatta" tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#FormattaTesto" title="Vai alla guida su come formattare il tuo testo"> Come formattare il testo </a> </p>
+			<span id="pageTitle">Scrivi la tua domanda!</span>
+			<p> <a id="chiedi-linkFormatta" tabindex="[% i=i+1; i %]" accesskey="l" href="manuale.cgi#FormattaTesto" title="Vai alla guida su come formattare il tuo testo">Come formattare il testo</a></p>
 
 			<form id="chiedi-form" action="scrivi-domanda.cgi" method="post">
 				<fieldset>
@@ -31,8 +31,8 @@
 
 			[% ELSE %]
 				<div id="domandaInserita">
-					<p> La tua domanda è stata inserita correttamente! </br>
-						<a tabindex="[% i=i+1; i %]" accesskey="l" href="vedi-domanda.cgi?id=[% newId %]" title="Vai alla domanda che hai inserito">Vai alla domanda appena inserita! </a>
+					<p>La tua domanda è stata inserita correttamente!</br>
+						<a tabindex="[% i=i+1; i %]" accesskey="l" href="vedi-domanda.cgi?id=[% newId %]" title="Vai alla domanda che hai inserito">Vai alla domanda appena inserita!</a>
 					</p>
 				</div>
 			[% END %]
@@ -42,8 +42,7 @@
 			<div id="notLogged">
 				<p><strong>Per scrivere una domanda devi aver eseguito l'accesso!</strong></p>
 				<p> 
-					<a tabindex="[% i=i+1; i %]" accesskey="l" href="accedi.cgi" title="Vai alla pagina per accedere">Effettua accesso </a> o 
-					<a tabindex="[% i=i+1; i %]" accesskey="l" href="registrati.cgi" title="Vai alla pagina per registrarti">registrati </a>
+					<a tabindex="[% i=i+1; i %]" accesskey="l" href="accedi.cgi" title="Vai alla pagina per accedere">Effettua l'accesso</a> o <a tabindex="[% i=i+1; i %]" accesskey="l" href="registrati.cgi" title="Vai alla pagina per registrarti">registrati</a>.
 				</p>
 			</div>
 		[% END %]
