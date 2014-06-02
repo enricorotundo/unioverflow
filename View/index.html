@@ -39,7 +39,7 @@
 			<li>
 				<div class="question">
 					<div class="questionStatus">
-						[% question.status == 'solved' ? '<img class="solved" src="../images/solvedQuestion.png" alt="Domanda risolta"/><p>Risolta</p>' : '<img class="opened" src="../images/openedQuestion.png" alt="Domanda aperta"/><p>Aperta</p>' %]
+						[% question.status == 'solved' ? '<div class="solvedImg"></div><div>Risolta</div>' : '<div class="openedImg"></div><div>Aperta</div>' %]	
 					</div>
 					<div class="questionDetails">
 						<h4><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]">[% question.title  %]</a></h4>

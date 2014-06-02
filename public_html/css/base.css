@@ -117,7 +117,7 @@ ul {
 	margin: 0;
 }
 .questionDetails {
-	padding-left: 4em;
+	padding-left: 5em;
 	word-wrap: break-word;	
 }
 .questionDetails p, .questionDetailsV p:nth-of-type(2) {
@@ -136,10 +136,10 @@ ul {
 .questionStatus {
 	float: left;
 	text-align: center;
-	width: 3em;	
+	width: 5em;	
 }
-.questionStatus img {
-	max-width: 100%;
+.questionStatus div {
+	text-align: left;
 }
 .author{
 	font-style:oblique;
@@ -147,10 +147,25 @@ ul {
 #cerca fieldset, #status fieldset {
 	border: 0;
 }
-.questionStatus p {
-	font-size: 80%;
-}
 
+.solvedImg {
+	display: block;
+	vertical-align: top;
+	background: url(../images/solvedQuestionScale.png);
+	background-repeat:no-repeat;
+	background-position:left top;
+	width: 5em;
+	height: 4em;
+}
+.openedImg{
+	display: block;
+	vertical-align: top;
+	background: url(../images/openedQuestionScale.png);
+	background-repeat:no-repeat;
+	background-position:left top;
+	width: 5em;
+	height: 4em;
+}
 /* vedi-domanda */
 .questionV {
 	height: auto;
