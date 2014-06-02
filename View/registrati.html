@@ -16,8 +16,8 @@
 				</div>
 			[% END %]
 				<span id="pageTitleRegistrazione"> Benvenuto nella pagina di registrazione!</span>
-				<p><strong>Attenzione :</strong> L'email deve essere del tipo @studenti.unipd.it e la password di almeno 8 caratteri e non può contenere caratteri speciali. Per ulteriori informazioni riferirsi al <a tabindex="[% i=i+1; i %]" href="manuale.cgi#Registrazione" title="Vai alla guida su registrarsi">manuale</a>.</p>
-				<form action="registrati.cgi" method="post">
+				<p id="warning-registrazione"><strong>Attenzione :</strong> L'email deve essere del tipo @studenti.unipd.it e la password di almeno 8 caratteri e non può contenere caratteri speciali. Per ulteriori informazioni riferirsi al <a tabindex="[% i=i+1; i %]" href="manuale.cgi#Registrazione" title="Vai alla guida su registrarsi">manuale</a>.</p>
+				<form id="registrati-form" action="registrati.cgi" method="post">
 					<fieldset>
 						<legend>Inserisci i dati richiesti</legend>
 						<label for="email">Email</label>
@@ -26,7 +26,7 @@
 						<input type="password" title="Inserisci la password" id="password" name="password" tabindex="[% i=i+1; i %]" accesskey="p" /><br/>
 						<label for="passwordconfirm">Conferma Password</label>
 						<input type="password" title="Inserisci la password nuovamente" id="passwordconfirm" name="passwordconfirm" tabindex="[% i=i+1; i %]" accesskey="c" /><br/>
-						<input type="submit" title="Effettua registrazione" value="Registrati" tabindex="[% i=i+1; i %]" accesskey="r" />
+						<input id="registrati-submit" type="submit" title="Effettua registrazione" value="Registrati" tabindex="[% i=i+1; i %]" accesskey="r" />
 					</fieldset>
 				</form>
 		[% END %]

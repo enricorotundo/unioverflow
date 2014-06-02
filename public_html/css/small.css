@@ -21,7 +21,13 @@
 	float:left;
 	font-size: 0.8em;
 }
+#cerca input[type="text"] {
+	width: 80%;
+}
 
+#registrati-form {
+	width: 100%;
+}
 /* # Navigation
 ========================================================*/
 #menu li {
