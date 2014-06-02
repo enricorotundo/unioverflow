@@ -114,7 +114,7 @@ ul {
 	position: relative;
 }
 .questionDetails {
-	padding-left: 4em;
+	padding-left: 5em;
 	word-wrap: break-word;	
 }
 .questionDetailsV p:nth-of-type(2) {
@@ -135,10 +135,10 @@ ul {
 	padding-top: 2.5em;
 	position: absolute;
 	text-align: center;
-	width: 4em;
+	width: 5em;
 }
-.questionStatus img {
-	max-width: 100%;
+.questionStatus div {
+	text-align: left;
 }
 .author{
 	font-style: oblique;
@@ -150,10 +150,10 @@ ul {
 	font-size: 80%;
 }
 .opened {
-	background-image: url(../images/openedQuestion.png);
+	background-image: url(../images/openedQuestionScale.png);
 }
 .solved {
-	background-image: url(../images/solvedQuestion.png);
+	background-image: url(../images/solvedQuestionScale.png);
 }
 .opened, .solved {
 	background-position: top center;
@@ -162,18 +162,8 @@ ul {
 }
 
 /* vedi-domanda */
-.questionV {
-	height: auto;
-	border: 10px;
-	padding: 1em 0.5em 2em 0.2em;
+.questionDetails h4 {
 	margin: 0;
-	border-bottom: 1px solid;
-}
-.questionDetailsV {
-	/*padding: 0em 0em 0em 4em;*/
-	margin-left: 4em;	
-	font-size: 120%;
-	word-wrap: break-word;
 }
 .questionContent {
 	padding-top: 1em;
@@ -301,12 +291,68 @@ ul {
 	font-size: 100%;
 	font-weight: bold;
 }
+#warning-registrazione {
+	text-align: center;
+	padding-top: 1em;
+	margin-right: 12%;
+	margin-left: 12%;
+}
+#registrati-form, #accedi-form{
+	width: 60%;
+	margin: 0 auto;
+}
+#registrati-form legend, #accedi-form legend {
+	font-weight: bold;
+}
+#registrati-form fieldset {
+	padding-right: 1em;
+    margin-top: 2em;
+    border:1px solid black;
+}
+#registrati-form label, #accedi-form label {
+	width: 4em;
+	float: left;
+	text-align: right;
+	margin-right: 1.5em;
+	width: 4em;
+	display: block
+}
+#registrati-form input , #accedi-form input{
+	margin-bottom: 1em;
+}
+#registrati-form input[type="text"] {
+	width: 15em;
+}
+#registrati-submit {
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding: 0.9em;
+	background-color: #77261c;
+	width: auto;
+}
+/* Accedi */ 
+#accedi-form{
+	margin-top: 1em;
+}
+#accedi-submit{
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding: 0.9em;
+	background-color: #77261c;
+	width: auto;
+	margin: 0 auto;
+}
 
+/* Esegui-accesso */
+p {
+	padding-top: 1em;
+}
 /* Esci */
 #esci p {
 	padding-top: 1em;
 }
-
 
 /* # Navigation
 ========================================================*/
@@ -430,13 +476,6 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 	padding: 0.8em 0em;
 	width: 100%;
 }
-
 .tornaSu a:after {
 	content: ' ▲';
-}
-
-
-
-.questionDetails h4 {
-	margin: 0;
 }

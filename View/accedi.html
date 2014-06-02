@@ -9,12 +9,12 @@
 			<p>L'accesso è già stato effettuato.</p>
 			<p>Ora puoi andare alla <a href="index.cgi" title="Home" tabindex="[% i=i+1; i %]">pagina principale</a>.</p>
 		[% ELSE %]
-		<form action="esegui-accesso.cgi" method="post">
+		<form id= "accedi-form" action="esegui-accesso.cgi" method="post">
 			<fieldset>
 				<legend>Dati di accesso</legend>
 				<label for="email">Email</label><input type="text" id="email" name="email" tabindex="[% i=i+1; i %]" accesskey="e"/><br />
 				<label for="password">Password</label><input type="password" id="password" name="password" tabindex="[% i=i+1; i %]" accesskey="p"/><br />
-				<input type="submit" value="Accedi"/>
+				<input id="accedi-submit" type="submit" value="Accedi"/>
 			</fieldset>
 		</form>
 		[% END %]

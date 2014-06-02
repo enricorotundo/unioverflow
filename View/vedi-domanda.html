@@ -5,15 +5,6 @@
 
 	<div id="content">
 		<span id="path">Ti trovi in: <a href="index.cgi" title="Domande">Domande</a> &raquo; Vedi domanda <span class="auralNotRead">#</span><span class="aural">numero </span>[% question.identifier %]</span>
-		<!-- <div class="questionV">
-			<div class="questionStatus">
-				[% question.status == 'solved' ? '<img src="../images/solvedQuestion.png" alt="Domanda risolta"/><p>Risolta</p>' : '<img src="../images/openedQuestion.png" alt="Domanda aperta"/><p>Aperta</p>' %]
-			</div>
-			<div class="questionDetailsV">
-				<h3>[% question.title %]</h3>
-				<p class="Qcontent">[% question.content %]</p>
-				<p>chiesto da <span class="author">[% question.author | html %]</span> il [% question.insertDate | html %]</p> -->
-
 		<div class="question">
 			<div class="questionStatus [% question.status %]">
 			[% IF question.status == 'solved' %]
