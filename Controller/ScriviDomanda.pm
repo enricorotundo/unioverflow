@@ -22,7 +22,7 @@ sub handler {
 	}
 
 	# controllo se arrivo in scrivi-domanda inviando dei dati con POST
-	if ($req->attr("method") eq 'POST') {
+	if ($req->attr("method") eq 'POST' and Middleware::Authentication::isLogged($req)) {
 		my $fields_check = fieldsCheck(
 			$req->param("titolo"),
 			$req->param("testo")

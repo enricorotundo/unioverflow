@@ -35,7 +35,7 @@ sub handler {
 
 	# TODO ...
 
-	if ($req->attr("method") eq 'POST') {
+	if ($req->attr("method") eq 'POST' and Middleware::Authentication::isLogged($req)) {
 		
 		# controllo se è una richiesta di cambio di stato della domanda
 		if ($req->param("status")) {
