@@ -78,6 +78,11 @@ sub handler {
 	my $answersPerPage = 9;
 	# Evita XSS attack
 	my $page = Lib::Sanitize::number($req->param("page"));
+
+	if ($req->param("post-text")) {  # Se ho inserito una risposta mi aspetto di andare all'ultima pagina.
+		$page = ceil(scalar(@allAnswers)/$answersPerPage);
+	}
+
 	if ($page eq "" or $page == 0) {
 		$page = 1;
 	}
