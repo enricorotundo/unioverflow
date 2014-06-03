@@ -1,7 +1,7 @@
 /* CSS per la stampa */
 
 
-#cerca, #footer, #headImg, #navigation, #pagination-wrapper, #path, #rispondi, #skip-to-content, .tornaSu {
+#cerca, #footer, #headImg, #navigation, #pagination-wrapper, #path, #rispondi, #skip-to-content, .no-print, .tornaSu {
 	display: none;
 }
 #headerText {
