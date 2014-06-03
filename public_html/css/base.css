@@ -355,7 +355,9 @@ ul {
 	width: auto;
 	margin: 0 auto;
 }
-
+#accedi-form input[type="text"] {
+	width: 15em;
+}
 /* Esegui-accesso */
 p {
 	padding-top: 1em;
