@@ -86,7 +86,7 @@ sub fieldsCheck {
 	my $title_check;
 	my $content_check;
 
-	if (Lib::Utils::not_empty($title) and $title eq Lib::Sanitize::title($title)) {
+	if (Lib::Utils::not_empty($title) and $title eq Lib::Sanitize::title($title) and length $title <= 300) {
 		$title_check = 1;
 	} else {
 		$title_check = "";
