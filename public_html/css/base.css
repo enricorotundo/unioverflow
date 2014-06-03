@@ -433,7 +433,7 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 	padding: 0.2em 0.4em;
 	margin: 0 0.3em;
 }
-.next, .prev {
+.end, .next, .prev, .start {
 	position: absolute;
 	text-decoration: underline;
 	top: -0.25em;
@@ -449,6 +449,12 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 }
 .prev:before {
 	content: "← ";
+}
+.start {
+	left: -13em;
+}
+.end {
+	right: -12em;
 }
 
 
