@@ -73,6 +73,9 @@
 			<div id="pagination-wrapper">
 				<h3 id="paginationLabel" class="aural">Paginazione</h3>
 				<ul id="pagination">
+				[% IF pageInfo.currentPageNumber >= 4 %]
+					<li><a class="start" tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=1">Inizio</a></li>
+				[% END %]
 				[% IF pageInfo.currentPageNumber >= 3 %]
 					<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber - 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber - 2 %]</a></li>
 				[% END %]
@@ -85,6 +88,9 @@
 				[% END %]
 				[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 2 %]
 					<li><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 2 %]"><span class="aural">Pagina </span>[% pageInfo.currentPageNumber + 2 %]</a></li>
+				[% END %]
+				[% IF pageInfo.currentPageNumber <= pageInfo.totalPages - 3 %]
+					<li><a class="end" tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.totalPages %]">Fine</a></li>
 				[% END %]
 				</ul>
 			</div>

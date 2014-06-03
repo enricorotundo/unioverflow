@@ -54,16 +54,17 @@ sub handler {
 
 		} else {
 			# creo il msg di errore
-			my $msg = "I seguenti campi contengono errori: <br>";
+			my $msg = "Sono stati riscontrati i seguenti errori:<ul>";
 			if (not $fields_check->{"email_check"}) {
-				$msg = $msg . "L'email deve finire con '\@studenti.unipd.it' <br>"
+				$msg = $msg . "<li>L'email deve finire con '\@studenti.unipd.it'</li>";
 			}
 			if (not $fields_check->{"password_check"}) {
-				$msg = $msg . "La password deve essere almeno di 8 caratteri e non pu&ograve; contenere caratteri speciali<br>"
+				$msg = $msg . "<li>La password deve essere almeno di 8 caratteri e non pu&ograve; contenere caratteri speciali</li>";
 			}
 			if (not $fields_check->{"password_confirm_check"}) {
-				$msg = $msg . "La password di conferma non corrisponde!"
+				$msg = $msg . "<li>La password di conferma non corrisponde!</li>";
 			}
+			$msg = $msg . "</ul>";
 
 			# Execution
 			$data = {

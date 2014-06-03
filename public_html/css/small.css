@@ -69,3 +69,19 @@ ul#menu>:last-child {
 .sezioneManuale {
 	margin: 0 1% 0;
 }
+
+
+/* # Pagination
+========================================================*/
+.prev, .next {
+	display: none;
+}
+.start, .end {
+	position: static;
+}
+.start:after {
+	content: " ...";
+}
+.end:before {
+	content: "... ";
+}
