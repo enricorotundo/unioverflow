@@ -117,7 +117,7 @@ sub getLastQuestions {
 	my @questions = $db->findNodes( $questionXPath );
 
 	my @questions = sort {
-    	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
+    	my ($aa, $bb) = map $_->findvalue("\@id"), ($a, $b);
     	$bb cmp $aa;
   		} $db->findNodes('/db/questions/question');
 
@@ -163,7 +163,7 @@ sub getLastQuestionsFind {
 	my @questions = $db->findNodes( $questionXPathF );
 
 	my @questions = sort {
-    	my ($aa, $bb) = map $_->findvalue('insertDate'), ($a, $b);
+    	my ($aa, $bb) = map $_->findvalue("\@id"), ($a, $b);
     	$bb cmp $aa;
   		} $db->findNodes($questionXPathF);
 
