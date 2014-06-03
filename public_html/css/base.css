@@ -484,3 +484,13 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 .tornaSu a:after {
 	content: ' ▲';
 }
+#error p {
+	color: red;
+	font-weight: bold;
+}
+
+#error ul {
+	list-style-position: inside;
+	list-style-type: disc;
+	margin: 0.3em 0em;
+}
