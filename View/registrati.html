@@ -11,14 +11,16 @@
 			<p>Ora puoi andare alla <a tabindex="[% i=i+1; i %]" accesskey="l" href="accedi.cgi" title="Vai alla pagina per accedere">pagina per accedere</a>.</p>
 			</div>
 		[% ELSE %]
+			<span id="pageTitleRegistrazione"> Benvenuto nella pagina di registrazione!</span>
+				<p id="warning-registrazione"><strong>Attenzione :</strong> L'email deve essere del tipo @studenti.unipd.it e la password di almeno 8 caratteri e non può contenere caratteri speciali. Per ulteriori informazioni riferirsi al <a tabindex="[% i=i+1; i %]" href="manuale.cgi#Registrazione" title="Vai alla guida su registrarsi">manuale</a>.</p>
+
 			[% IF error %]
 				<div id="error">
 					<p>[% msg %]</p>
 				</div>
 			[% END %]
-				<span id="pageTitleRegistrazione"> Benvenuto nella pagina di registrazione!</span>
-				<p id="warning-registrazione"><strong>Attenzione :</strong> L'email deve essere del tipo @studenti.unipd.it e la password di almeno 8 caratteri e non può contenere caratteri speciali. Per ulteriori informazioni riferirsi al <a tabindex="[% i=i+1; i %]" href="manuale.cgi#Registrazione" title="Vai alla guida su registrarsi">manuale</a>.</p>
-				<form id="registrati-form" action="registrati.cgi" method="post">
+				<div id="errori"></div> 
+				<form id="registrati-form" name="registrati-form" action="registrati.cgi" onsubmit="return validateForm()" method="post">
 					<fieldset>
 						<legend>Inserisci i dati richiesti</legend>
 						<label for="email">Email</label>
