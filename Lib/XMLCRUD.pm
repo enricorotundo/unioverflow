@@ -53,7 +53,7 @@ sub loadFindNodesXPath {
 sub getLastQuestionId {
 	my ($self) = @_;
 	my $lastid;
-	my $xpath = '/db/questions/question[last()]/@id';
+	my $xpath = '/db/questions/question[not(/db/questions/question/@id > @id)]/@id';
 
 	my $doc = $self->loadDoc();
 	my $root = $doc->documentElement();
@@ -66,7 +66,7 @@ sub getLastQuestionId {
 sub getLastAnswerId {
 	my ($self) = @_;
 	my $lastid;
-	my $xpath = '/db/answers/answer[last()]/@id';
+	my $xpath = '/db/answers/answer[not(/db/answers/answer/@id > @id)]/@id';
 
 	my $doc = $self->loadDoc();
 	my $root = $doc->documentElement();
