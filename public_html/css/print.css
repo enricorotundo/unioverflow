@@ -4,7 +4,16 @@
 #cerca, #footer, #headImg, #navigation, #pagination-wrapper, #path, #rispondi, #skip-to-content, .tornaSu {
 	display: none;
 }
-
 #headerText {
 	border-bottom: 2px solid black;
+}
+a:link:after, a:visited:after {
+    content: " (" attr(href) ")";
+    font-size:90%;
+}
+table, tr, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	overflow: auto;
+	page-break-inside: avoid;
 }
