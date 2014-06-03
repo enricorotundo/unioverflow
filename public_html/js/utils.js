@@ -1,6 +1,6 @@
 
 function validateForm() {
-	var campoErrori = document.getElementById("errori");
+	var campoErrori = document.getElementById("error");
     var email = document.forms["registrati-form"]["email"].value;
     var password = document.forms["registrati-form"]["password"].value;
     var passwordconfirm = document.forms["registrati-form"]["passwordconfirm"].value;

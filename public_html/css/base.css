@@ -330,6 +330,18 @@ ul {
 	background-color: #77261c;
 	width: auto;
 }
+
+#error p {
+	color: red;
+	font-weight: bold;
+}
+
+#error ul {
+	list-style-position: inside;
+	list-style-type: disc;
+	margin: 0.3em 0em;
+}
+
 /* Accedi */ 
 #accedi-form{
 	margin-top: 1em;
@@ -352,6 +364,7 @@ p {
 #esci p {
 	padding-top: 1em;
 }
+
 
 /* # Navigation
 ========================================================*/
@@ -483,14 +496,4 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 }
 .tornaSu a:after {
 	content: ' ▲';
-}
-#error p {
-	color: red;
-	font-weight: bold;
-}
-
-#error ul {
-	list-style-position: inside;
-	list-style-type: disc;
-	margin: 0.3em 0em;
 }
