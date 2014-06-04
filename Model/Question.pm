@@ -52,23 +52,23 @@ sub getQuestions {
 sub getQuestionById {
 	my ($id) = @_;
 
-	# recupera la domanda
-	my $question = $db->findOne( "/db/questions/question[\@id='$id']" );
+	if (defined $id) {
+		# recupera la domanda
+		my $question = $db->findOne( "/db/questions/question[\@id='$id']" );
 
-	if($question){
-		return Model::Question->new(
-			"identifier" => $question->findvalue( "\@id" ),
-			"id" => $question->findvalue( "\@id" ),
-			"author" => $question->findvalue( "author" ),
-			"title" => $question->findvalue( "title" ),
-			"content" => Lib::Markup::convert($question->findvalue( "content" )),
-			"status" => $question->findvalue( "status" ),
-			"insertDate" => $question->findvalue( "insertDate" )
-		);
-	}else
-	{
-		# gestire errore
+		if ($question){
+			return Model::Question->new(
+				"identifier" => $question->findvalue( "\@id" ),
+				"author" => $question->findvalue( "author" ),
+				"title" => $question->findvalue( "title" ),
+				"content" => Lib::Markup::convert($question->findvalue( "content" )),
+				"status" => $question->findvalue( "status" ),
+				"insertDate" => $question->findvalue( "insertDate" )
+			);
+		}
 	}
+
+	return undef;
 }
 
 

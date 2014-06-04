@@ -51,11 +51,8 @@ sub getAnswersByQuestionId {
 	my @list;
 
 	if (defined $id) {
-
-
-
 		# recupera le risposte
-		my @answers = $db->findNodes( $answerXPath . "[question = $id]" );
+		my @answers = $db->findNodes( $answerXPath . "[question = '$id']" );
 
 		foreach my $answer (@answers)
 		{
