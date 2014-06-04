@@ -22,6 +22,7 @@ sub handler {
 	
 	# Execution
 	my $data = {
+		"logged" => Middleware::Authentication::isLogged($req),
 		"success" => $success
 	};
 	

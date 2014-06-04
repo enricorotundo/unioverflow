@@ -8,10 +8,13 @@
 	[% ELSE %]
 		<title>[% pageName %], pagina [% pageInfo.currentPageNumber %] - UniOverflow</title>
 	[% END %]
+	<meta name="robots" content="index, follow" />
 [% ELSIF pageName == 'VediDomanda' %]
 	<title>[% FILTER truncate(50); question.title; END %] - UniOverflow</title>
+	<meta name="robots" content="index, follow" />
 [% ELSE %]
 	<title>[% pageName %] - UniOverflow</title>
+	<meta name="robots" content="noindex, follow" />
 [% END %]
 	<meta name="description" content="UniOverflow &egrave; un sito di domande e risposte rivolto agli studenti del corso di informatica dell'Universit&agrave; di Padova." />
 	<meta name="keywords" content="UniOverflow, fiup, informatica, unipd, Padova, domande, risposte" />
