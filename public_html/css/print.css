@@ -19,7 +19,10 @@
 }
 a:link:after, a:visited:after {
     content: " (" attr(href) ")";
-    font-size:90%;
+    font-size: 90%;
+}
+a.no-print-link:link:after, a.no-print-link:visited:after {
+	content: normal;
 }
 table, tr, th, td {
 	border: 1px solid black;
