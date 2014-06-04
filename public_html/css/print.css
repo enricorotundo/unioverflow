@@ -1,11 +1,21 @@
 /* CSS per la stampa */
 
 
-#cerca, #footer, #headImg, #navigation, #pagination-wrapper, #path, #rispondi, #skip-to-content, .no-print, .tornaSu {
+#cerca, #footer, #navigation, #pagination-wrapper, #path, #rispondi, #skip-to-content, .no-print, .tornaSu {
 	display: none;
+}
+#headImg {
+	display: block;
+	margin: auto;
+	width: 90%;
+	max-width: 300px;
 }
 #headerText {
 	border-bottom: 2px solid black;
+}
+#headerText h2 {
+	font-size: 100%;
+	text-align: center;
 }
 a:link:after, a:visited:after {
     content: " (" attr(href) ")";
