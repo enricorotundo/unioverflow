@@ -2,8 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>UniOverflow</title>
-	<meta name="description" content="Unioverflow &egrave; un sito di domande e risposte rivolto agli studenti del corso di informatica dell'Universit&agrave; di Padova." />
+[% IF pageName == 'Domande' %]
+	[% IF isFromSearch %]
+		<title>Risultati della ricerca - [% pageName %] - UniOverflow</title>
+	[% ELSE %]
+		<title>[% pageName %], pagina [% pageInfo.currentPageNumber %] - UniOverflow</title>
+	[% END %]
+[% ELSIF pageName == 'VediDomanda' %]
+	<title>[% FILTER truncate(50); question.title; END %] - UniOverflow</title>
+[% ELSE %]
+	<title>[% pageName %] - UniOverflow</title>
+[% END %]
+	<meta name="description" content="UniOverflow &egrave; un sito di domande e risposte rivolto agli studenti del corso di informatica dell'Universit&agrave; di Padova." />
 	<meta name="keywords" content="UniOverflow, fiup, informatica, unipd, Padova, domande, risposte" />
 	<meta name="author" content="Giacomo Fornari, Serena Girardi, Enrico Rotundo, Federico Poli" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
