@@ -46,10 +46,13 @@
 		[% ELSE %]
 			<h4>[% totalAnswers == 1 ? '1 risposta' : totalAnswers _ ' risposte' %]</h4>
 			<ul>
-				[% FOREACH answer IN answers %]
-					<li class="answer">
+				[% localAnswerId = 0; 
+				FOREACH answer IN answers %]
+					<li id="answer-[% localAnswerId = localAnswerId + 1; localAnswerId %]" class="answer">
 						<p class="date-author">il [% answer.insertDate | html %] <span class="author">[% answer.author | html %]</span> ha scritto:</p>
+						<a class="aural" href="#answer-[% localAnswerId + 1 %]">Passa alla risposta successiva</a>
 						<p>[% answer.content %]</p>
+						<p class="tornaSu"><a href="#content" title="Torna direttamente al contenuto" tabindex="[% i=i+1; i %]">Torna su</a></p>
 					</li>
 				[% END %]
 			</ul>
