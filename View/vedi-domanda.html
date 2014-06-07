@@ -4,7 +4,7 @@
 	PROCESS layout/navigation.html %]
 
 	<div id="content">
-		<span id="path">Ti trovi in: <a href="index.cgi" title="Domande">Domande</a> &raquo; Vedi domanda <span class="auralNotRead">#</span><span class="aural">numero </span>[% question.identifier %]</span>
+		<span id="path">Ti trovi in: <a href="index.cgi" title="Domande">Domande</a> &raquo; Vedi domanda <span class="auralNotRead">#</span><span class="aural">numero </span>[% question.identifier %], pagina [% pageInfo.currentPageNumber %]</span>
 		<div class="question">
 			<div class="questionStatus [% question.status %]">
 			[% IF question.status == 'solved' %]
