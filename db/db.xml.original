@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <db xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com db.xsd">
-	<users>
-		<user>
-			<email>enrico.rotundo@studenti.unipd.it</email>
-			<password>12345678</password>
-		</user>
-		<user>
-			<email>giacomo.fornari@studenti.unipd.it</email>
-			<password>12345678</password>
-		</user>
-		<user>
-			<email>federico.poli.1@studenti.unipd.it</email>
-			<password>federico</password>
-		</user>
-		<user>
-			<email>serena.girardi@studenti.unipd.it</email>
-			<password>qwertyuiop</password>
-		</user>
-	</users>
-	<questions>
+  <users>
+    <user>
+      <email>enrico.rotundo@studenti.unipd.it</email>
+      <password>12345678</password>
+    </user>
+    <user>
+      <email>giacomo.fornari@studenti.unipd.it</email>
+      <password>12345678</password>
+    </user>
+    <user>
+      <email>federico.poli.1@studenti.unipd.it</email>
+      <password>federico</password>
+    </user>
+    <user>
+      <email>serena.girardi@studenti.unipd.it</email>
+      <password>qwertyuiop</password>
+    </user>
+  </users>
+  <questions>
 <question id="2"><title>[C] Calcolo percorso breve</title><content>Ciao ragazzi, sto cercando di risolvere un esercizio:&#13;
 &#13;
 "Dati un vertice sorgente, uno destinazione e una tipologia di distanze (d1 oppure d2 oppure&#13;
@@ -191,28 +191,28 @@ scanf(" %c", &amp;elem);&#13;
 insincoda(&amp;lista, elem);&#13;
 stampalista(lista);&#13;
 return 0;&#13;
-}* </content><author>serena.girardi@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question><question id="7"><title>Linguaggio C, ritornare puntatore alla componente dell'array</title><content>Implementare float* minimo(const float* array, int size)&#13;
-&#13;
-che, presi in input un array di float e la sua dimensione size, restituisce il puntatore alla componente dell’array contenente il valore minimo. </content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question><question id="8"><title>Linguaggio C, ritornare puntatore alla componente dell'array</title><content>Implementare float* minimo(const float* array, int size)&#13;
+}* </content><author>serena.girardi@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question><question id="7"><title>Linguaggio C
+++</title><content>Ciao, vorrei sapere come si può associare un programma C++ ad una interfaccia grafica. Vorrei rendere gradevoli i miei programmini al posto di vederli sempre sul dos! 
+Che programma si usa? Ho appena scaricato Visual C++...</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question><question id="8"><title>Linguaggio C, ritornare puntatore alla componente dell'array</title><content>Implementare float* minimo(const float* array, int size)&#13;
 &#13;
 che, presi in input un array di float e la sua dimensione size, restituisce il puntatore alla componente dell’array contenente il valore minimo. </content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question></questions>
-	<answers>
-		<answer id="1">
-			<content>Perl è un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalità ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content>
-			<author>giacomo.fornari@studenti.unipd.it</author>
-			<question>1</question>
-			<insertDate>2014-04-27</insertDate>
-		</answer>
-	<answer id="2"><content>Questa è una *risposta* con tanta ma **tanta** formattazione. E ci sono anche
+  <answers>
+    <answer id="1">
+      <content>Perl è un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalità ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content>
+      <author>giacomo.fornari@studenti.unipd.it</author>
+      <question>1</question>
+      <insertDate>2014-04-27</insertDate>
+    </answer>
+  <answer id="2"><content>Questa è una *risposta* con tanta ma **tanta** formattazione. E ci sono anche
 tanti
 tanti
 a-capo.
 Si vedono bene?</content>
-			<author>federico.poli.1@studenti.unipd.it</author>
-			<question>1</question>
-			<insertDate>2014-04-29</insertDate>
-		</answer>
-	<answer id="3"><content>Funziona tutto no?&#13;
+      <author>federico.poli.1@studenti.unipd.it</author>
+      <question>1</question>
+      <insertDate>2014-04-29</insertDate>
+    </answer>
+  <answer id="3"><content>Funziona tutto no?&#13;
 *Serena*</content><author>serena.girardi@studenti.unipd.it</author><question>2</question><insertDate>2014-05-18</insertDate></answer><answer id="4"><content>Mostra l'include</content><author>federico.poli.1@studenti.unipd.it</author><question>3</question><insertDate>2014-05-30</insertDate></answer><answer id="5"><content>*#include &lt;unistd.h&gt;&#13;
 #include &lt;pthread.h&gt;&#13;
 #include &lt;stdlib.h&gt;&#13;
@@ -689,7 +689,7 @@ Alla fine la feof era inutile in questo caso perché il while(i &lt; *n) è già
 &#13;
 La fseek l'hai tolta perché hai messo lo \n nello scanf. &#13;
 &#13;
-Per quanto riguarda con lo	fscanf(f, "%d\n", &amp;*n); funziona anche così.&#13;
+Per quanto riguarda con lo  fscanf(f, "%d\n", &amp;*n); funziona anche così.&#13;
 &#13;
 Quindi fscanf(f, "%d\n", n); è uguale a fscanf(f, "%d\n", &amp;*n); ? &#13;
 &#13;
