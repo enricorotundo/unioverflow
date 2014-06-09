@@ -54,7 +54,7 @@ th, td {
 	padding: 0.3em;
 }
 th {
-	background-color: #77261c;
+	background-color: #77261a;
 	color: white;
 }
 ul {
@@ -117,18 +117,8 @@ ul {
 	padding-left: 5em;
 	word-wrap: break-word;	
 }
-.questionDetailsV p:nth-of-type(2) {
-	font-family: "Georgia", Times, serif;
-	font-weight: bold;
-	padding-top: 1em;
-	font-size: 0.9em;
-}
 .questionDetails a {
-	color: #77261c;
 	font-size: 120%;
-}
-.questionDetails a:hover, a:visited {
-	color: #5a5a5a;
 }
 .questionStatus {
 	float: left;
@@ -189,7 +179,7 @@ ul {
 	color: white;
 	display: block;
 	padding: 0.2em 0.5em;
-	background-color: #77261c;
+	background-color: #77261a;
 	width: auto;
 } 
 #rispondi {
@@ -213,13 +203,13 @@ ul {
 	color: white;
 	display: inline-block;
 	padding: 0.9em;
-	background-color: #77261c;
+	background-color: #77261a;
 	width: auto;
 	text-align: center;
 }
 
 /* scrivi-domanda */
-#pageTitle{
+#pageTitle {
 	display: block;
 	margin-top: 1em;
 	text-align: center;
@@ -247,7 +237,7 @@ ul {
 	color: white;
 	display: block;
 	padding: 0.9em;
-	background-color: #77261c;
+	background-color: #77261a;
 	width: auto;
 	overflow: auto;
 	margin:0 auto;
@@ -327,7 +317,7 @@ ul {
 	color: white;
 	display: block;
 	padding: 0.9em;
-	background-color: #77261c;
+	background-color: #77261a;
 	width: auto;
 }
 
@@ -351,7 +341,7 @@ ul {
 	color: white;
 	display: block;
 	padding: 0.9em;
-	background-color: #77261c;
+	background-color: #77261a;
 	width: auto;
 	margin: 0 auto;
 }
@@ -372,8 +362,8 @@ p {
 ========================================================*/
 #navigation {
 	overflow: auto;
-	background-color: #77261c;
-	border: 1px solid #77261c;
+	background-color: #77261a;
+	border: 1px solid #77261a;
 	color: white;
 }
 #menu li {
@@ -400,8 +390,8 @@ p {
 }
 #currentPage {
 	background-color: white;
-	border-left: 1px solid #77261c;
-	border-right: 1px solid #77261c;
+	border-left: 1px solid #77261a;
+	border-right: 1px solid #77261a;
 	color: black;
 	display: block;
 	padding: 1em;
@@ -417,7 +407,7 @@ ul#menu .lateralNavItem {
 	border-left: 0px;
 }
 ul#menu .lateralNavItem ~ .lateralNavItem {
-	border-right: 1px solid #77261c;
+	border-right: 1px solid #77261a;
 }
 /* fine trick */
 
@@ -436,7 +426,7 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 }
 #pagination li a:hover, #pagination a:hover .prev, #pagination a:hover .next,
 #pagination li a:focus, #pagination a:focus .prev, #pagination a:focus .next {
-	background-color: #77261c;
+	background-color: #77261a;
 	color: white;
 }
 #pagination li, #pagination p {
