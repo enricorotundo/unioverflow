@@ -199,7 +199,7 @@ return 0;&#13;
 ++</title><content>Ciao, vorrei sapere come si può associare un programma C++ ad una interfaccia grafica. Vorrei rendere gradevoli i miei programmini al posto di vederli sempre sul dos! 
 Che programma si usa? Ho appena scaricato Visual C++...</content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question><question id="8"><title>Linguaggio C, ritornare puntatore alla componente dell'array</title><content>Implementare float* minimo(const float* array, int size)&#13;
 &#13;
-che, presi in input un array di float e la sua dimensione size, restituisce il puntatore alla componente dell’array contenente il valore minimo. </content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>opened</status></question></questions>
+che, presi in input un array di float e la sua dimensione size, restituisce il puntatore alla componente dell’array contenente il valore minimo. </content><author>federico.poli.1@studenti.unipd.it</author><insertDate>2014-05-17</insertDate><status>solved</status></question></questions>
   <answers>
     <answer id="1">
       <content>Perl è un linguaggio di programmazione ad alto livello, dinamico, procedurale e interpretato, creato nel 1987 da Larry Wall. Perl ha un singolare insieme di funzionalità ereditate da C, scripting shell Unix (sh), Awk, sed e in diversa misura da molti altri linguaggi di programmazione, compresi alcuni linguaggi funzionali.</content>
