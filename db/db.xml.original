@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <db xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://www.unioverflow.com db.xsd">
   <users>
+  	<user>
+      <email>docente@studenti.unipd.it</email>
+      <password>12345678</password>
+    </user>
     <user>
       <email>enrico.rotundo@studenti.unipd.it</email>
       <password>12345678</password>
