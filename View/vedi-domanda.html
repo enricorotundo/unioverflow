@@ -51,9 +51,9 @@
 					<li id="answer-[% localAnswerId = localAnswerId + 1; localAnswerId %]" class="answer">
 						<p class="date-author">il [% answer.insertDate | html %] <span class="author">[% answer.author | html %]</span> ha scritto:</p>
 					[% IF !loop.last %]
-						<a class="aural" href="#answer-[% localAnswerId + 1 %]">Passa alla risposta successiva</a>
+						<a class="aural" href="#answer-[% localAnswerId + 1 %]">Passa alla risposta numero [% localAnswerId + 1 %], pagina [% pageInfo.currentPageNumber %]</a>
 					[% ELSIF pageInfo.currentPageNumber < pageInfo.totalPages %]
-						<a class="aural" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 1 %]#answer-1">Passa alla risposta successiva</a>
+						<a class="aural" href="vedi-domanda.cgi?id=[% question.identifier %]&amp;page=[% pageInfo.currentPageNumber + 1 %]#answer-1">Passa alla risposta numero 1, pagina [% pageInfo.currentPageNumber + 1 %]</a>
 					[% END %]
 						<p>[% answer.content %]</p>
 						<p class="tornaSu"><a href="#content" title="Torna direttamente al contenuto" tabindex="[% i=i+1; i %]">Torna su</a></p>
