@@ -59,15 +59,19 @@ validate-db:
 	@echo "(*) Il database XML è ok."
 
 test-pages:
-	@echo "(*) Controllo che le pagine si carichino (non controllo la validità)..."
+	@echo "(*) Faccio alcuni controlli sulle pagine (non controllo la validità)..."
 	@for page in $(PAGES); do \
 		if [[ $$(curl -s "$$page" | grep -i "not found\|stacktrace" -c) != 0 ]]; then \
 			echo "/!\\ Ci sono degli errori alla pagina $$page"; \
 			curl -s "$$page" | grep -i "not found\|stacktrace"; \
 			exit 1; \
-		else \
-			echo "( ) La pagina $$page non ha errori"; \
 		fi; \
+		if [[ $$(curl -s "$$page" | grep -i "<!--" -c) != 0 ]]; then \
+			echo "/!\\ Ci sono dei commeti HTML alla pagina $$page"; \
+			curl -s "$$page" | grep -i "not found\|stacktrace"; \
+			exit 1; \
+		fi; \
+		echo "( ) La pagina $$page non ha errori"; \
 	done
 	@echo "(*) Le pagine non hanno errori evidenti."
 
