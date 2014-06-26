@@ -69,11 +69,6 @@ sub handler {
 		@allAnswers = Model::Answer::getAnswersByQuestionId($questionId);
 	}
 
-	# TODO: ho commentato perche se la domanda non ha risposte reindirizza a page-error!
-	# if (!@allAnswers) { 
-	# 	return $res->redirect("page-error.cgi");
-	# }
-
 	# prendo le risposte per la pagina $req->param("page")
 	my $answersPerPage = 9;
 	# Evita XSS attack

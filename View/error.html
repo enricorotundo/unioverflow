@@ -1,34 +1,36 @@
-<html>
-	<head>
-		<title>Error</title>
-		<style type="text/css">
-			p { font-family: monospace; }
-			.subroutine { color: blue; }
-			.args       { color: red; }
-			.dump       { color: gray; }
-			.file       { color: blue; }
-			.line       { color: green; }
-		</style>
-	</head>
-	<body>
-		<h2>Error</h2>
-		<pre>[% message %]</pre>
-		<hr/>
-		<h3>Stacktrace</h3>
-		<ul>
-		[% FOREACH frame IN trace %]
-			<li>
-				<p>
-					<span class="package">[% frame.package %]</span>
-					<span class="subroutine">[% frame.subroutine %]</span>
-					<span class="args">[% frame.args %]</span>
-				</p>
-				<p>
-					called at <code class="file">[% frame.file %]</code>
-					line <code class="line">[% frame.line %]</code>
-				</p>
-			</li>
-		[% END %]
-		</ul>
-	</body>
-</html>
+[% WRAPPER layout/main.html;
+	pageName = 'Errore';
+	PROCESS layout/header.html;
+	PROCESS layout/navigation.html %]
+	<div id="content">
+		<span id="path">Ti trovi in: Pagina di errore</span>
+		<div id="errorContent">
+			<h3>Errore</h3>
+			<p>Ops, si è verificato un errore.</p>
+		</div>
+		<div id="segnalaErrore">
+			<p>Vuoi segnalarcelo? <a href="email@echo.com?subject=Errore%20UniOverflow" title="Invia una email per segnalare un errore" tabindex="[% i=i+1; i %]" accesskey="s">Scrivici</a>!</p>
+		</div>
+		<div id="stacktrace">
+			<h4>Dettagli dell'errore</h4>
+			<p xml:lang="en">[% message %]</p>
+			<h4 xml:lang="en">Stacktrace</h4>
+			<ul xml:lang="en">
+			[% FOREACH frame IN trace %]
+				<li>
+					<p>
+						<span class="package">[% frame.package %]</span>
+						<span class="subroutine">[% frame.subroutine %]</span>
+						<span class="args">[% frame.args %]</span>
+					</p>
+					<p>
+						called at <code class="file">[% frame.file %]</code>
+						line <code class="line">[% frame.line %]</code>
+					</p>
+				</li>
+			[% END %]
+			</ul>
+		</div>
+	</div>
+
+[% END %]

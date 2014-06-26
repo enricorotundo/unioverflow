@@ -13,7 +13,6 @@ PAGES = \
 	$(BASE_URL)/cgi-bin/index.cgi \
 	$(BASE_URL)/cgi-bin/index.html \
 	$(BASE_URL)/cgi-bin/manuale.cgi \
-	$(BASE_URL)/cgi-bin/page-error.cgi \
 	$(BASE_URL)/cgi-bin/registrati.cgi \
 	$(BASE_URL)/cgi-bin/scrivi-domanda.cgi \
 	$(BASE_URL)/cgi-bin/vedi-domanda.cgi
@@ -67,7 +66,7 @@ test-pages:
 			exit 1; \
 		fi; \
 		if [[ $$(curl -s "$$page" | grep -i "<!--" -c) != 0 ]]; then \
-			echo "/!\\ Ci sono dei commeti HTML alla pagina $$page"; \
+			echo "/!\\ Ci sono dei commenti HTML alla pagina $$page"; \
 			curl -s "$$page" | grep -i "not found\|stacktrace"; \
 			exit 1; \
 		fi; \

@@ -490,3 +490,14 @@ ul#menu .lateralNavItem ~ .lateralNavItem {
 .tornaSu a:after {
 	content: ' ▲';
 }
+
+
+/* # Pagina di errore
+========================================================*/
+
+#stacktrace p           { font-family: monospace; }
+#stacktrace .subroutine { color: blue; }
+#stacktrace .args       { color: red; }
+#stacktrace .dump       { color: gray; }
+#stacktrace .file       { color: blue; }
+#stacktrace .line       { color: green; }
