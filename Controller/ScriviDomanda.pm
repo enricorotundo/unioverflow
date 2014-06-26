@@ -18,7 +18,7 @@ sub handler {
 	my $session = Middleware::Session::getSession($req);
 	my $author = "";
 	if ($session) {
-		$author = $session->param("email") or "";
+		$author = $session->param("email");
 	}
 
 	# controllo se arrivo in scrivi-domanda inviando dei dati con POST

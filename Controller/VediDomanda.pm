@@ -30,7 +30,7 @@ sub handler {
 	my $session = Middleware::Session::getSession($req);
 	my $sessionEmail = "";
 	if ($session) {
-		$sessionEmail = $session->param("email") or "";
+		$sessionEmail = $session->param("email");
 	}
 
 	# TODO ...
