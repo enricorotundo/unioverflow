@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use CGI::Carp;
 
-use CGI::Carp qw(warningsToBrowser);
+# use CGI::Carp qw(warningsToBrowser);
 
 use base 'Lib::Object';
 
@@ -56,7 +56,7 @@ sub send {
 	print $self->{"content"};
 
 	# Print warning as HTML comment
-	warningsToBrowser(1);
+	# warningsToBrowser(1);
 }
 
 1;
