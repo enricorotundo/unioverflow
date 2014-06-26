@@ -40,7 +40,6 @@ sub autoDetectRequest {
 	my $cgi = CGI->new;
 	my $params = $cgi->Vars();
 	use Data::Dumper;
-	warn Data::Dumper::Dumper(\$params);
 
 	my $request = Lib::Request->new((
 		"method" => ($ENV{'REQUEST_METHOD'} or ""),

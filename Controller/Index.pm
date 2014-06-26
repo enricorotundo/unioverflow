@@ -15,7 +15,7 @@ sub handler {
 	# Get parameters
 	my ($req, $res) = @_;
 	my $TestoDaCercareOriginale = $req->param("testoDaCercare");
-	my $TestoDaCercareSano = Lib::Sanitize::search_query($TestoDaCercareOriginale) or "";
+	my $TestoDaCercareSano = Lib::Sanitize::search_query($TestoDaCercareOriginale);
 	# Evita XSS attack
 	my $page = Lib::Sanitize::number($req->param("page"));
 	if ($page eq "" or $page == 0) {

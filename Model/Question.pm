@@ -114,7 +114,7 @@ sub getLastQuestions {
 	my @list;
 
 	# recupera le domande
-	my @questions = $db->findNodes( $questionXPath );
+	#my @questions = $db->findNodes( $questionXPath );
 
 	my @questions = sort {
     	my ($aa, $bb) = map $_->findvalue("\@id"), ($a, $b);
@@ -160,7 +160,7 @@ sub getLastQuestionsFind {
 	my $questionXPathF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
 
 	# recupera le domande
-	my @questions = $db->findNodes( $questionXPathF );
+	#my @questions = $db->findNodes( $questionXPathF );
 
 	my @questions = sort {
     	my ($aa, $bb) = map $_->findvalue("\@id"), ($a, $b);
@@ -187,7 +187,7 @@ sub getLastQuestionsFind {
 		push @listF, $obj;
 	}
 
-	if (length(@listF) <= $questionPerPage ) {
+	if (scalar(@listF) <= $questionPerPage ) {
 		return @listF;
 	}
 	else{
@@ -283,7 +283,7 @@ sub countQuestions {
 # Ritorna il numero totale delle domande con Find
 sub countQuestionsFind {
 	# recupera le domande
-	my ($TestoDaCercare) = @_[0];
+	my ($TestoDaCercare) = $_[0];
 	my @questionXPathF = "/db/questions/question[title[text()[contains(., '" . $TestoDaCercare . "')]]]";
 	my @questions = $db->findNodes( @questionXPathF );
 	return scalar(@questions);

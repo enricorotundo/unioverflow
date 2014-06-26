@@ -65,7 +65,7 @@ test-pages:
 			curl -s "$$page" | grep -i "not found\|stacktrace"; \
 			exit 1; \
 		fi; \
-		if [[ $$(curl -s "$$page" | grep -i "<!--" -c) != 0 ]]; then \
+		if [[ $$(curl -s "$$page" | grep -i "<!--[^[]" -c) != 0 ]]; then \
 			echo "/!\\ Ci sono dei commenti HTML alla pagina $$page"; \
 			curl -s "$$page" | grep -i "not found\|stacktrace"; \
 			exit 1; \
