@@ -52,7 +52,7 @@ sub handler {
 
 			if($TestoDaCercareOriginale ne $TestoDaCercareSano){
 				# creo il msg di errore
-				my $msg = "I caratteri &quot; &#39; sono stati ignorati.";
+				my $msg = "I caratteri ' e \" sono stati ignorati.";
 
 				# Execution
 				$data = {

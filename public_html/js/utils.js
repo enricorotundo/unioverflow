@@ -12,7 +12,7 @@ function validateForm() {
     	erroriForm = "<li>L'email deve finire con '\@studenti.unipd.it'</li>";
     }
     if(password==null || password=="" || password.trim() == "" || password.length < 8){
-    	erroriForm = erroriForm + "<li>La password deve essere almeno di 8 caratteri e non pu&ograve; contenere caratteri speciali</li>";
+    	erroriForm = erroriForm + "<li>La password deve essere almeno di 8 caratteri e non può contenere caratteri speciali</li>";
     }
     if(passwordconfirm==null || passwordconfirm=="" || passwordconfirm.trim() == "" || passwordconfirm != password ){
     	erroriForm = erroriForm + "<li>La password di conferma non corrisponde!</li>";
