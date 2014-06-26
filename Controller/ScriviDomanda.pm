@@ -53,10 +53,13 @@ sub handler {
 			# creo il msg di errore
 			my $msg = "I seguenti campi contengono errori: ";
 			if (not $fields_check->{"title_check"}) {
-				$msg = $msg . "Titolo "
+				$msg = $msg . "Titolo"
+			}
+			if (not $fields_check->{"title_check"} and not $fields_check->{"content_check"}) {
+				$msg = $msg . ", "
 			}
 			if (not $fields_check->{"content_check"}) {
-				$msg = $msg . "Testo della domanda "
+				$msg = $msg . "Testo della domanda"
 			}
 
 			# Execution

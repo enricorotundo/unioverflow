@@ -34,7 +34,7 @@ sub handler {
 				# Execution
 				$data = {
 					"error" => 1,
-					"msg" => "L'email inserita è già stata utilizzata"
+					"msg" => "<p>L'email inserita è già stata utilizzata</p>"
 				};
 
 			} else {
@@ -54,7 +54,7 @@ sub handler {
 
 		} else {
 			# creo il msg di errore
-			my $msg = "Sono stati riscontrati i seguenti errori:<ul>";
+			my $msg = "<p>Sono stati riscontrati i seguenti errori:</p><ul>";
 			if (not $fields_check->{"email_check"}) {
 				$msg = $msg . "<li>L'email deve finire con '\@studenti.unipd.it'</li>";
 			}
