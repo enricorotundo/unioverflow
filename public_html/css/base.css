@@ -302,7 +302,6 @@ ul {
 #registrati-form label, #accedi-form label {
 	width: 4em;
 	float: left;
-	text-align: right;
 	margin-right: 1.5em;
 	width: 4em;
 	display: block
@@ -310,9 +309,7 @@ ul {
 #registrati-form input , #accedi-form input{
 	margin-bottom: 1em;
 }
-#registrati-form input[type="text"] {
-	width: 15em;
-}
+
 #registrati-submit {
 	text-decoration: none;
 	color: white;
@@ -346,9 +343,7 @@ ul {
 	width: auto;
 	margin: 0 auto;
 }
-#accedi-form input[type="text"] {
-	width: 15em;
-}
+
 /* Esegui-accesso */
 p {
 	padding-top: 1em;
