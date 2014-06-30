@@ -303,8 +303,7 @@ ul {
 	width: 4em;
 	float: left;
 	margin-right: 1.5em;
-	width: 4em;
-	display: block
+	display: block;
 }
 #registrati-form input , #accedi-form input{
 	margin-bottom: 1em;

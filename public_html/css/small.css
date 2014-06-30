@@ -33,7 +33,7 @@
 #menu li {
 	display: block;
 	float: none;
-	font-size: 2em;
+	font-size: 1em;
 }
 .lateralNavItem {
 	float: none !important;
