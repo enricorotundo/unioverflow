@@ -14,7 +14,11 @@
 	<meta name="robots" content="index, follow" />
 [% ELSE %]
 	<title>[% pageName %] - UniOverflow</title>
-	<meta name="robots" content="noindex, follow" />
+	[% IF pageName == 'Manuale' %]
+		<meta name="robots" content="index, follow" />
+	[% ELSE %]
+		<meta name="robots" content="noindex, follow" />
+	[% END %]
 [% END %]
 	<meta name="description" content="UniOverflow è un sito di domande e risposte rivolto agli studenti del corso di informatica dell'Università di Padova." />
 	<meta name="keywords" content="UniOverflow, fiup, informatica, unipd, Padova, domande, risposte" />
