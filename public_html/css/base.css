@@ -28,6 +28,7 @@ body {
 }
 #page {
 	margin: 0 15% 0;
+	min-width: 250px;
 }
 caption {
 	font-size: 90%;
