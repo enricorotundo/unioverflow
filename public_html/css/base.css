@@ -69,6 +69,7 @@ ul {
 ========================================================*/
 #headImg {
 	display: block;
+	height: auto;
 	margin: auto;
 	width: 60%;
 }
