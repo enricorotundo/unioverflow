@@ -3,13 +3,15 @@
 	PROCESS layout/header.html;
 	PROCESS layout/navigation.html %]
 	
-	<div id="esci">
-	[% IF success %]
-		<p>L'uscita è stata effettuata correttamente.</p>
-		<p>Ora puoi andare alla <a href="index.cgi" title="Home" tabindex="[% i=i+1; i %]">pagina principale</a>.</p>
-	[% ELSE %]
-		<p>C'è stato un errore nell'effettuare l'uscita.</p>
-		<p>Puoi andare alla <a href="index.cgi" title="Home" tabindex="[% i=i+1; i %]">pagina principale</a> e riprovare più tardi.</p>
-	[% END %]
+	<div id="content">
+		<div id="esci">
+		[% IF success %]
+			<p>L'uscita è stata effettuata correttamente.</p>
+			<p>Ora puoi andare alla <a href="index.cgi" title="Home" tabindex="[% i=i+1; i %]">pagina principale</a>.</p>
+		[% ELSE %]
+			<p>C'è stato un errore nell'effettuare l'uscita.</p>
+			<p>Puoi andare alla <a href="index.cgi" title="Home" tabindex="[% i=i+1; i %]">pagina principale</a> e riprovare più tardi.</p>
+		[% END %]
+		</div>
 	</div>
 [% END %]

@@ -35,26 +35,27 @@
 			<div id="notFound"><p>Nessuna corrispondenza trovata!</p></div>
 		[% END %]
 
-		<ul>
-		[% FOREACH question IN questions %]
-			<li>
-				<div class="question">
-					<div class="questionStatus [% question.status %]">
-					[% IF question.status == 'solved' %]
-						<p><span class="aural">Domanda </span>risolta</p>
-					[% ELSIF question.status == 'opened' %]
-						<p><span class="aural">Domanda </span>aperta</p>
-					[% END %]
+		[%IF !notFound %]
+			<ul>
+			[% FOREACH question IN questions %]
+				<li>
+					<div class="question">
+						<div class="questionStatus [% question.status %]">
+						[% IF question.status == 'solved' %]
+							<p><span class="aural">Domanda </span>risolta</p>
+						[% ELSIF question.status == 'opened' %]
+							<p><span class="aural">Domanda </span>aperta</p>
+						[% END %]
+						</div>
+						<div class="questionDetails">
+							<h4><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]">[% question.title  %]</a></h4>
+							<p>chiesto da <span class="author">[% question.author | html %]</span> il [% question.insertDate | html %]</p>
+						</div>
 					</div>
-					<div class="questionDetails">
-						<h4><a tabindex="[% i=i+1; i %]" href="vedi-domanda.cgi?id=[% question.identifier %]">[% question.title  %]</a></h4>
-						<p>chiesto da <span class="author">[% question.author | html %]</span> il [% question.insertDate | html %]</p>
-					</div>
-				</div>
-			</li>
+				</li>
+			[% END %]
+			</ul>
 		[% END %]
-		</ul>
-
 		[%# Si considera che la numerazione su n pagine sia [1..n]. Se:
 			 
 			1) nella query-string non è presente un parametro 'page' o
