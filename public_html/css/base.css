@@ -263,6 +263,7 @@ ul {
 	padding-left: 10px;
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
+	word-wrap: break-word;
 }
 #indice li a:hover {
 	background-position: 3px;
