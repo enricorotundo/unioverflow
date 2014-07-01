@@ -1,0 +1,31 @@
+/* CSS navigation per i dispositivi handheld (schermo piccolo, banda limitata) o dagli screen con larghezza <= 650px */
+
+/* # Navigation
+========================================================*/
+#menu li {
+	display: block;
+	float: none;
+	font-size: 1em;
+}
+.lateralNavItem {
+	float: none !important;
+}
+#menu a {
+	padding: 0.5em;
+}
+#menu a:hover {
+	padding: 0.5em;
+}
+#currentPage {
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 1px solid #77261a;
+	border-bottom: 1px solid #77261a;
+	padding: 0.5em;
+}
+ul#menu>:first-child {
+	border-top: 0px;
+}
+ul#menu>:last-child {
+	border-bottom: 0px;
+}
